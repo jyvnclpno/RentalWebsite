@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login — HomeSync</title>
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/auth.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="../LANDING PAGE/index.html">Home<span>Sync</span></a>
+    <div class="nav-links">
+      <a href="../LANDING PAGE/index.html">Home</a>
+      <a href="#">System Logs</a>
+    </div>
+    <div>
+      <a href="login.html"><button class="btn-login">User Portal</button></a>
+    </div>
+  </nav>
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <div style="text-align: center; margin-bottom: 20px;">
+         <span style="font-size: 40px;">🛡️</span>
+      </div>
+      <h2 style="text-align: center;">Admin Control</h2>
+      <p class="auth-sub" style="text-align: center;" id="admin-instruction">Authorized personnel only</p>
+
+      <form id="admin-login-form">
+        <div id="step-1">
+          <div class="form-group">
+            <label>Administrator Email</label>
+            <input type="email" id="admin-email" placeholder="admin@homesync.com" required>
+          </div>
+
+          <div class="form-group">
+            <label>Secure Password</label>
+            <input type="password" id="admin-pass" placeholder="••••••••" required>
+          </div>
+        </div>
+
+        <div id="step-2" style="display: none;">
+          <div class="form-group">
+            <label>Security Token (OTP)</label>
+            <input type="text" id="admin-otp" placeholder="6-digit code" maxlength="6">
+            <p style="font-size: 11px; color: #94a3b8; margin-top: 8px;">An OTP has been sent to your email.</p>
+          </div>
+        </div>
+
+        <button type="submit" id="admin-submit-btn" class="btn-green-full" style="margin-top: 10px;">Continue</button>
+      </form>
+
+      <p style="text-align: center; font-size: 11px; color: #f87171; margin-top: 15px; font-weight: bold;">
+        Unauthorized access attempts are logged.
+      </p>
+
+      <a class="back-link" href="../LANDING PAGE/index.html">← Back to home</a>
+    </div>
+  </div>
+
+  <script src="../ASSETS/js/admin-login.js"></script>
+</body>
+</html>

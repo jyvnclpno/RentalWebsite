@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports & Complaints — HomeSync Admin</title>
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+  <div class="sidebar">
+    <a class="sb-logo" href="admin-overview.html">Home<span>Sync</span> <span style="font-size:9px;background:#dc2626;color:white;padding:2px 6px;border-radius:4px;font-weight:bold;margin-left:4px">ADMIN</span></a>
+    <div class="sb-section">Control Center</div>
+    <a class="sb-item" href="admin-overview.html">📊 Overview</a>
+    <a class="sb-item" href="admin-users.html">👤 User Management</a>
+    <a class="sb-item" href="admin-properties.html">🏠 Property Management</a>
+    <div class="sb-section">Finance</div>
+    <a class="sb-item" href="admin-payments.html">💳 Payment Monitoring</a>
+    <a class="sb-item" href="admin-analytics.html">📈 Analytics</a>
+    <div class="sb-section">Moderation</div>
+    <a class="sb-item active" href="admin-reports.html">🚨 Reports & Complaints <span class="sb-badge red">7</span></a>
+    <a class="sb-item" href="admin-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <div class="sb-section">System</div>
+    <a class="sb-item" href="admin-security.html">🔒 Security</a>
+    <a class="sb-item" href="admin-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="admin-settings.html">
+      <div class="avatar" style="background:#dc2626">SA</div>
+      <div><div class="av-name">Super Admin</div><div class="av-role">Administrator</div></div>
+    </a>
+  </div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Reports & Complaints</h1><p>Review and act on user-submitted reports</p></div>
+      <div class="topbar-r">
+        <a href="admin-reports.html" class="icon-btn">🚨</a>
+        <a href="admin-notifications.html" class="icon-btn">🔔</a>
+        <a href="admin-settings.html"><div class="avatar" style="background:#dc2626">SA</div></a>
+      </div>
+    </div>
+
+    <div class="db">
+
+      <div class="stat-row">
+        <div class="sc"><div class="sl">Total Reports</div><div class="sv">42</div></div>
+        <div class="sc"><div class="sl">Pending</div><div class="sv">7</div><div class="ss red">Needs action</div></div>
+        <div class="sc"><div class="sl">In Review</div><div class="sv">5</div><div class="ss warn">Being processed</div></div>
+        <div class="sc"><div class="sl">Resolved This Month</div><div class="sv">30</div><div class="ss">+12 vs last month</div></div>
+      </div>
+
+      <!-- Category breakdown -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px">
+        <div style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);border-radius:9px;padding:13px;text-align:center">
+          <div style="font-size:22px;margin-bottom:5px">🧨</div>
+          <div style="font-size:12px;font-weight:bold;color:#f87171">Scam Landlords</div>
+          <div style="font-size:20px;font-weight:bold;color:white;margin-top:4px">3</div>
+        </div>
+        <div style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);border-radius:9px;padding:13px;text-align:center">
+          <div style="font-size:22px;margin-bottom:5px">🏚️</div>
+          <div style="font-size:12px;font-weight:bold;color:#f87171">Fake Listings</div>
+          <div style="font-size:20px;font-weight:bold;color:white;margin-top:4px">2</div>
+        </div>
+        <div style="background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.2);border-radius:9px;padding:13px;text-align:center">
+          <div style="font-size:22px;margin-bottom:5px">😡</div>
+          <div style="font-size:12px;font-weight:bold;color:#fb923c">Harassment</div>
+          <div style="font-size:20px;font-weight:bold;color:white;margin-top:4px">1</div>
+        </div>
+        <div style="background:rgba(100,116,139,0.1);border:1px solid rgba(100,116,139,0.2);border-radius:9px;padding:13px;text-align:center">
+          <div style="font-size:22px;margin-bottom:5px">📨</div>
+          <div style="font-size:12px;font-weight:bold;color:#94a3b8">Spam</div>
+          <div style="font-size:20px;font-weight:bold;color:white;margin-top:4px">1</div>
+        </div>
+      </div>
+
+      <!-- Active Reports -->
+      <div class="cc">
+        <h3>🚨 Open Reports</h3>
+        <table>
+          <thead><tr><th>#</th><th>Reported By</th><th>Against</th><th>Type</th><th>Description</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr>
+              <td style="color:#64748b">#R-071</td>
+              <td><strong style="color:white">Marco Reyes</strong><br><small style="color:#64748b">tenant</small></td>
+              <td><strong style="color:#f87171">Diego Ramos</strong><br><small style="color:#64748b">landlord</small></td>
+              <td><span class="badge b-red">Scam</span></td>
+              <td style="max-width:200px;font-size:12px;color:#94a3b8">Asked for advance payment then disappeared.</td>
+              <td style="color:#64748b;font-size:11px">May 9, 2026</td>
+              <td><span class="badge b-yellow">Pending</span></td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="font-size:11px;padding:4px 9px">👁 Review</button>
+                  <button class="btn-red" style="font-size:11px;padding:4px 9px">🚫 Suspend</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="color:#64748b">#R-070</td>
+              <td><strong style="color:white">Ana Torres</strong><br><small style="color:#64748b">tenant</small></td>
+              <td><strong style="color:white">Listing #4821</strong><br><small style="color:#64748b">Makati condo</small></td>
+              <td><span class="badge b-red">Fake Listing</span></td>
+              <td style="max-width:200px;font-size:12px;color:#94a3b8">Photos don't match the actual unit. Price too low.</td>
+              <td style="color:#64748b;font-size:11px">May 8, 2026</td>
+              <td><span class="badge b-yellow">Pending</span></td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="font-size:11px;padding:4px 9px">👁 Review</button>
+                  <button class="btn-red" style="font-size:11px;padding:4px 9px">🗑 Remove</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="color:#64748b">#R-069</td>
+              <td><strong style="color:white">Lito Cruz</strong><br><small style="color:#64748b">tenant</small></td>
+              <td><strong style="color:white">Jose Mendoza</strong><br><small style="color:#64748b">landlord</small></td>
+              <td><span class="badge b-orange">Harassment</span></td>
+              <td style="max-width:200px;font-size:12px;color:#94a3b8">Threatening messages after lease dispute.</td>
+              <td style="color:#64748b;font-size:11px">May 7, 2026</td>
+              <td><span class="badge b-blue">In Review</span></td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="font-size:11px;padding:4px 9px">👁 Review</button>
+                  <button class="btn-red" style="font-size:11px;padding:4px 9px">🚫 Suspend</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="color:#64748b">#R-068</td>
+              <td><strong style="color:white">Rosa Santos</strong><br><small style="color:#64748b">tenant</small></td>
+              <td><strong style="color:white">Unknown User</strong><br><small style="color:#64748b">—</small></td>
+              <td><span class="badge b-gray">Spam</span></td>
+              <td style="max-width:200px;font-size:12px;color:#94a3b8">Receiving mass promo messages from unknown sender.</td>
+              <td style="color:#64748b;font-size:11px">May 6, 2026</td>
+              <td><span class="badge b-green">Resolved</span></td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="font-size:11px;padding:4px 9px">👁 View</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

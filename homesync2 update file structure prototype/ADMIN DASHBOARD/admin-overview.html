@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Overview — HomeSync</title>
+ <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+  <div class="sidebar">
+    <a class="sb-logo" href="admin-overview.html">Home<span>Sync</span> <span style="font-size:9px;background:#dc2626;color:white;padding:2px 6px;border-radius:4px;font-weight:bold;margin-left:4px">ADMIN</span></a>
+    <div class="sb-section">Control Center</div>
+    <a class="sb-item active" href="admin-overview.html">📊 Overview</a>
+    <a class="sb-item" href="admin-users.html">👤 User Management</a>
+    <a class="sb-item" href="admin-properties.html">🏠 Property Management</a>
+    <div class="sb-section">Finance</div>
+    <a class="sb-item" href="admin-payments.html">💳 Payment Monitoring</a>
+    <a class="sb-item" href="admin-analytics.html">📈 Analytics</a>
+    <div class="sb-section">Moderation</div>
+    <a class="sb-item" href="admin-reports.html">🚨 Reports & Complaints <span class="sb-badge red">7</span></a>
+    <a class="sb-item" href="admin-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <div class="sb-section">System</div>
+    <a class="sb-item" href="admin-security.html">🔒 Security</a>
+    <a class="sb-item" href="admin-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="admin-settings.html">
+      <div class="avatar" style="background:#dc2626">SA</div>
+      <div><div class="av-name">Super Admin</div><div class="av-role">Administrator</div></div>
+    </a>
+  </div>
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Admin Overview</h1><p>Good morning, Admin 👋 Here's what's happening today.</p></div>
+      <div class="topbar-r">
+        <a href="admin-reports.html" class="icon-btn" title="Reports">🚨</a>
+        <a href="admin-notifications.html" class="icon-btn">🔔</a>
+        <a href="admin-settings.html"><div class="avatar" style="background:#dc2626">SA</div></a>
+      </div>
+    </div>
+
+    <div class="db">
+
+      <!-- Alert Banner -->
+      <div class="alert alert-red" style="display:flex;align-items:center;justify-content:space-between">
+        <span>⚠️ <strong>7 unresolved reports</strong> require admin review — including 2 flagged scam listings.</span>
+        <a href="admin-reports.html" class="btn-red" style="padding:6px 12px;font-size:12px;text-decoration:none">Review Now</a>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="stat-row">
+        <div class="sc"><div class="sl">Total Users</div><div class="sv">1,284</div><div class="ss">+24 this week</div></div>
+        <div class="sc"><div class="sl">Landlords</div><div class="sv">312</div><div class="ss">48 pending verify</div></div>
+        <div class="sc"><div class="sl">Tenants</div><div class="sv">972</div><div class="ss">+18 this week</div></div>
+        <div class="sc"><div class="sl">Active Listings</div><div class="sv">486</div><div class="ss">12 pending approval</div></div>
+        <div class="sc"><div class="sl">Active Rentals</div><div class="sv">741</div><div class="ss">+5 today</div></div>
+        <div class="sc"><div class="sl">Banned Accounts</div><div class="sv">23</div><div class="ss red">3 this week</div></div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="qa">
+        <a href="admin-users.html" class="qa-btn">👤 Manage Users</a>
+        <a href="admin-properties.html" class="qa-btn">🏠 Approve Listings</a>
+        <a href="admin-reports.html" class="qa-btn">🚨 Review Reports</a>
+        <a href="admin-payments.html" class="qa-btn">💳 View Transactions</a>
+        <a href="admin-notifications.html" class="qa-btn">📢 Send Announcement</a>
+        <a href="admin-security.html" class="qa-btn">🔒 Security Log</a>
+      </div>
+
+      <div class="grid2">
+        <!-- Recent Reports -->
+        <div class="cc">
+          <h3>Recent Reports <a href="admin-reports.html">View all</a></h3>
+          <table>
+            <thead><tr><th>Report</th><th>Type</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Fake listing — Unit 12, Makati</td><td><span class="badge b-red">Fake Listing</span></td><td><span class="badge b-yellow">Pending</span></td></tr>
+              <tr><td>Scam landlord — Diego Ramos</td><td><span class="badge b-red">Scam</span></td><td><span class="badge b-yellow">Pending</span></td></tr>
+              <tr><td>Harassment — tenant complaint</td><td><span class="badge b-orange">Harassment</span></td><td><span class="badge b-blue">In Review</span></td></tr>
+              <tr><td>Spam messages — multiple</td><td><span class="badge b-gray">Spam</span></td><td><span class="badge b-green">Resolved</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Pending Verifications -->
+        <div class="cc">
+          <h3>Pending Verifications <a href="admin-users.html">View all</a></h3>
+          <table>
+            <thead><tr><th>Landlord</th><th>Submitted</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td><strong style="color:white">Pedro Villanueva</strong><br><small style="color:#64748b">pedro@email.com</small></td><td style="color:#64748b;font-size:11px">May 9, 2026</td><td><a href="admin-users.html" style="color:#22c55e;font-size:11px">Verify →</a></td></tr>
+              <tr><td><strong style="color:white">Carla Mendez</strong><br><small style="color:#64748b">carla@email.com</small></td><td style="color:#64748b;font-size:11px">May 8, 2026</td><td><a href="admin-users.html" style="color:#22c55e;font-size:11px">Verify →</a></td></tr>
+              <tr><td><strong style="color:white">Ramon Torres</strong><br><small style="color:#64748b">ramon@email.com</small></td><td style="color:#64748b;font-size:11px">May 7, 2026</td><td><a href="admin-users.html" style="color:#22c55e;font-size:11px">Verify →</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="cc">
+        <h3>Recent System Activity</h3>
+        <table>
+          <tr><td>🚨 New report submitted — scam landlord flagged</td><td style="color:#64748b;font-size:11px">5 min ago</td></tr>
+          <tr><td>✅ Listing approved — Sunset Studio, BGC</td><td style="color:#64748b;font-size:11px">22 min ago</td></tr>
+          <tr><td>🚫 User banned — diego.ramos@email.com</td><td style="color:#f87171;font-size:11px">1h ago</td></tr>
+          <tr><td>👤 New landlord registered — Carla Mendez</td><td style="color:#64748b;font-size:11px">2h ago</td></tr>
+          <tr><td>💳 Payment verified — ₱12,000 · Unit 5A Bayside</td><td style="color:#64748b;font-size:11px">3h ago</td></tr>
+          <tr><td>🏠 Fake listing removed — ID #4821</td><td style="color:#64748b;font-size:11px">Today</td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

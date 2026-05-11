@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — HomeSync Admin</title>
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+  <div class="sidebar">
+    <a class="sb-logo" href="admin-overview.html">Home<span>Sync</span> <span style="font-size:9px;background:#dc2626;color:white;padding:2px 6px;border-radius:4px;font-weight:bold;margin-left:4px">ADMIN</span></a>
+    <div class="sb-section">Control Center</div>
+    <a class="sb-item" href="admin-overview.html">📊 Overview</a>
+    <a class="sb-item" href="admin-users.html">👤 User Management</a>
+    <a class="sb-item" href="admin-properties.html">🏠 Property Management</a>
+    <div class="sb-section">Finance</div>
+    <a class="sb-item" href="admin-payments.html">💳 Payment Monitoring</a>
+    <a class="sb-item" href="admin-analytics.html">📈 Analytics</a>
+    <div class="sb-section">Moderation</div>
+    <a class="sb-item" href="admin-reports.html">🚨 Reports & Complaints <span class="sb-badge red">7</span></a>
+    <a class="sb-item" href="admin-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <div class="sb-section">System</div>
+    <a class="sb-item" href="admin-security.html">🔒 Security</a>
+    <a class="sb-item active" href="admin-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="admin-settings.html">
+      <div class="avatar" style="background:#dc2626">SA</div>
+      <div><div class="av-name">Super Admin</div><div class="av-role">Administrator</div></div>
+    </a>
+  </div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Settings</h1><p>Platform configuration and admin preferences</p></div>
+      <div class="topbar-r">
+        <a href="admin-reports.html" class="icon-btn">🚨</a>
+        <a href="admin-notifications.html" class="icon-btn">🔔</a>
+        <a href="admin-settings.html"><div class="avatar" style="background:#dc2626">SA</div></a>
+      </div>
+    </div>
+
+    <div class="db">
+
+      <div class="profile-hd">
+        <div class="big-av" style="background:#dc2626">SA</div>
+        <div><h3>Super Admin</h3><p>Administrator · HomeSync Platform · Full Access</p></div>
+      </div>
+
+      <div class="settings-layout" style="display:grid;grid-template-columns:180px 1fr;gap:16px">
+
+        <div class="settings-menu" style="background:#2e3840;border-radius:10px;padding:10px;height:fit-content">
+          <a href="#tab-profile" class="sm-item" style="display:block;text-decoration:none;padding:10px 12px;font-size:13px;color:#94a3b8;border-radius:6px">👤 Profile</a>
+          <a href="#tab-platform" class="sm-item" style="display:block;text-decoration:none;padding:10px 12px;font-size:13px;color:#94a3b8;border-radius:6px">🌐 Platform</a>
+          <a href="#tab-roles" class="sm-item" style="display:block;text-decoration:none;padding:10px 12px;font-size:13px;color:#94a3b8;border-radius:6px">🔑 Roles & Access</a>
+          <a href="#tab-alerts" class="sm-item" style="display:block;text-decoration:none;padding:10px 12px;font-size:13px;color:#94a3b8;border-radius:6px">🔔 Alert Settings</a>
+        </div>
+
+        <div>
+          <!-- Profile (default) -->
+          <div id="tab-profile" class="settings-panel tab-content tab-default">
+            <div class="s-section">
+              <h3>Admin Profile</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">Your administrator account information.</p>
+              <div class="form-row">
+                <div class="form-group"><label>First name</label><input type="text" value="Super"></div>
+                <div class="form-group"><label>Last name</label><input type="text" value="Admin"></div>
+              </div>
+              <div class="form-group"><label>Email</label><input type="email" value="admin@homesync.ph"></div>
+              <div class="form-group"><label>Role</label><input type="text" value="Super Administrator" readonly style="opacity:0.6"></div>
+              <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px">Save Changes</button>
+            </div>
+            <div class="s-section">
+              <h3>Change Password</h3>
+              <div class="form-group"><label>Current password</label><input type="password" placeholder="••••••••"></div>
+              <div class="form-group"><label>New password</label><input type="password" placeholder="Min. 12 characters recommended"></div>
+              <div class="form-group"><label>Confirm new password</label><input type="password" placeholder="Repeat"></div>
+              <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px">Update Password</button>
+            </div>
+          </div>
+
+          <!-- Platform Settings -->
+          <div id="tab-platform" class="settings-panel tab-content">
+            <div class="s-section">
+              <h3>Platform Settings</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">Configure global platform rules.</p>
+              <div class="form-group"><label>Platform Commission (%)</label><input type="number" value="5" min="1" max="20"></div>
+              <div class="form-group"><label>Max Listings per Landlord (Basic)</label><input type="number" value="5"></div>
+              <div class="form-group"><label>Max Listings per Landlord (Pro)</label><input type="number" value="25"></div>
+              <div class="form-group"><label>Listing Approval Mode</label>
+                <select>
+                  <option>Manual (Admin reviews each listing)</option>
+                  <option>Auto-approve verified landlords</option>
+                  <option>Auto-approve all</option>
+                </select>
+              </div>
+              <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px">Save Platform Settings</button>
+            </div>
+          </div>
+
+          <!-- Roles & Access -->
+          <div id="tab-roles" class="settings-panel tab-content">
+            <div class="s-section">
+              <h3>Admin Accounts</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">Manage who has admin access to the platform.</p>
+              <table>
+                <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>2FA</th><th>Action</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><strong style="color:white">Super Admin</strong></td>
+                    <td style="font-size:12px;color:#64748b">admin@homesync.ph</td>
+                    <td><span class="badge b-red">Super Admin</span></td>
+                    <td><span class="badge b-green">Enabled</span></td>
+                    <td><span style="color:#64748b;font-size:11px">You</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong style="color:white">Support Admin</strong></td>
+                    <td style="font-size:12px;color:#64748b">support.admin@homesync.ph</td>
+                    <td><span class="badge b-blue">Support</span></td>
+                    <td><span class="badge b-green">Enabled</span></td>
+                    <td><div class="btn-row"><button class="btn-outline-green" style="font-size:11px;padding:4px 9px">Edit</button><button class="btn-red" style="font-size:11px;padding:4px 9px">Remove</button></div></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style="margin-top:14px">
+                <button class="btn-outline-green">+ Invite Admin</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alert Settings -->
+          <div id="tab-alerts" class="settings-panel tab-content">
+            <div class="s-section">
+              <h3>Admin Alert Preferences</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">Choose which events send admin notifications.</p>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">New report submitted</div><div class="t2">Alert when any user submits a complaint</div></div>
+                <input type="checkbox" id="a1" class="toggle-check" checked>
+                <label for="a1" class="toggle-label"></label>
+              </div>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">New landlord verification request</div><div class="t2">Alert when a landlord submits documents</div></div>
+                <input type="checkbox" id="a2" class="toggle-check" checked>
+                <label for="a2" class="toggle-label"></label>
+              </div>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">Suspicious login detected</div><div class="t2">Alert on failed login spikes or unusual IPs</div></div>
+                <input type="checkbox" id="a3" class="toggle-check" checked>
+                <label for="a3" class="toggle-label"></label>
+              </div>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">New listing pending approval</div><div class="t2">Alert when a landlord submits a listing</div></div>
+                <input type="checkbox" id="a4" class="toggle-check" checked>
+                <label for="a4" class="toggle-label"></label>
+              </div>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">Daily summary digest</div><div class="t2">Morning email with platform stats</div></div>
+                <input type="checkbox" id="a5" class="toggle-check">
+                <label for="a5" class="toggle-label"></label>
+              </div>
+              <div style="margin-top:14px">
+                <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px">Save Alert Settings</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

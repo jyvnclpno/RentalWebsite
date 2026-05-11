@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — HomeSync</title>
+<link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+
+  <div class="sidebar">
+    <a class="sb-logo" href="index.html">Home<span>Sync</span></a>
+    <div class="sb-section">Main</div>
+    <a class="sb-item" href="landlord-overview.html">📊 Overview</a>
+    <a class="sb-item" href="landlord-properties.html">🏠 Properties</a>
+    <a class="sb-item" href="landlord-tenants.html">👥 Tenants</a>
+    <a class="sb-item" href="landlord-tickets.html">🔧 Tickets <span class="sb-badge red">3</span></a>
+    <div class="sb-section">Finance</div>
+    <a class="sb-item" href="landlord-payments.html">💳 Rent &amp; Payments</a>
+    <a class="sb-item" href="landlord-reports.html">📈 Reports</a>
+    <div class="sb-section">Manage</div>
+    <a class="sb-item" href="landlord-documents.html">📁 Documents</a>
+    <a class="sb-item" href="landlord-messages.html">💬 Messages <span class="sb-badge">4</span></a>
+    <a class="sb-item" href="landlord-notifications.html">🔔 Notifications <span class="sb-badge">5</span></a>
+    <a class="sb-item" href="landlord-support.html">❓ Support</a>
+    <a class="sb-item active" href="landlord-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="landlord-settings.html">
+      <div class="avatar">JD</div>
+      <div><div class="av-name">Juan dela Cruz</div><div class="av-role">Landlord · Pro</div></div>
+    </a>
+  </div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Settings</h1><p>Account preferences</p></div>
+      <div class="topbar-r">
+        <a href="landlord-notifications.html" class="icon-btn">🔔</a>
+        <a href="landlord-settings.html"><div class="avatar">JD</div></a>
+      </div>
+    </div>
+
+    <div class="db">
+      <div class="profile-hd">
+        <div class="big-av">JD</div>
+        <div><h3>Juan dela Cruz</h3><p>Landlord · Davao City, Philippines · Pro Plan</p></div>
+      </div>
+
+      <div class="settings-layout">
+
+        <!-- Tab menu -->
+        <div class="settings-menu">
+          <a href="#tab-profile" class="sm-item" style="display:block;text-decoration:none">👤 Profile</a>
+          <a href="#tab-notifs" class="sm-item" style="display:block;text-decoration:none">🔔 Notifications</a>
+          <a href="#tab-security" class="sm-item" style="display:block;text-decoration:none">🔒 Security</a>
+          <a href="#tab-billing" class="sm-item" style="display:block;text-decoration:none">💳 Billing</a>
+          <a href="#tab-danger" class="sm-item" style="color:#f87171;display:block;text-decoration:none">⚠️ Danger Zone</a>
+        </div>
+
+        <!-- Tab content panels (CSS :target switching) -->
+        <div>
+
+          <!-- Profile (shown by default) -->
+          <div id="tab-profile" class="settings-panel tab-content tab-default">
+            <div class="s-section">
+              <h3>Personal Information</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">Update your name, email, and contact details.</p>
+              <div class="form-row">
+                <div class="form-group"><label>First name</label><input type="text" value="Juan"></div>
+                <div class="form-group"><label>Last name</label><input type="text" value="dela Cruz"></div>
+              </div>
+              <div class="form-group"><label>Email</label><input type="email" value="juan@homesync.ph"></div>
+              <div class="form-group"><label>Phone</label><input type="tel" value="+63 917 123 4567"></div>
+              <div class="form-group"><label>Location</label><input type="text" value="Davao City, Philippines"></div>
+              <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px">Save changes</button>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <div id="tab-notifs" class="settings-panel tab-content">
+            <div class="s-section">
+              <h3>Email Notifications</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">Choose which events trigger email alerts.</p>
+
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">New ticket submitted</div><div class="t2">When a tenant submits a request</div></div>
+                <input type="checkbox" id="tog1" class="toggle-check" checked>
+                <label for="tog1" class="toggle-label"></label>
+              </div>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">Rent received</div><div class="t2">When a tenant pays rent</div></div>
+                <input type="checkbox" id="tog2" class="toggle-check" checked>
+                <label for="tog2" class="toggle-label"></label>
+              </div>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">Overdue payments</div><div class="t2">When payment is 3+ days late</div></div>
+                <input type="checkbox" id="tog3" class="toggle-check" checked>
+                <label for="tog3" class="toggle-label"></label>
+              </div>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">Lease expiry warnings</div><div class="t2">30 days before a lease expires</div></div>
+                <input type="checkbox" id="tog4" class="toggle-check" checked>
+                <label for="tog4" class="toggle-label"></label>
+              </div>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">Weekly summary</div><div class="t2">Every Monday morning</div></div>
+                <input type="checkbox" id="tog5" class="toggle-check">
+                <label for="tog5" class="toggle-label"></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Security -->
+          <div id="tab-security" class="settings-panel tab-content">
+            <div class="s-section">
+              <h3>Change Password</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">Use a strong password to keep your account safe.</p>
+              <div class="form-group"><label>Current password</label><input type="password" placeholder="••••••••"></div>
+              <div class="form-group"><label>New password</label><input type="password" placeholder="Min. 8 characters"></div>
+              <div class="form-group"><label>Confirm new password</label><input type="password" placeholder="Repeat"></div>
+              <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px">Update password</button>
+            </div>
+            <div class="s-section">
+              <h3>Two-Factor Authentication</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">Add extra security to your account.</p>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">Enable 2FA via SMS</div><div class="t2">A code is sent to your phone on login</div></div>
+                <input type="checkbox" id="tog6" class="toggle-check">
+                <label for="tog6" class="toggle-label"></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Billing -->
+          <div id="tab-billing" class="settings-panel tab-content">
+            <div class="s-section">
+              <h3>Current Plan</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">You are on the <strong style="color:white">Pro plan</strong>.</p>
+              <div class="alert alert-green" style="margin-bottom:14px"><strong>Pro — ₱1,650/month</strong><br><small>Up to 25 units · Renews April 1, 2026</small></div>
+              <div style="display:flex;gap:8px">
+                <button class="btn-outline-green">Upgrade to Enterprise</button>
+                <button class="btn-outline-green">Download Invoice</button>
+              </div>
+            </div>
+            <div class="s-section">
+              <h3>Payment Method</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">Card on file for billing.</p>
+              <div style="display:flex;align-items:center;gap:11px;padding:11px;border:1px solid #4a5568;border-radius:8px">
+                <span style="font-size:22px">💳</span>
+                <div><div style="font-size:13px;font-weight:bold;color:white">Visa ending in 4242</div><div style="font-size:11px;color:#64748b">Expires 08/28</div></div>
+                <button class="btn-outline-green" style="margin-left:auto;font-size:11px">Update</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Danger Zone -->
+          <div id="tab-danger" class="settings-panel tab-content">
+            <div class="s-section">
+              <h3 style="color:#f87171">⚠️ Danger Zone</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">These actions are permanent and cannot be undone.</p>
+              <div style="border:1px solid #f87171;border-radius:8px;padding:13px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center">
+                <div><div style="font-size:13px;font-weight:bold;color:white">Deactivate account</div><div style="font-size:12px;color:#64748b;margin-top:2px">Temporarily disables your account.</div></div>
+                <button class="btn-red">Deactivate</button>
+              </div>
+              <div style="border:1px solid #f87171;border-radius:8px;padding:13px;display:flex;justify-content:space-between;align-items:center">
+                <div><div style="font-size:13px;font-weight:bold;color:white">Delete account</div><div style="font-size:12px;color:#64748b;margin-top:2px">Permanently deletes all your data.</div></div>
+                <a href="login.html"><button class="btn-red">Delete account</button></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Lease — HomeSync</title>
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+   <div class="sidebar">
+    <a class="sb-logo" href="#">Home<span>Sync</span></a>
+    <div class="sb-section">My Home</div>
+    <a class="sb-item" href="tenant-overview.html">📊 Overview</a>
+    <a class="sb-item" href="tenant-lobby.html">🏠 Room Lobby</a>
+    <a class="sb-item" href="tenant-rent.html">💳 Pay Rent</a>
+    <a class="sb-item" href="tenant-tickets.html">🔧 My Tickets <span class="sb-badge red">1</span></a>
+    <div class="sb-section">Account</div>
+    <a class="sb-item active" href="tenant-lease.html">📋 My Lease</a>
+    <a class="sb-item" href="tenant-documents.html">📁 Documents</a>
+    <a class="sb-item" href="tenant-utilities.html">⚡ Utilities</a>
+    <a class="sb-item" href="tenant-messages.html">💬 Messages <span class="sb-badge">2</span></a>
+    <a class="sb-item" href="tenant-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <a class="sb-item" href="tenant-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../index.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="tenant-settings.html">
+      <div class="avatar purple">MR</div>
+      <div><div class="av-name">Marco Reyes</div><div class="av-role">Tenant · Unit 3A</div></div>
+    </a>
+  </div>
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>My Lease</h1><p>Your lease agreement and unit info</p></div>
+      <div class="topbar-r">
+        <a href="tenant-notifications.html" class="icon-btn">🔔</a>
+        <a href="tenant-settings.html"><div class="avatar purple">MR</div></a>
+      </div>
+    </div>
+    <div class="db">
+      <div class="grid2">
+        <div class="cc">
+          <h3>Lease Details</h3>
+          <div class="drow"><span class="dl">Tenant</span><span class="dv">Marco Reyes</span></div>
+          <div class="drow"><span class="dl">Unit</span><span class="dv">Unit 3A</span></div>
+          <div class="drow"><span class="dl">Property</span><span class="dv">Sunset Apartments, QC</span></div>
+          <div class="drow"><span class="dl">Lease Start</span><span class="dv">January 1, 2026</span></div>
+          <div class="drow"><span class="dl">Lease End</span><span class="dv">December 31, 2026</span></div>
+          <div class="drow"><span class="dl">Monthly Rent</span><span class="dv" style="color:#22c55e">₱8,500</span></div>
+          <div class="drow"><span class="dl">Security Deposit</span><span class="dv">₱17,000 (paid)</span></div>
+          <div class="drow"><span class="dl">Due Date</span><span class="dv">5th of every month</span></div>
+          <div class="drow"><span class="dl">Status</span><span class="dv"><span class="badge b-green">Active</span></span></div>
+          <div class="alert alert-yellow" style="margin-top:13px">⚠️ Your lease ends in 9 months. Contact your landlord to discuss renewal.</div>
+          <div style="display:flex;gap:8px;margin-top:13px">
+            <a href="tenant-messages.html"><button class="btn-green" style="border-radius:8px;padding:9px 16px;font-size:13px">Request renewal</button></a>
+            <button class="btn-outline-green" style="padding:9px 16px;font-size:13px">Download lease</button>
+          </div>
+        </div>
+        <div>
+          <div class="cc" style="margin-bottom:14px">
+            <h3>Landlord Contact</h3>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:13px">
+              <div class="avatar">JD</div>
+              <div>
+                <div style="font-weight:bold;font-size:13px;color:white">Juan dela Cruz</div>
+                <div style="font-size:11px;color:#64748b">Your landlord</div>
+              </div>
+            </div>
+            <div class="drow"><span class="dl">Phone</span><span class="dv">+63 917 123 4567</span></div>
+            <div class="drow"><span class="dl">Email</span><span class="dv">juan@homesync.ph</span></div>
+            <br>
+            <a href="tenant-messages.html"><button class="btn-green" style="width:100%;border-radius:8px;padding:9px;font-size:13px">💬 Send message</button></a>
+          </div>
+          <div class="cc">
+            <h3>Unit Details</h3>
+            <div class="drow"><span class="dl">Floor area</span><span class="dv">42 sqm</span></div>
+            <div class="drow"><span class="dl">Bedrooms</span><span class="dv">1</span></div>
+            <div class="drow"><span class="dl">Bathrooms</span><span class="dv">1</span></div>
+            <div class="drow"><span class="dl">Wifi included</span><span class="dv">✅ Yes</span></div>
+            <div class="drow"><span class="dl">Water included</span><span class="dv">✅ Yes</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="toast-wrap"></div>
+<script src="../ASSETS/js/tenant-lease.js"></script>
+</body>
+</html>

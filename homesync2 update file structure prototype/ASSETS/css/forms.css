@@ -1,0 +1,80 @@
+*{
+
+    text-decoration: none;
+}
+.form-group { 
+    margin-bottom: 14px; 
+}
+
+.form-group label { 
+    display: block; 
+    font-size: 12px; 
+    font-weight: bold; 
+    color: white; 
+    margin-bottom: 5px; 
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea { 
+    width: 100%; 
+    padding: 10px 16px; 
+    background-color: #f1f5f9; 
+    border: none; 
+    border-radius: 30px; 
+    font-size: 13px; 
+    outline: none; 
+    font-family: Arial, sans-serif; 
+    color: #333; 
+}
+
+.form-group select { 
+    border-radius: 10px; 
+    cursor: pointer; 
+}
+
+.form-group textarea { 
+    border-radius: 12px; 
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus { 
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.4); 
+}
+
+.form-row { 
+    display: flex; 
+    gap: 12px; 
+}
+
+.form-row .form-group { 
+    flex: 1; 
+}
+
+.divider { 
+    text-align: center; 
+    color: #64748b; 
+    font-size: 12px; 
+    margin: 12px 0; 
+}
+
+.social-btn { 
+    width: 100%; 
+    padding: 10px; 
+    background-color: #3d4a56; 
+    color: white; 
+    border: 1px solid #4a5568; 
+    border-radius: 30px; 
+    font-size: 13px; 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 8px; 
+    margin-bottom: 12px; 
+}
+
+.social-btn:hover { 
+    background-color: #4a5568; 
+}

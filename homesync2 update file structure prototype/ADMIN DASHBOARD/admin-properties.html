@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Management — HomeSync Admin</title>
+ <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+  <div class="sidebar">
+    <a class="sb-logo" href="admin-overview.html">Home<span>Sync</span> <span style="font-size:9px;background:#dc2626;color:white;padding:2px 6px;border-radius:4px;font-weight:bold;margin-left:4px">ADMIN</span></a>
+    <div class="sb-section">Control Center</div>
+    <a class="sb-item" href="admin-overview.html">📊 Overview</a>
+    <a class="sb-item" href="admin-users.html">👤 User Management</a>
+    <a class="sb-item active" href="admin-properties.html">🏠 Property Management</a>
+    <div class="sb-section">Finance</div>
+    <a class="sb-item" href="admin-payments.html">💳 Payment Monitoring</a>
+    <a class="sb-item" href="admin-analytics.html">📈 Analytics</a>
+    <div class="sb-section">Moderation</div>
+    <a class="sb-item" href="admin-reports.html">🚨 Reports & Complaints <span class="sb-badge red">7</span></a>
+    <a class="sb-item" href="admin-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <div class="sb-section">System</div>
+    <a class="sb-item" href="admin-security.html">🔒 Security</a>
+    <a class="sb-item" href="admin-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="admin-settings.html">
+      <div class="avatar" style="background:#dc2626">SA</div>
+      <div><div class="av-name">Super Admin</div><div class="av-role">Administrator</div></div>
+    </a>
+  </div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Property Management</h1><p>Approve, monitor, and remove listings</p></div>
+      <div class="topbar-r">
+        <a href="admin-reports.html" class="icon-btn">🚨</a>
+        <a href="admin-notifications.html" class="icon-btn">🔔</a>
+        <a href="admin-settings.html"><div class="avatar" style="background:#dc2626">SA</div></a>
+      </div>
+    </div>
+
+    <div class="db">
+
+      <div class="stat-row">
+        <div class="sc"><div class="sl">Total Listings</div><div class="sv">486</div></div>
+        <div class="sc"><div class="sl">Pending Approval</div><div class="sv">12</div><div class="ss warn">Needs review</div></div>
+        <div class="sc"><div class="sl">Flagged / Reported</div><div class="sv">5</div><div class="ss red">Action needed</div></div>
+        <div class="sc"><div class="sl">Removed This Month</div><div class="sv">8</div></div>
+      </div>
+
+      <!-- Pending Approval -->
+      <div class="cc">
+        <h3>⏳ Listings Pending Approval <span class="badge b-yellow">12</span></h3>
+        <table>
+          <thead><tr><th>Listing</th><th>Landlord</th><th>Location</th><th>Price/mo</th><th>Submitted</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:white">Sunshine Studio Unit A</strong><br><small style="color:#64748b">Studio · 1 bath</small></td>
+              <td>Pedro Villanueva</td>
+              <td>BGC, Taguig</td>
+              <td style="color:#22c55e;font-weight:bold">₱18,000</td>
+              <td style="color:#64748b;font-size:11px">May 9, 2026</td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-green" style="padding:5px 12px;border-radius:6px;font-size:11px">✅ Approve</button>
+                  <button class="btn-red" style="font-size:11px;padding:5px 10px">✗ Reject</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Cozy 2BR Condo</strong><br><small style="color:#64748b">2BR · 1 bath</small></td>
+              <td>Carla Mendez</td>
+              <td>Mandaluyong</td>
+              <td style="color:#22c55e;font-weight:bold">₱24,500</td>
+              <td style="color:#64748b;font-size:11px">May 8, 2026</td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-green" style="padding:5px 12px;border-radius:6px;font-size:11px">✅ Approve</button>
+                  <button class="btn-red" style="font-size:11px;padding:5px 10px">✗ Reject</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Affordable Room for Rent</strong><br><small style="color:#64748b">Room · shared bath</small></td>
+              <td>Ramon Torres</td>
+              <td>Quezon City</td>
+              <td style="color:#22c55e;font-weight:bold">₱5,500</td>
+              <td style="color:#64748b;font-size:11px">May 8, 2026</td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-green" style="padding:5px 12px;border-radius:6px;font-size:11px">✅ Approve</button>
+                  <button class="btn-red" style="font-size:11px;padding:5px 10px">✗ Reject</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Flagged Listings -->
+      <div class="cc">
+        <h3>🚩 Flagged / Reported Listings <span class="badge b-red">5</span></h3>
+        <table>
+          <thead><tr><th>Listing</th><th>Landlord</th><th>Report Reason</th><th>Reports</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:white">Luxury Condo Unit 12</strong><br><small style="color:#64748b">Listing ID #4821 · Makati</small></td>
+              <td style="color:#f87171">Diego Ramos <span class="badge b-red">Banned</span></td>
+              <td><span class="badge b-red">Fake Listing</span></td>
+              <td style="color:#f87171;font-weight:bold">4</td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="font-size:11px;padding:5px 10px">👁 View</button>
+                  <button class="btn-outline-green" style="font-size:11px;padding:5px 10px">✏️ Edit</button>
+                  <button class="btn-red" style="font-size:11px;padding:5px 10px">🗑 Remove</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Beachfront Villa</strong><br><small style="color:#64748b">Listing ID #3910 · Batangas</small></td>
+              <td>Unknown Owner</td>
+              <td><span class="badge b-orange">Misleading Info</span></td>
+              <td style="color:#fbbf24;font-weight:bold">2</td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="font-size:11px;padding:5px 10px">👁 View</button>
+                  <button class="btn-outline-green" style="font-size:11px;padding:5px 10px">✏️ Edit</button>
+                  <button class="btn-red" style="font-size:11px;padding:5px 10px">🗑 Remove</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- All Listings -->
+      <div class="cc">
+        <h3>All Active Listings <a href="#">⬇ Export</a></h3>
+        <table>
+          <thead><tr><th>Listing</th><th>Landlord</th><th>Location</th><th>Price/mo</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:white">Sunset Apartments Unit 3A</strong></td>
+              <td>Juan dela Cruz</td>
+              <td>Quezon City</td>
+              <td>₱8,500</td>
+              <td><span class="badge b-green">Active</span></td>
+              <td><div class="btn-row"><button class="btn-outline-green" style="font-size:11px;padding:5px 10px">👁 View</button><button class="btn-outline-green" style="font-size:11px;padding:5px 10px">✏️ Edit</button><button class="btn-red" style="font-size:11px;padding:5px 10px">🗑</button></div></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Bayside Residences 2B</strong></td>
+              <td>Juan dela Cruz</td>
+              <td>Pasig</td>
+              <td>₱9,200</td>
+              <td><span class="badge b-green">Active</span></td>
+              <td><div class="btn-row"><button class="btn-outline-green" style="font-size:11px;padding:5px 10px">👁 View</button><button class="btn-outline-green" style="font-size:11px;padding:5px 10px">✏️ Edit</button><button class="btn-red" style="font-size:11px;padding:5px 10px">🗑</button></div></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Villa Hermosa Unit 6B</strong></td>
+              <td>Juan dela Cruz</td>
+              <td>Taguig</td>
+              <td>₱7,500</td>
+              <td><span class="badge b-yellow">Under Review</span></td>
+              <td><div class="btn-row"><button class="btn-outline-green" style="font-size:11px;padding:5px 10px">👁 View</button><button class="btn-outline-green" style="font-size:11px;padding:5px 10px">✏️ Edit</button><button class="btn-red" style="font-size:11px;padding:5px 10px">🗑</button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

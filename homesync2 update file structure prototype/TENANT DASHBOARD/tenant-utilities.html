@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utilities — HomeSync</title>
+   <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+    <div class="sidebar">
+    <a class="sb-logo" href="#">Home<span>Sync</span></a>
+    <div class="sb-section">My Home</div>
+    <a class="sb-item" href="tenant-overview.html">📊 Overview</a>
+    <a class="sb-item" href="tenant-lobby.html">🏠 Room Lobby</a>
+    <a class="sb-item" href="tenant-rent.html">💳 Pay Rent</a>
+    <a class="sb-item" href="tenant-tickets.html">🔧 My Tickets <span class="sb-badge red">1</span></a>
+    <div class="sb-section">Account</div>
+    <a class="sb-item" href="tenant-lease.html">📋 My Lease</a>
+    <a class="sb-item" href="tenant-documents.html">📁 Documents</a>
+    <a class="sb-item active" href="tenant-utilities.html">⚡ Utilities</a>
+    <a class="sb-item" href="tenant-messages.html">💬 Messages <span class="sb-badge">2</span></a>
+    <a class="sb-item" href="tenant-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <a class="sb-item" href="tenant-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../index.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="tenant-settings.html">
+      <div class="avatar purple">MR</div>
+      <div><div class="av-name">Marco Reyes</div><div class="av-role">Tenant · Unit 3A</div></div>
+    </a>
+  </div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Utilities</h1><p>Electricity &amp; water bills — Unit 3A</p></div>
+      <div class="topbar-r">
+        <a href="tenant-notifications.html" class="icon-btn">🔔</a>
+        <a href="tenant-settings.html"><div class="avatar purple">MR</div></a>
+      </div>
+    </div>
+
+    <div class="db">
+
+      <!-- Summary stat cards -->
+      <div class="stat-row">
+        <div class="sc">
+          <div class="sl">Electricity — May 2026</div>
+          <div class="sv">₱1,437.50</div>
+          <div class="ss warn">Due: May 20, 2026</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Water — May 2026</div>
+          <div class="sv">₱359.56</div>
+          <div class="ss warn">Due: May 25, 2026</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Total Utilities Due</div>
+          <div class="sv">₱1,797.06</div>
+          <div class="ss warn">2 bills pending</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Last Month Paid</div>
+          <div class="sv">₱1,712.80</div>
+          <div class="ss">April 2026 · Settled</div>
+        </div>
+      </div>
+
+      <!-- Rate info banner -->
+      <div class="alert alert-blue" style="margin-bottom:16px">
+        ⚡ Meralco rate: <strong>₱11.50/kWh</strong> (residential avg, 2026) &nbsp;|&nbsp; 💧 Maynilad/Manila Water: <strong>₱121.50</strong> base (0–10 cu.m.) + <strong>₱23.84/cu.m.</strong> above 10 cu.m.
+      </div>
+
+      <!-- ═══════════════════════════════ ELECTRICITY ══════════════════════════════ -->
+      <div class="cc" style="margin-bottom:16px">
+        <h3>⚡ Electricity Bill — May 2026</h3>
+
+        <!-- Current bill breakdown -->
+        <div class="grid2" style="margin-bottom:0">
+          <div>
+            <div class="drow"><span class="dl">Account No.</span><span class="dv">5210-0042-3A</span></div>
+            <div class="drow"><span class="dl">Billing Period</span><span class="dv">Apr 15 – May 14, 2026</span></div>
+            <div class="drow"><span class="dl">Consumption</span><span class="dv">125 kWh</span></div>
+            <div class="drow"><span class="dl">Generation Charge</span><span class="dv">₱862.50</span></div>
+            <div class="drow"><span class="dl">Distribution Charge</span><span class="dv">₱375.00</span></div>
+            <div class="drow"><span class="dl">Taxes &amp; Other Charges</span><span class="dv">₱200.00</span></div>
+            <div class="drow" style="border-top:1px solid #4a5568;padding-top:10px;margin-top:4px">
+              <span class="dl" style="font-weight:bold;color:white">Total Due</span>
+              <span class="dv" style="color:#fbbf24;font-size:16px">₱1,437.50</span>
+            </div>
+            <div class="drow"><span class="dl">Due Date</span><span class="dv" style="color:#f87171">May 20, 2026</span></div>
+            <div class="drow"><span class="dl">Status</span><span class="dv"><span class="badge b-yellow">Unpaid</span></span></div>
+          </div>
+
+          <!-- Pay electricity -->
+          <div style="background:#3d4a56;border-radius:10px;padding:16px">
+            <p style="font-size:12px;font-weight:bold;color:white;margin-bottom:12px">Pay ₱1,437.50 — Choose method:</p>
+            <div class="pay-grid" id="elec-pay-grid">
+              <div class="pay-opt selected"><div class="pay-icon">📱</div><div>GCash</div></div>
+              <div class="pay-opt"><div class="pay-icon">💜</div><div>Maya</div></div>
+              <div class="pay-opt"><div class="pay-icon">🏦</div><div>Bank Transfer</div></div>
+              <div class="pay-opt"><div class="pay-icon">💵</div><div>Cash</div></div>
+            </div>
+            <div class="form-group" style="margin-bottom:10px">
+              <label>Reference No. (optional)</label>
+              <input type="text" placeholder="e.g. GCash transaction ID">
+            </div>
+            <button id="btn-pay-elec" class="btn-green" style="width:100%;border-radius:8px;padding:10px;font-size:13px">Confirm Payment</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Electricity history -->
+      <div class="cc" style="margin-bottom:16px">
+        <h3>⚡ Electricity Payment History</h3>
+        <table>
+          <thead>
+            <tr><th>Month</th><th>Consumption (kWh)</th><th>Amount</th><th>Due Date</th><th>Paid On</th><th>Method</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>May 2026</td><td>125 kWh</td><td>₱1,437.50</td><td>May 20</td><td>—</td><td>—</td><td><span class="badge b-yellow">Unpaid</span></td></tr>
+            <tr><td>April 2026</td><td>118 kWh</td><td>₱1,357.00</td><td>Apr 20</td><td>Apr 18</td><td>GCash</td><td><span class="badge b-green">Paid</span></td></tr>
+            <tr><td>March 2026</td><td>130 kWh</td><td>₱1,495.00</td><td>Mar 20</td><td>Mar 19</td><td>Maya</td><td><span class="badge b-green">Paid</span></td></tr>
+            <tr><td>February 2026</td><td>110 kWh</td><td>₱1,265.00</td><td>Feb 20</td><td>Feb 20</td><td>Bank Transfer</td><td><span class="badge b-green">Paid</span></td></tr>
+            <tr><td>January 2026</td><td>142 kWh</td><td>₱1,633.00</td><td>Jan 20</td><td>Jan 18</td><td>GCash</td><td><span class="badge b-green">Paid</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Electricity calculator -->
+      <div class="cc" style="margin-bottom:16px">
+        <h3>⚡ Electricity Bill Estimator</h3>
+        <p style="font-size:12px;color:#64748b;margin-bottom:14px">
+          Estimate your bill based on consumption. Rate used: ₱11.50/kWh (Meralco residential, inclusive of generation, distribution, taxes &amp; subsidies).
+        </p>
+        <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap">
+          <div class="form-group" style="flex:1;min-width:160px;margin-bottom:0">
+            <label>Monthly consumption (kWh)</label>
+            <input type="number" id="calc-kwh" placeholder="e.g. 125" min="0">
+          </div>
+          <button id="btn-calc-elec" class="btn-outline-green" style="padding:10px 20px;margin-bottom:0">Calculate</button>
+          <div style="background:#3d4a56;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:bold;color:#22c55e;min-width:140px">
+            Estimated: <span id="calc-result" style="color:white">—</span>
+          </div>
+        </div>
+        <div class="alert alert-blue" style="margin-top:14px;margin-bottom:0">
+          💡 Typical 1-BR unit in Metro Manila uses 80–150 kWh/month. Aircon adds roughly 30–60 kWh per unit per month.
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════ WATER ══════════════════════════════ -->
+      <div class="cc" style="margin-bottom:16px">
+        <h3>💧 Water Bill — May 2026</h3>
+
+        <div class="grid2" style="margin-bottom:0">
+          <div>
+            <div class="drow"><span class="dl">Account No.</span><span class="dv">MWC-3A-88421</span></div>
+            <div class="drow"><span class="dl">Billing Period</span><span class="dv">Apr 1 – Apr 30, 2026</span></div>
+            <div class="drow"><span class="dl">Consumption</span><span class="dv">21 cu.m.</span></div>
+            <div class="drow"><span class="dl">Basic Charge (0–10 cu.m.)</span><span class="dv">₱121.50</span></div>
+            <div class="drow"><span class="dl">Excess (11 cu.m. × ₱23.84)</span><span class="dv">₱262.24</span></div>
+            <div class="drow"><span class="dl">Environmental Charge (10%)</span><span class="dv">₱38.37</span></div>
+            <div class="drow"><span class="dl">Senior Citizen Discount</span><span class="dv">—</span></div>
+            <div class="drow" style="border-top:1px solid #4a5568;padding-top:10px;margin-top:4px">
+              <span class="dl" style="font-weight:bold;color:white">Total Due</span>
+              <span class="dv" style="color:#fbbf24;font-size:16px">₱359.56</span>
+            </div>
+            <div class="drow"><span class="dl">Due Date</span><span class="dv" style="color:#f87171">May 25, 2026</span></div>
+            <div class="drow"><span class="dl">Status</span><span class="dv"><span class="badge b-yellow">Unpaid</span></span></div>
+          </div>
+
+          <!-- Pay water -->
+          <div style="background:#3d4a56;border-radius:10px;padding:16px">
+            <p style="font-size:12px;font-weight:bold;color:white;margin-bottom:12px">Pay ₱359.56 — Choose method:</p>
+            <div class="pay-grid" id="water-pay-grid">
+              <div class="pay-opt selected"><div class="pay-icon">📱</div><div>GCash</div></div>
+              <div class="pay-opt"><div class="pay-icon">💜</div><div>Maya</div></div>
+              <div class="pay-opt"><div class="pay-icon">🏦</div><div>Bank Transfer</div></div>
+              <div class="pay-opt"><div class="pay-icon">💵</div><div>Cash</div></div>
+            </div>
+            <div class="form-group" style="margin-bottom:10px">
+              <label>Reference No. (optional)</label>
+              <input type="text" placeholder="e.g. GCash transaction ID">
+            </div>
+            <button id="btn-pay-water" class="btn-green" style="width:100%;border-radius:8px;padding:10px;font-size:13px">Confirm Payment</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Water history -->
+      <div class="cc" style="margin-bottom:16px">
+        <h3>💧 Water Payment History</h3>
+        <table>
+          <thead>
+            <tr><th>Month</th><th>Consumption (cu.m.)</th><th>Amount</th><th>Due Date</th><th>Paid On</th><th>Method</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>May 2026</td><td>21 cu.m.</td><td>₱359.56</td><td>May 25</td><td>—</td><td>—</td><td><span class="badge b-yellow">Unpaid</span></td></tr>
+            <tr><td>April 2026</td><td>19 cu.m.</td><td>₱355.80</td><td>Apr 25</td><td>Apr 23</td><td>GCash</td><td><span class="badge b-green">Paid</span></td></tr>
+            <tr><td>March 2026</td><td>18 cu.m.</td><td>₱331.96</td><td>Mar 25</td><td>Mar 24</td><td>GCash</td><td><span class="badge b-green">Paid</span></td></tr>
+            <tr><td>February 2026</td><td>15 cu.m.</td><td>₱259.44</td><td>Feb 25</td><td>Feb 25</td><td>Maya</td><td><span class="badge b-green">Paid</span></td></tr>
+            <tr><td>January 2026</td><td>17 cu.m.</td><td>₱308.12</td><td>Jan 25</td><td>Jan 24</td><td>GCash</td><td><span class="badge b-green">Paid</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Water calculator -->
+      <div class="cc" style="margin-bottom:0">
+        <h3>💧 Water Bill Estimator</h3>
+        <p style="font-size:12px;color:#64748b;margin-bottom:14px">
+          Estimate your water bill. Base rate: ₱121.50 for the first 10 cu.m. + ₱23.84 per cu.m. above 10 cu.m. (Manila Water / Maynilad, 2026 residential).
+        </p>
+        <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap">
+          <div class="form-group" style="flex:1;min-width:160px;margin-bottom:0">
+            <label>Monthly consumption (cubic meters)</label>
+            <input type="number" id="calc-cbm" placeholder="e.g. 21" min="0">
+          </div>
+          <button id="btn-calc-water" class="btn-outline-green" style="padding:10px 20px;margin-bottom:0">Calculate</button>
+          <div style="background:#3d4a56;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:bold;color:#22c55e;min-width:140px">
+            Estimated: <span id="water-result" style="color:white">—</span>
+          </div>
+        </div>
+        <div class="alert alert-blue" style="margin-top:14px;margin-bottom:0">
+          💧 A typical 1–2 person household in Metro Manila uses 10–20 cu.m. per month. A leaky faucet can waste 3–5 cu.m. extra per month.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div id="toast-wrap"></div>
+<script src="../ASSETS/js/tenant-utilities.js"></script>
+</body>
+</html>

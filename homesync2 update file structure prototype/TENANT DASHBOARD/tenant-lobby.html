@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Lobby — HomeSync</title>
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+  <style>
+    /* ── Lobby-specific styles ── */
+    .lobby-filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      align-items: center;
+    }
+    .filter-chip {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      border: 1px solid #4a5568;
+      background: #2e3840;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-chip:hover { border-color: #22c55e; color: white; }
+    .filter-chip.active { background: rgba(34,197,94,0.15); border-color: #22c55e; color: #22c55e; }
+    .filter-chip.pink { }
+    .filter-chip.pink.active { background: rgba(236,72,153,0.15); border-color: #ec4899; color: #ec4899; }
+    .filter-chip.blue.active { background: rgba(59,130,246,0.15); border-color: #3b82f6; color: #3b82f6; }
+
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .room-card {
+      background: #2e3840;
+      border: 1px solid #4a5568;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.15s, border-color 0.15s;
+      cursor: pointer;
+    }
+    .room-card:hover { transform: translateY(-2px); border-color: #22c55e; }
+    .room-card.mine { border-color: #7c3aed; }
+    .room-card.unavailable { opacity: 0.55; pointer-events: none; }
+
+    .room-img {
+      height: 130px;
+      background: linear-gradient(135deg, #3d4a56 0%, #2e3840 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      position: relative;
+    }
+    .room-img .room-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+    .room-img .room-status-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+    .badge-girl { background: rgba(236,72,153,0.2); color: #ec4899; border: 1px solid rgba(236,72,153,0.4); }
+    .badge-boy { background: rgba(59,130,246,0.2); color: #93c5fd; border: 1px solid rgba(59,130,246,0.4); }
+    .badge-mixed { background: rgba(245,158,11,0.2); color: #fbbf24; border: 1px solid rgba(245,158,11,0.4); }
+    .badge-apt { background: rgba(34,197,94,0.2); color: #22c55e; border: 1px solid rgba(34,197,94,0.4); }
+    .badge-available { background: rgba(34,197,94,0.2); color: #22c55e; border: 1px solid rgba(34,197,94,0.4); }
+    .badge-full { background: rgba(239,68,68,0.2); color: #f87171; border: 1px solid rgba(239,68,68,0.4); }
+    .badge-reserved { background: rgba(245,158,11,0.2); color: #fbbf24; border: 1px solid rgba(245,158,11,0.4); }
+    .badge-mine { background: rgba(124,58,237,0.2); color: #a78bfa; border: 1px solid rgba(124,58,237,0.4); }
+
+    .room-body { padding: 14px; }
+    .room-name { font-size: 14px; font-weight: bold; color: white; margin-bottom: 2px; }
+    .room-sub { font-size: 11px; color: #64748b; margin-bottom: 10px; }
+    .room-price { font-size: 18px; font-weight: bold; color: #22c55e; margin-bottom: 8px; }
+    .room-price span { font-size: 11px; color: #64748b; font-weight: normal; }
+
+    .room-amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    .amenity-tag {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.07);
+      color: #94a3b8;
+      border: 1px solid #4a5568;
+    }
+
+    .room-info-row {
+      display: flex;
+      gap: 12px;
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+    .room-info-row span { display: flex; align-items: center; gap: 3px; }
+
+    .room-occupants {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #94a3b8;
+      margin-bottom: 10px;
+    }
+    .occ-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #4a5568;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: bold;
+      color: white;
+    }
+    .occ-avatar.green { background: #22c55e; }
+    .occ-avatar.purple { background: #7c3aed; }
+    .occ-slot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px dashed #4a5568;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #4a5568;
+    }
+
+    /* Modal overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #2e3840;
+      border: 1px solid #4a5568;
+      border-radius: 14px;
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+      margin: 20px;
+    }
+    .modal-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid #4a5568;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-head h3 { font-size: 15px; color: white; }
+    .modal-close {
+      font-size: 20px;
+      cursor: pointer;
+      color: #64748b;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    .modal-close:hover { color: white; }
+    .modal-body { padding: 20px; }
+
+    .detail-section { margin-bottom: 18px; }
+    .detail-section h4 { font-size: 12px; font-weight: bold; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
+
+    .amenity-full-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+    }
+    .amenity-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+    .amenity-item.included { color: #22c55e; }
+    .amenity-item.extra { color: #fbbf24; }
+
+    .fee-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .fee-table td { padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: #94a3b8; }
+    .fee-table td:last-child { text-align: right; color: white; font-weight: bold; }
+    .fee-table tr.total td { color: #22c55e; font-size: 13px; border-top: 1px solid #4a5568; border-bottom: none; padding-top: 10px; }
+
+    .bed-type-sel {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .bed-opt {
+      flex: 1;
+      min-width: 100px;
+      border: 1px solid #4a5568;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 12px;
+      background: #3d4a56;
+      color: #94a3b8;
+      transition: all 0.15s;
+    }
+    .bed-opt:hover { border-color: #22c55e; color: white; }
+    .bed-opt.selected { border-color: #22c55e; background: rgba(34,197,94,0.1); color: #22c55e; }
+    .bed-opt .bed-icon { font-size: 20px; margin-bottom: 4px; }
+    .bed-opt .bed-price-diff { font-size: 10px; color: #64748b; margin-top: 2px; }
+
+    .discount-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .discount-row input { flex: 1; border-radius: 8px !important; }
+    .discount-result {
+      font-size: 12px;
+      color: #22c55e;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .step-indicator {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4a5568;
+      transition: background 0.2s;
+    }
+    .step-dot.active { background: #22c55e; }
+    .step-label { font-size: 11px; color: #64748b; margin-left: 4px; }
+
+    .reserve-steps > div { display: none; }
+    .reserve-steps > div.active { display: block; }
+
+    .report-types {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .report-type-opt {
+      border: 1px solid #4a5568;
+      border-radius: 8px;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 12px;
+      color: #94a3b8;
+      background: #3d4a56;
+      text-align: center;
+      transition: all 0.15s;
+    }
+    .report-type-opt:hover { border-color: #f87171; color: #f87171; }
+    .report-type-opt.selected { border-color: #f87171; background: rgba(239,68,68,0.1); color: #f87171; }
+
+    .pending-box {
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    .pending-box .pend-icon { font-size: 32px; margin-bottom: 8px; }
+    .pending-box h4 { color: #fbbf24; margin-bottom: 4px; font-size: 14px; }
+    .pending-box p { color: #94a3b8; font-size: 12px; }
+
+    .success-box {
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    .success-box .succ-icon { font-size: 32px; margin-bottom: 8px; }
+    .success-box h4 { color: #22c55e; margin-bottom: 4px; font-size: 14px; }
+    .success-box p { color: #94a3b8; font-size: 12px; }
+
+    .my-room-banner {
+      background: linear-gradient(135deg, rgba(124,58,237,0.2) 0%, rgba(34,197,94,0.1) 100%);
+      border: 1px solid rgba(124,58,237,0.4);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .my-room-banner .room-big-icon { font-size: 38px; }
+    .my-room-banner h3 { color: white; font-size: 14px; margin-bottom: 2px; }
+    .my-room-banner p { color: #94a3b8; font-size: 12px; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: bold;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .upload-zone {
+      border: 2px dashed #4a5568;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 12px;
+      color: #64748b;
+      transition: all 0.15s;
+    }
+    .upload-zone:hover { border-color: #22c55e; color: white; }
+
+    /* Toast */
+    #toast-wrap { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; }
+    .toast { background: #2e3840; border: 1px solid #4a5568; border-radius: 10px; padding: 12px 16px; font-size: 13px; color: white; min-width: 220px; animation: slideIn 0.25s ease; }
+    .toast.success { border-color: #22c55e; }
+    .toast.error { border-color: #f87171; }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+  </style>
+</head>
+<body>
+<div class="dashboard">
+  <!-- ══════ SIDEBAR ══════ -->
+  <div class="sidebar">
+    <a class="sb-logo" href="#">Home<span>Sync</span></a>
+    <div class="sb-section">My Home</div>
+    <a class="sb-item" href="tenant-overview.html">📊 Overview</a>
+    <a class="sb-item active" href="tenant-lobby.html">🏠 Room Lobby</a>
+    <a class="sb-item" href="tenant-rent.html">💳 Pay Rent</a>
+    <a class="sb-item" href="tenant-tickets.html">🔧 My Tickets <span class="sb-badge red">1</span></a>
+    <div class="sb-section">Account</div>
+    <a class="sb-item" href="tenant-lease.html">📋 My Lease</a>
+    <a class="sb-item" href="tenant-documents.html">📁 Documents</a>
+    <a class="sb-item" href="tenant-utilities.html">⚡ Utilities</a>
+    <a class="sb-item" href="tenant-messages.html">💬 Messages <span class="sb-badge">2</span></a>
+    <a class="sb-item" href="tenant-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <a class="sb-item" href="tenant-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../index.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="tenant-settings.html">
+      <div class="avatar purple">MR</div>
+      <div><div class="av-name">Marco Reyes</div><div class="av-role">Tenant · Unit 3A</div></div>
+    </a>
+  </div>
+
+  <!-- ══════ MAIN CONTENT ══════ -->
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Room Lobby</h1><p>Browse available rooms &amp; manage your unit</p></div>
+      <div class="topbar-r">
+        <a href="tenant-notifications.html" class="icon-btn">🔔</a>
+        <a href="tenant-settings.html"><div class="avatar purple">MR</div></a>
+      </div>
+    </div>
+
+    <div class="db">
+
+      <!-- My Current Room Banner -->
+      <div class="my-room-banner">
+        <div class="room-big-icon">🏡</div>
+        <div style="flex:1">
+          <h3>Your Current Unit: Unit 3A — Sunset Apartments</h3>
+          <p>1-Bedroom · Girls-only floor · Twin bed · Lease ends Dec 31, 2026 · ₱8,500/mo</p>
+        </div>
+        <button class="btn-outline-green" style="font-size:12px;padding:7px 14px;white-space:nowrap" onclick="openModal('modal-report')">🚩 Report Issue</button>
+      </div>
+
+      <!-- Filters -->
+      <div class="lobby-filters">
+        <span style="font-size:12px;color:#64748b;font-weight:bold">Filter:</span>
+        <div class="filter-chip active" data-filter="all">All Rooms</div>
+        <div class="filter-chip" data-filter="available">✅ Available</div>
+        <div class="filter-chip pink" data-filter="girls">🌸 Girls Only</div>
+        <div class="filter-chip blue" data-filter="boys">🔵 Boys Only</div>
+        <div class="filter-chip" data-filter="apartment">🏢 Apartment</div>
+        <div class="filter-chip" data-filter="mine">⭐ My Room</div>
+        <div style="margin-left:auto">
+          <div class="form-group" style="margin-bottom:0">
+            <input type="text" id="room-search" placeholder="🔍 Search rooms..." style="border-radius:20px;padding:7px 14px;font-size:12px;width:180px">
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="stat-row" style="margin-bottom:18px">
+        <div class="sc"><div class="sl">Total Units</div><div class="sv">12</div><div class="ss">All floors</div></div>
+        <div class="sc"><div class="sl">Available</div><div class="sv" style="color:#22c55e">4</div><div class="ss">Ready to move in</div></div>
+        <div class="sc"><div class="sl">Girls Only</div><div class="sv" style="color:#ec4899">5</div><div class="ss">Floors 1–2</div></div>
+        <div class="sc"><div class="sl">Boys Only</div><div class="sv" style="color:#93c5fd">4</div><div class="ss">Floors 3–4</div></div>
+        <div class="sc"><div class="sl">Apartments</div><div class="sv" style="color:#22c55e">3</div><div class="ss">Full unit</div></div>
+      </div>
+
+      <!-- Rooms Grid -->
+      <div class="section-label">All Units — Sunset Apartments, QC</div>
+      <div class="rooms-grid" id="rooms-grid">
+
+        <!-- Unit 3A — MINE -->
+        <div class="room-card mine" data-type="girls" data-status="mine" onclick="openRoomDetail('3A')">
+          <div class="room-img">🛏️
+            <span class="room-badge badge-girl">🌸 Girls Only</span>
+            <span class="room-status-badge badge-mine">⭐ Your Room</span>
+          </div>
+          <div class="room-body">
+            <div class="room-name">Unit 3A</div>
+            <div class="room-sub">Floor 3 · 42 sqm · 1-Bedroom</div>
+            <div class="room-price">₱8,500 <span>/ month</span></div>
+            <div class="room-info-row">
+              <span>🛏️ Twin Bed</span>
+              <span>🚿 Private Bath</span>
+              <span>📐 42 sqm</span>
+            </div>
+            <div class="room-amenities">
+              <span class="amenity-tag">✅ WiFi</span>
+              <span class="amenity-tag">✅ Water</span>
+              <span class="amenity-tag">🧺 Laundry</span>
+              <span class="amenity-tag">❄️ AC-Ready</span>
+            </div>
+            <div class="room-occupants">
+              <div class="occ-avatar purple">MR</div>
+              <div class="occ-slot">+</div>
+              <div style="font-size:11px;color:#64748b;margin-left:4px">1/2 occupied</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unit 1A — Girls, Available -->
+        <div class="room-card" data-type="girls" data-status="available" onclick="openRoomDetail('1A')">
+          <div class="room-img">🛏️
+            <span class="room-badge badge-girl">🌸 Girls Only</span>
+            <span class="room-status-badge badge-available">✅ Available</span>
+          </div>
+          <div class="room-body">
+            <div class="room-name">Unit 1A</div>
+            <div class="room-sub">Floor 1 · 38 sqm · 1-Bedroom</div>
+            <div class="room-price">₱7,200 <span>/ month</span></div>
+            <div class="room-info-row">
+              <span>🛏️ Single Bed</span>
+              <span>🚿 Shared Bath</span>
+              <span>📐 38 sqm</span>
+            </div>
+            <div class="room-amenities">
+              <span class="amenity-tag">✅ WiFi</span>
+              <span class="amenity-tag">✅ Water</span>
+              <span class="amenity-tag">🔒 CCTV</span>
+            </div>
+            <div class="room-occupants">
+              <div class="occ-slot">+</div>
+              <div class="occ-slot">+</div>
+              <div style="font-size:11px;color:#64748b;margin-left:4px">0/2 — vacant</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unit 1B — Girls, Full -->
+        <div class="room-card unavailable" data-type="girls" data-status="full" onclick="openRoomDetail('1B')">
+          <div class="room-img">🛏️
+            <span class="room-badge badge-girl">🌸 Girls Only</span>
+            <span class="room-status-badge badge-full">🔴 Full</span>
+          </div>
+          <div class="room-body">
+            <div class="room-name">Unit 1B</div>
+            <div class="room-sub">Floor 1 · 38 sqm · Studio</div>
+            <div class="room-price">₱6,800 <span>/ month</span></div>
+            <div class="room-info-row">
+              <span>🛏️ Bunk Bed</span>
+              <span>🚿 Shared Bath</span>
+              <span>📐 38 sqm</span>
+            </div>
+            <div class="room-amenities">
+              <span class="amenity-tag">✅ WiFi</span>
+              <span class="amenity-tag">✅ Water</span>
+            </div>
+            <div class="room-occupants">
+              <div class="occ-avatar green">AJ</div>
+              <div class="occ-avatar green">MG</div>
+              <div style="font-size:11px;color:#64748b;margin-left:4px">2/2 — full</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unit 2A — Girls, Reserved -->
+        <div class="room-card" data-type="girls" data-status="reserved" onclick="openRoomDetail('2A')">
+          <div class="room-img">🛏️
+            <span class="room-badge badge-girl">🌸 Girls Only</span>
+            <span class="room-status-badge badge-reserved">⏳ Reserved</span>
+          </div>
+          <div class="room-body">
+            <div class="room-name">Unit 2A</div>
+            <div class="room-sub">Floor 2 · 40 sqm · 1-Bedroom</div>
+            <div class="room-price">₱7,800 <span>/ month</span></div>
+            <div class="room-info-row">
+              <span>🛏️ Queen Bed</span>
+              <span>🚿 Private Bath</span>
+              <span>📐 40 sqm</span>
+            </div>
+            <div class="room-amenities">
+              <span class="amenity-tag">✅ WiFi</span>
+              <span class="amenity-tag">✅ Water</span>
+              <span class="amenity-tag">❄️ AC</span>
+              <span class="amenity-tag">🧺 Laundry</span>
+            </div>
+            <div class="room-occupants">
+              <div class="occ-avatar" style="background:#fbbf24;color:#1a1a1a">RV</div>
+              <div class="occ-slot">+</div>
+              <div style="font-size:11px;color:#64748b;margin-left:4px">1/2 — 1 reserved slot</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unit 4A — Boys, Available -->
+        <div class="room-card" data-type="boys" data-status="available" onclick="openRoomDetail('4A')">
+          <div class="room-img">🛌
+            <span class="room-badge badge-boy">🔵 Boys Only</span>
+            <span class="room-status-badge badge-available">✅ Available</span>
+          </div>
+          <div class="room-body">
+            <div class="room-name">Unit 4A</div>
+            <div class="room-sub">Floor 4 · 38 sqm · 1-Bedroom</div>
+            <div class="room-price">₱7,200 <span>/ month</span></div>
+            <div class="room-info-row">
+              <span>🛏️ Single Bed</span>
+              <span>🚿 Shared Bath</span>
+              <span>📐 38 sqm</span>
+            </div>
+            <div class="room-amenities">
+              <span class="amenity-tag">✅ WiFi</span>
+              <span class="amenity-tag">✅ Water</span>
+              <span class="amenity-tag">🔒 CCTV</span>
+            </div>
+            <div class="room-occupants">
+              <div class="occ-slot">+</div>
+              <div class="occ-slot">+</div>
+              <div style="font-size:11px;color:#64748b;margin-left:4px">0/2 — vacant</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unit 4B — Boys, Full -->
+        <div class="room-card unavailable" data-type="boys" data-status="full">
+          <div class="room-img">🛌
+            <span class="room-badge badge-boy">🔵 Boys Only</span>
+            <span class="room-status-badge badge-full">🔴 Full</span>
+          </div>
+          <div class="room-body">
+            <div class="room-name">Unit 4B</div>
+            <div class="room-sub">Floor 4 · 38 sqm · Studio</div>
+            <div class="room-price">₱6,800 <span>/ month</span></div>
+            <div class="room-info-row">
+              <span>🛏️ Bunk Bed</span>
+              <span>🚿 Shared Bath</span>
+              <span>📐 38 sqm</span>
+            </div>
+            <div class="room-amenities">
+              <span class="amenity-tag">✅ WiFi</span>
+              <span class="amenity-tag">✅ Water</span>
+            </div>
+            <div class="room-occupants">
+              <div class="occ-avatar" style="background:#3b82f6">BJ</div>
+              <div class="occ-avatar" style="background:#3b82f6">KL</div>
+              <div style="font-size:11px;color:#64748b;margin-left:4px">2/2 — full</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unit 5A — Boys, Available -->
+        <div class="room-card" data-type="boys" data-status="available" onclick="openRoomDetail('5A')">
+          <div class="room-img">🛌
+            <span class="room-badge badge-boy">🔵 Boys Only</span>
+            <span class="room-status-badge badge-available">✅ Available</span>
+          </div>
+          <div class="room-body">
+            <div class="room-name">Unit 5A</div>
+            <div class="room-sub">Floor 5 · 42 sqm · 1-Bedroom</div>
+            <div class="room-price">₱8,000 <span>/ month</span></div>
+            <div class="room-info-row">
+              <span>🛏️ Queen Bed</span>
+              <span>🚿 Private Bath</span>
+              <span>📐 42 sqm</span>
+            </div>
+            <div class="room-amenities">
+              <span class="amenity-tag">✅ WiFi</span>
+              <span class="amenity-tag">✅ Water</span>
+              <span class="amenity-tag">❄️ AC</span>
+              <span class="amenity-tag">🧺 Laundry</span>
+              <span class="amenity-tag">🔒 CCTV</span>
+            </div>
+            <div class="room-occupants">
+              <div class="occ-slot">+</div>
+              <div style="font-size:11px;color:#64748b;margin-left:4px">0/1 — vacant</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unit 6 — Apartment -->
+        <div class="room-card" data-type="apartment" data-status="available" onclick="openRoomDetail('6')">
+          <div class="room-img">🏢
+            <span class="room-badge badge-apt">🏢 Apartment</span>
+            <span class="room-status-badge badge-available">✅ Available</span>
+          </div>
+          <div class="room-body">
+            <div class="room-name">Unit 6 — Studio Apartment</div>
+            <div class="room-sub">Floor 6 · 55 sqm · Full Unit</div>
+            <div class="room-price">₱12,000 <span>/ month</span></div>
+            <div class="room-info-row">
+              <span>🛏️ Queen Bed</span>
+              <span>🚿 Private Bath</span>
+              <span>📐 55 sqm</span>
+            </div>
+            <div class="room-amenities">
+              <span class="amenity-tag">✅ WiFi</span>
+              <span class="amenity-tag">✅ Water</span>
+              <span class="amenity-tag">❄️ AC</span>
+              <span class="amenity-tag">🧺 Washer</span>
+              <span class="amenity-tag">🍳 Kitchenette</span>
+              <span class="amenity-tag">📺 TV</span>
+            </div>
+            <div class="room-occupants">
+              <div class="occ-slot">+</div>
+              <div style="font-size:11px;color:#64748b;margin-left:4px">For 1–2 persons · private unit</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unit 7 — Apartment, Full -->
+        <div class="room-card unavailable" data-type="apartment" data-status="full">
+          <div class="room-img">🏢
+            <span class="room-badge badge-apt">🏢 Apartment</span>
+            <span class="room-status-badge badge-full">🔴 Full</span>
+          </div>
+          <div class="room-body">
+            <div class="room-name">Unit 7 — 1BR Apartment</div>
+            <div class="room-sub">Floor 7 · 60 sqm · Full Unit</div>
+            <div class="room-price">₱14,500 <span>/ month</span></div>
+            <div class="room-info-row">
+              <span>🛏️ King Bed</span>
+              <span>🚿 Private Bath</span>
+              <span>📐 60 sqm</span>
+            </div>
+            <div class="room-amenities">
+              <span class="amenity-tag">✅ WiFi</span>
+              <span class="amenity-tag">✅ Water</span>
+              <span class="amenity-tag">❄️ AC</span>
+              <span class="amenity-tag">🧺 Washer</span>
+              <span class="amenity-tag">🍳 Kitchen</span>
+              <span class="amenity-tag">🅿️ Parking</span>
+            </div>
+            <div class="room-occupants">
+              <div class="occ-avatar green">JP</div>
+              <div class="occ-avatar green">LC</div>
+              <div style="font-size:11px;color:#64748b;margin-left:4px">Occupied by couple</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /rooms-grid -->
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     ROOM DETAIL MODAL
+══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-room-detail">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="md-title">Unit Detail</h3>
+      <button class="modal-close" onclick="closeModal('modal-room-detail')">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Step indicator -->
+      <div class="step-indicator" id="reserve-steps-indicator" style="display:none">
+        <div class="step-dot active" id="sdot-1"></div>
+        <div class="step-dot" id="sdot-2"></div>
+        <div class="step-dot" id="sdot-3"></div>
+        <span class="step-label" id="step-label-text">Step 1 of 3</span>
+      </div>
+
+      <!-- Details view (default) -->
+      <div id="view-details">
+        <div class="detail-section">
+          <h4>Room Info</h4>
+          <div class="drow"><span class="dl">Unit</span><span class="dv" id="md-unit">—</span></div>
+          <div class="drow"><span class="dl">Floor</span><span class="dv" id="md-floor">—</span></div>
+          <div class="drow"><span class="dl">Area</span><span class="dv" id="md-area">—</span></div>
+          <div class="drow"><span class="dl">Type</span><span class="dv" id="md-type">—</span></div>
+          <div class="drow"><span class="dl">Gender Policy</span><span class="dv" id="md-gender">—</span></div>
+          <div class="drow"><span class="dl">Max Occupants</span><span class="dv" id="md-max">—</span></div>
+          <div class="drow"><span class="dl">Current Occupants</span><span class="dv" id="md-occ">—</span></div>
+        </div>
+
+        <div class="detail-section">
+          <h4>Bed Types Available</h4>
+          <div class="bed-type-sel" id="md-beds">
+            <!-- filled by JS -->
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h4>Amenities</h4>
+          <div class="amenity-full-list" id="md-amenities">
+            <!-- filled by JS -->
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h4>Fees &amp; Deposits</h4>
+          <table class="fee-table">
+            <tr><td>Monthly Rent</td><td id="md-rent">—</td></tr>
+            <tr><td>Security Deposit (2 months)</td><td id="md-deposit">—</td></tr>
+            <tr><td>Advance Rent (1 month)</td><td id="md-advance">—</td></tr>
+            <tr><td>Hold Reservation Fee</td><td id="md-holdfee">₱500 <small style="font-weight:normal;color:#64748b">(deducted on move-in)</small></td></tr>
+            <tr class="total"><td>Total Move-in Cost</td><td id="md-movein">—</td></tr>
+          </table>
+        </div>
+
+        <div class="detail-section">
+          <h4>Penalties</h4>
+          <table class="fee-table">
+            <tr><td>Late payment (after 5th)</td><td>₱200/day</td></tr>
+            <tr><td>Early termination</td><td>1 month rent</td></tr>
+            <tr><td>Lost key</td><td>₱500</td></tr>
+            <tr><td>Damages beyond normal wear</td><td>Actual cost</td></tr>
+          </table>
+        </div>
+
+        <div class="detail-section">
+          <h4>Discount Promo</h4>
+          <div class="discount-row">
+            <div class="form-group" style="margin-bottom:0;flex:1">
+              <input type="text" id="promo-code" placeholder="Enter promo code (e.g. WELCOME10)" style="border-radius:8px!important">
+            </div>
+            <button class="btn-outline-green" style="padding:10px 16px;font-size:12px" onclick="applyPromo()">Apply</button>
+          </div>
+          <div class="discount-result" id="promo-result">✅ Promo applied! 10% off first month.</div>
+          <p style="font-size:11px;color:#64748b;margin-top:8px">Active promos: <strong style="color:#22c55e">WELCOME10</strong> (10% off 1st month) · <strong style="color:#22c55e">REFERRAL200</strong> (₱200 off)</p>
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <button class="btn-green" style="border-radius:8px;padding:10px 20px;font-size:13px;flex:1" id="btn-reserve" onclick="startReservation()">🔒 Reserve / Apply</button>
+          <button class="btn-outline-green" style="padding:10px 16px;font-size:13px" onclick="startHoldReservation()">⏳ Hold Room</button>
+        </div>
+      </div><!-- /view-details -->
+
+      <!-- Reservation flow -->
+      <div id="view-reserve" style="display:none">
+        <div class="reserve-steps">
+          <!-- Step 1: Who will use the room -->
+          <div id="res-step-1" class="active">
+            <h4 style="color:white;margin-bottom:14px">Step 1: Occupant Information</h4>
+            <div class="form-row">
+              <div class="form-group"><label>Full Name *</label><input type="text" placeholder="Your full name" value="Marco Reyes"></div>
+              <div class="form-group"><label>Contact No. *</label><input type="tel" placeholder="+63 9XX XXX XXXX" value="+63 917 000 0001"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Gender *</label>
+                <select>
+                  <option>Female</option>
+                  <option>Male</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Move-in Date *</label>
+                <input type="date" min="2026-05-11">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Adding a roommate?</label>
+              <input type="text" placeholder="Roommate's full name (optional)">
+            </div>
+            <div class="form-group">
+              <label>Emergency Contact *</label>
+              <input type="text" placeholder="Name · Relationship · Contact Number">
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:6px">
+              <button class="btn-outline-green" onclick="closeModal('modal-room-detail')" style="padding:9px 16px;font-size:13px">Cancel</button>
+              <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px" onclick="nextResStep(2)">Next →</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Payment -->
+          <div id="res-step-2">
+            <h4 style="color:white;margin-bottom:14px">Step 2: Reservation Payment</h4>
+            <div class="alert alert-blue" style="margin-bottom:14px;font-size:12px">
+              💡 A <strong>₱500 hold fee</strong> is required to secure this room for up to 7 days. This will be <strong>deducted from your move-in cost</strong>.
+            </div>
+            <div class="detail-section">
+              <h4>Choose Payment Method</h4>
+              <div class="pay-grid" id="res-pay-grid">
+                <div class="pay-opt selected"><div class="pay-icon">📱</div><div>GCash</div></div>
+                <div class="pay-opt"><div class="pay-icon">💜</div><div>Maya</div></div>
+                <div class="pay-opt"><div class="pay-icon">🏦</div><div>Bank Transfer</div></div>
+                <div class="pay-opt"><div class="pay-icon">💵</div><div>Cash</div></div>
+              </div>
+              <div class="alert" style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;padding:12px;margin-bottom:12px;font-size:12px">
+                <strong style="color:#22c55e">GCash:</strong> Send ₱500 to <strong>0917-123-4567</strong> (Juan dela Cruz)<br>
+                <strong style="color:#a78bfa">Maya:</strong> Send to <strong>0917-123-4567</strong><br>
+                <strong style="color:#93c5fd">Bank Transfer:</strong> BDO · 1234-5678-9012 · Juan dela Cruz<br>
+                <strong style="color:#fbbf24">Cash:</strong> Pay at the Admin Office, Ground Floor
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Reference / Transaction Number *</label>
+              <input type="text" id="res-ref" placeholder="e.g. GC-20260511-XXXX">
+            </div>
+            <div class="form-group">
+              <label>Upload Receipt *</label>
+              <div class="upload-zone" onclick="document.getElementById('res-receipt-file').click()">
+                📎 Click to attach receipt or screenshot
+                <input type="file" id="res-receipt-file" style="display:none" accept="image/*,.pdf" onchange="previewReceipt(this)">
+              </div>
+              <div id="res-receipt-preview" style="margin-top:6px;font-size:11px;color:#22c55e"></div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:6px">
+              <button class="btn-outline-green" onclick="nextResStep(1)" style="padding:9px 16px;font-size:13px">← Back</button>
+              <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px" onclick="nextResStep(3)">Submit →</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Confirmation -->
+          <div id="res-step-3">
+            <div class="pending-box" style="margin-bottom:16px">
+              <div class="pend-icon">⏳</div>
+              <h4>Reservation Submitted!</h4>
+              <p>Your reservation is now <strong style="color:#fbbf24">Pending Approval</strong>.<br>The landlord will verify your payment and notify you within 24 hours.</p>
+            </div>
+            <div class="drow"><span class="dl">Room</span><span class="dv" id="conf-room">—</span></div>
+            <div class="drow"><span class="dl">Amount Paid</span><span class="dv">₱500 (Hold Fee)</span></div>
+            <div class="drow"><span class="dl">Submitted</span><span class="dv" id="conf-date">—</span></div>
+            <div class="drow"><span class="dl">Status</span><span class="dv"><span class="badge b-yellow">⏳ Pending</span></span></div>
+            <div class="alert" style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:10px;margin:14px 0;font-size:12px;color:#93c5fd">
+              📬 You will receive a notification once your reservation is approved. Check <a href="tenant-notifications.html" style="color:#22c55e">Notifications</a> for updates.
+            </div>
+            <button class="btn-green" style="width:100%;border-radius:8px;padding:10px;font-size:13px" onclick="closeModal('modal-room-detail')">Done</button>
+          </div>
+        </div>
+      </div><!-- /view-reserve -->
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     REPORT SYSTEM MODAL
+══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-report">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>🚩 Report an Issue</h3>
+      <button class="modal-close" onclick="closeModal('modal-report')">✕</button>
+    </div>
+    <div class="modal-body" id="report-modal-body">
+      <p style="font-size:12px;color:#94a3b8;margin-bottom:14px">Report any concern about your room, facilities, or fellow occupants.</p>
+      <div class="detail-section">
+        <h4>Report Category</h4>
+        <div class="report-types">
+          <div class="report-type-opt selected" onclick="selectReportType(this,'🔧 Maintenance')">🔧<br>Maintenance</div>
+          <div class="report-type-opt" onclick="selectReportType(this,'⚡ Utilities')">⚡<br>Utilities</div>
+          <div class="report-type-opt" onclick="selectReportType(this,'👥 Roommate Issue')">👥<br>Roommate Issue</div>
+          <div class="report-type-opt" onclick="selectReportType(this,'🔒 Security')">🔒<br>Security</div>
+          <div class="report-type-opt" onclick="selectReportType(this,'🏗️ Structural')">🏗️<br>Structural</div>
+          <div class="report-type-opt" onclick="selectReportType(this,'📋 Other')">📋<br>Other</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Issue Title *</label>
+        <input type="text" placeholder="Brief description of the issue">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Unit / Location</label>
+          <input type="text" value="Unit 3A" readonly style="opacity:0.6">
+        </div>
+        <div class="form-group">
+          <label>Priority</label>
+          <select><option>Low</option><option selected>Medium</option><option>High</option><option>Urgent</option></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description *</label>
+        <textarea placeholder="Describe the issue in detail..." style="height:80px;resize:vertical"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Attach Photo (optional)</label>
+        <div class="upload-zone" onclick="document.getElementById('report-photo').click()">
+          📷 Click to attach a photo
+          <input type="file" id="report-photo" style="display:none" accept="image/*" onchange="previewReportPhoto(this)">
+        </div>
+        <div id="report-photo-preview" style="margin-top:6px;font-size:11px;color:#22c55e"></div>
+      </div>
+      <button class="btn-green" style="width:100%;border-radius:8px;padding:10px;font-size:13px" onclick="submitReport()">Submit Report</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-wrap"></div>
+<script src="../ASSETS/js/tenant-lobby.js"></script>
+</body>
+</html>

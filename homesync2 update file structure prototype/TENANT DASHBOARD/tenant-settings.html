@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — HomeSync</title>
+   <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+    <div class="sidebar">
+    <a class="sb-logo" href="#">Home<span>Sync</span></a>
+    <div class="sb-section">My Home</div>
+    <a class="sb-item" href="tenant-overview.html">📊 Overview</a>
+    <a class="sb-item" href="tenant-lobby.html">🏠 Room Lobby</a>
+    <a class="sb-item" href="tenant-rent.html">💳 Pay Rent</a>
+    <a class="sb-item" href="tenant-tickets.html">🔧 My Tickets <span class="sb-badge red">1</span></a>
+    <div class="sb-section">Account</div>
+    <a class="sb-item" href="tenant-lease.html">📋 My Lease</a>
+    <a class="sb-item" href="tenant-documents.html">📁 Documents</a>
+    <a class="sb-item" href="tenant-utilities.html">⚡ Utilities</a>
+    <a class="sb-item" href="tenant-messages.html">💬 Messages <span class="sb-badge">2</span></a>
+    <a class="sb-item" href="tenant-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <a class="sb-item active" href="tenant-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../index.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="tenant-settings.html">
+      <div class="avatar purple">MR</div>
+      <div><div class="av-name">Marco Reyes</div><div class="av-role">Tenant · Unit 3A</div></div>
+    </a>
+  </div>
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Settings</h1><p>Account preferences</p></div>
+      <div class="topbar-r">
+        <a href="tenant-notifications.html" class="icon-btn">🔔</a>
+        <a href="tenant-settings.html"><div class="avatar purple">MR</div></a>
+      </div>
+    </div>
+    <div class="db">
+      <div class="profile-hd">
+        <div class="big-av purple">MR</div>
+        <div><h3>Marco Reyes</h3><p>Tenant · Unit 3A, Sunset Apartments</p></div>
+      </div>
+      <div class="settings-layout">
+        <div class="settings-menu">
+          <a href="#tab-profile" class="sm-item" style="display:block">👤 Profile</a>
+          <a href="#tab-notifs" class="sm-item" style="display:block">🔔 Notifications</a>
+          <a href="#tab-security" class="sm-item" style="display:block">🔒 Security</a>
+          <a href="#tab-danger" class="sm-item" style="color:#f87171;display:block">⚠️ Danger Zone</a>
+        </div>
+        <div>
+          <div id="tab-profile" class="settings-panel tab-content tab-default">
+            <div class="s-section">
+              <h3>Personal Information</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">Update your contact details.</p>
+              <div class="form-row">
+                <div class="form-group"><label>First name</label><input type="text" value="Marco"></div>
+                <div class="form-group"><label>Last name</label><input type="text" value="Reyes"></div>
+              </div>
+              <div class="form-group"><label>Email</label><input type="email" value="marco@email.com"></div>
+              <div class="form-group"><label>Phone</label><input type="tel" value="+63 917 000 0001"></div>
+              <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px">Save changes</button>
+            </div>
+          </div>
+          <div id="tab-notifs" class="settings-panel tab-content">
+            <div class="s-section">
+              <h3>Notification Preferences</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">Choose what you want to be notified about.</p>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">Rent reminders</div><div class="t2">5 days before rent is due</div></div>
+                <input type="checkbox" id="tt1" class="toggle-check" checked>
+                <label for="tt1" class="toggle-label"></label>
+              </div>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">Ticket updates</div><div class="t2">When your ticket status changes</div></div>
+                <input type="checkbox" id="tt2" class="toggle-check" checked>
+                <label for="tt2" class="toggle-label"></label>
+              </div>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">Announcements</div><div class="t2">Broadcasts from your landlord</div></div>
+                <input type="checkbox" id="tt3" class="toggle-check" checked>
+                <label for="tt3" class="toggle-label"></label>
+              </div>
+              <div class="toggle-row">
+                <div class="t-label"><div class="t1">New messages</div><div class="t2">When landlord sends you a message</div></div>
+                <input type="checkbox" id="tt4" class="toggle-check" checked>
+                <label for="tt4" class="toggle-label"></label>
+              </div>
+            </div>
+          </div>
+          <div id="tab-security" class="settings-panel tab-content">
+            <div class="s-section">
+              <h3>Change Password</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">Keep your account secure.</p>
+              <div class="form-group"><label>Current password</label><input type="password" placeholder="••••••••"></div>
+              <div class="form-group"><label>New password</label><input type="password" placeholder="Min. 8 characters"></div>
+              <div class="form-group"><label>Confirm new password</label><input type="password" placeholder="Repeat"></div>
+              <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px">Update password</button>
+            </div>
+          </div>
+          <div id="tab-danger" class="settings-panel tab-content">
+            <div class="s-section">
+              <h3 style="color:#f87171">⚠️ Danger Zone</h3>
+              <p style="font-size:12px;color:#64748b;margin-bottom:14px">This cannot be undone.</p>
+              <div style="border:1px solid #f87171;border-radius:8px;padding:13px;display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <div style="font-size:13px;font-weight:bold;color:white">Delete account</div>
+                  <div style="font-size:12px;color:#64748b;margin-top:2px">Permanently deletes your account.</div>
+                </div>
+                <button class="btn-red">Delete account</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="toast-wrap"></div>
+<script src="../ASSETS/js/tenant-settings.js"></script>
+</body>
+</html>

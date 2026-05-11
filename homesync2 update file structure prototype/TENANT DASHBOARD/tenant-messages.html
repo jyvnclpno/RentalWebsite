@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages — HomeSync</title>
+   <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+ <  <div class="sidebar">
+    <a class="sb-logo" href="#">Home<span>Sync</span></a>
+    <div class="sb-section">My Home</div>
+    <a class="sb-item" href="tenant-overview.html">📊 Overview</a>
+    <a class="sb-item" href="tenant-lobby.html">🏠 Room Lobby</a>
+    <a class="sb-item" href="tenant-rent.html">💳 Pay Rent</a>
+    <a class="sb-item" href="tenant-tickets.html">🔧 My Tickets <span class="sb-badge red">1</span></a>
+    <div class="sb-section">Account</div>
+    <a class="sb-item" href="tenant-lease.html">📋 My Lease</a>
+    <a class="sb-item" href="tenant-documents.html">📁 Documents</a>
+    <a class="sb-item" href="tenant-utilities.html">⚡ Utilities</a>
+    <a class="sb-item active" href="tenant-messages.html">💬 Messages <span class="sb-badge">2</span></a>
+    <a class="sb-item" href="tenant-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <a class="sb-item" href="tenant-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../index.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="tenant-settings.html">
+      <div class="avatar purple">MR</div>
+      <div><div class="av-name">Marco Reyes</div><div class="av-role">Tenant · Unit 3A</div></div>
+    </a>
+  </div>
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Messages</h1><p>Chat with your landlord</p></div>
+      <div class="topbar-r">
+        <a href="tenant-notifications.html" class="icon-btn">🔔</a>
+        <a href="tenant-settings.html"><div class="avatar purple">MR</div></a>
+      </div>
+    </div>
+    <div class="db">
+      <div class="chat-layout">
+        <div class="chat-sb">
+          <div class="chat-hd">Conversations</div>
+          <div class="chat-contact active">
+            <div class="avatar" style="width:32px;height:32px;font-size:11px">JD</div>
+            <div style="flex:1">
+              <div class="c-name">Juan dela Cruz</div>
+              <div class="c-prev">About the leaking faucet...</div>
+            </div>
+            <div>
+              <div class="c-time">2h ago</div>
+              <div class="unread-dot" style="margin-top:4px"></div>
+            </div>
+          </div>
+          <div class="chat-contact">
+            <div class="avatar" style="width:32px;height:32px;font-size:11px;background:#4a5568">HS</div>
+            <div style="flex:1">
+              <div class="c-name">HomeSync Support</div>
+              <div class="c-prev">Ticket resolved.</div>
+            </div>
+            <div class="c-time">Mar 15</div>
+          </div>
+        </div>
+        <div class="chat-win">
+          <div class="chat-top">
+            <div class="avatar" style="width:32px;height:32px;font-size:11px">JD</div>
+            <div>
+              <div class="c-name">Juan dela Cruz</div>
+              <div class="online">● Online · Your landlord</div>
+            </div>
+          </div>
+          <div class="chat-msgs">
+            <div class="msg sent">
+              <div class="avatar purple" style="width:26px;height:26px;font-size:9px">MR</div>
+              <div>
+                <div class="msg-bubble">Good morning po! Yung faucet sa kitchen namin ay tumutulo talaga.</div>
+                <div class="msg-time" style="text-align:right">9:12 AM</div>
+              </div>
+            </div>
+            <div class="msg recv">
+              <div class="avatar" style="width:26px;height:26px;font-size:9px">JD</div>
+              <div>
+                <div class="msg-bubble">Good morning Marco! Mag-file ka lang ng maintenance ticket sa app.</div>
+                <div class="msg-time">9:15 AM</div>
+              </div>
+            </div>
+            <div class="msg sent">
+              <div class="avatar purple" style="width:26px;height:26px;font-size:9px">MR</div>
+              <div>
+                <div class="msg-bubble">Na-submit na po! Salamat po!</div>
+                <div class="msg-time" style="text-align:right">9:18 AM</div>
+              </div>
+            </div>
+            <div class="msg recv">
+              <div class="avatar" style="width:26px;height:26px;font-size:9px">JD</div>
+              <div>
+                <div class="msg-bubble">Papuntahin namin ang plumber around 2 PM.</div>
+                <div class="msg-time">9:21 AM</div>
+              </div>
+            </div>
+          </div>
+          <div class="chat-input">
+            <input type="text" placeholder="Type a message...">
+            <button class="btn-green" style="padding:8px 16px;border-radius:20px;font-size:13px">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="toast-wrap"></div>
+<script src="../ASSETS/js/tenant-messages.js"></script>
+</body>
+</html>

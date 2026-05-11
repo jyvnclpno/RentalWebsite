@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security — HomeSync Admin</title>
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+  <div class="sidebar">
+    <a class="sb-logo" href="admin-overview.html">Home<span>Sync</span> <span style="font-size:9px;background:#dc2626;color:white;padding:2px 6px;border-radius:4px;font-weight:bold;margin-left:4px">ADMIN</span></a>
+    <div class="sb-section">Control Center</div>
+    <a class="sb-item" href="admin-overview.html">📊 Overview</a>
+    <a class="sb-item" href="admin-users.html">👤 User Management</a>
+    <a class="sb-item" href="admin-properties.html">🏠 Property Management</a>
+    <div class="sb-section">Finance</div>
+    <a class="sb-item" href="admin-payments.html">💳 Payment Monitoring</a>
+    <a class="sb-item" href="admin-analytics.html">📈 Analytics</a>
+    <div class="sb-section">Moderation</div>
+    <a class="sb-item" href="admin-reports.html">🚨 Reports & Complaints <span class="sb-badge red">7</span></a>
+    <a class="sb-item" href="admin-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <div class="sb-section">System</div>
+    <a class="sb-item active" href="admin-security.html">🔒 Security</a>
+    <a class="sb-item" href="admin-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="admin-settings.html">
+      <div class="avatar" style="background:#dc2626">SA</div>
+      <div><div class="av-name">Super Admin</div><div class="av-role">Administrator</div></div>
+    </a>
+  </div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Security</h1><p>Access control, session management, and audit logs</p></div>
+      <div class="topbar-r">
+        <a href="admin-reports.html" class="icon-btn">🚨</a>
+        <a href="admin-notifications.html" class="icon-btn">🔔</a>
+        <a href="admin-settings.html"><div class="avatar" style="background:#dc2626">SA</div></a>
+      </div>
+    </div>
+
+    <div class="db">
+
+      <div class="stat-row">
+        <div class="sc"><div class="sl">Failed Login Attempts (24h)</div><div class="sv">18</div><div class="ss warn">Monitor closely</div></div>
+        <div class="sc"><div class="sl">Active Admin Sessions</div><div class="sv">2</div><div class="ss">Right now</div></div>
+        <div class="sc"><div class="sl">Banned IPs</div><div class="sv">5</div><div class="ss red">Auto-blocked</div></div>
+        <div class="sc"><div class="sl">2FA Enabled Users</div><div class="sv">48%</div><div class="ss">608 / 1,284</div></div>
+      </div>
+
+      <!-- Security Settings -->
+      <div class="cc">
+        <h3>🔐 Security Settings</h3>
+        <div class="toggle-row">
+          <div class="t-label"><div class="t1">Require 2FA for Admins</div><div class="t2">All admin accounts must have 2FA enabled</div></div>
+          <input type="checkbox" id="s1" class="toggle-check" checked>
+          <label for="s1" class="toggle-label"></label>
+        </div>
+        <div class="toggle-row">
+          <div class="t-label"><div class="t1">Auto-ban after 5 failed logins</div><div class="t2">Temporarily block IPs with repeated failures</div></div>
+          <input type="checkbox" id="s2" class="toggle-check" checked>
+          <label for="s2" class="toggle-label"></label>
+        </div>
+        <div class="toggle-row">
+          <div class="t-label"><div class="t1">Email alert on new admin login</div><div class="t2">Notify super admin whenever an admin logs in</div></div>
+          <input type="checkbox" id="s3" class="toggle-check" checked>
+          <label for="s3" class="toggle-label"></label>
+        </div>
+        <div class="toggle-row">
+          <div class="t-label"><div class="t1">Force logout on role change</div><div class="t2">Terminate sessions when user role is updated</div></div>
+          <input type="checkbox" id="s4" class="toggle-check" checked>
+          <label for="s4" class="toggle-label"></label>
+        </div>
+        <div class="toggle-row">
+          <div class="t-label"><div class="t1">Password hashing (bcrypt)</div><div class="t2">All passwords are hashed — never stored plain</div></div>
+          <input type="checkbox" id="s5" class="toggle-check" checked>
+          <label for="s5" class="toggle-label"></label>
+        </div>
+        <div style="margin-top:14px">
+          <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px">Save Security Settings</button>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <!-- Active Sessions -->
+        <div class="cc">
+          <h3>🟢 Active Admin Sessions</h3>
+          <table>
+            <thead><tr><th>Admin</th><th>IP Address</th><th>Started</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong style="color:white">Super Admin</strong><br><small style="color:#64748b">You (current)</small></td>
+                <td style="font-size:11px;color:#94a3b8">192.168.1.1</td>
+                <td style="font-size:11px;color:#64748b">Today 9:00 AM</td>
+                <td><span class="badge b-green">Current</span></td>
+              </tr>
+              <tr>
+                <td><strong style="color:white">support.admin</strong><br><small style="color:#64748b">Support Admin</small></td>
+                <td style="font-size:11px;color:#94a3b8">203.177.8.42</td>
+                <td style="font-size:11px;color:#64748b">Today 8:30 AM</td>
+                <td><button class="btn-red" style="font-size:11px;padding:4px 10px">End Session</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Banned IPs -->
+        <div class="cc">
+          <h3>🚫 Banned IP Addresses</h3>
+          <table>
+            <thead><tr><th>IP Address</th><th>Reason</th><th>Banned On</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr>
+                <td style="font-family:monospace;color:#f87171">45.33.12.77</td>
+                <td style="font-size:11px">5 failed logins</td>
+                <td style="font-size:11px;color:#64748b">May 10, 2026</td>
+                <td><button class="btn-outline-green" style="font-size:11px;padding:4px 9px">Unban</button></td>
+              </tr>
+              <tr>
+                <td style="font-family:monospace;color:#f87171">103.22.55.4</td>
+                <td style="font-size:11px">Brute force</td>
+                <td style="font-size:11px;color:#64748b">May 9, 2026</td>
+                <td><button class="btn-outline-green" style="font-size:11px;padding:4px 9px">Unban</button></td>
+              </tr>
+              <tr>
+                <td style="font-family:monospace;color:#f87171">176.9.2.100</td>
+                <td style="font-size:11px">Suspicious activity</td>
+                <td style="font-size:11px;color:#64748b">May 7, 2026</td>
+                <td><button class="btn-outline-green" style="font-size:11px;padding:4px 9px">Unban</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Audit Log -->
+      <div class="cc">
+        <h3>📋 Audit Log <a href="#">⬇ Export</a></h3>
+        <table>
+          <thead><tr><th>Action</th><th>Admin</th><th>Target</th><th>Timestamp</th></tr></thead>
+          <tbody>
+            <tr><td>🚫 User banned</td><td>Super Admin</td><td>diego.ramos@email.com</td><td style="color:#64748b;font-size:11px">May 10, 2026 · 9:04 AM</td></tr>
+            <tr><td>✅ Listing approved</td><td>Super Admin</td><td>Listing #4822 (BGC Studio)</td><td style="color:#64748b;font-size:11px">May 10, 2026 · 8:52 AM</td></tr>
+            <tr><td>🔑 Password reset</td><td>Super Admin</td><td>lito@email.com</td><td style="color:#64748b;font-size:11px">May 9, 2026 · 4:31 PM</td></tr>
+            <tr><td>✅ Landlord verified</td><td>support.admin</td><td>pedro@email.com</td><td style="color:#64748b;font-size:11px">May 9, 2026 · 2:10 PM</td></tr>
+            <tr><td>🗑 Listing removed</td><td>Super Admin</td><td>Listing #4821 (Fake Condo)</td><td style="color:#64748b;font-size:11px">May 9, 2026 · 11:00 AM</td></tr>
+            <tr><td>📢 Announcement sent</td><td>Super Admin</td><td>All Users (1,284)</td><td style="color:#64748b;font-size:11px">May 8, 2026 · 10:00 AM</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

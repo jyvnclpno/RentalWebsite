@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management — HomeSync Admin</title>
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+  <div class="sidebar">
+    <a class="sb-logo" href="admin-overview.html">Home<span>Sync</span> <span style="font-size:9px;background:#dc2626;color:white;padding:2px 6px;border-radius:4px;font-weight:bold;margin-left:4px">ADMIN</span></a>
+    <div class="sb-section">Control Center</div>
+    <a class="sb-item" href="admin-overview.html">📊 Overview</a>
+    <a class="sb-item active" href="admin-users.html">👤 User Management</a>
+    <a class="sb-item" href="admin-properties.html">🏠 Property Management</a>
+    <div class="sb-section">Finance</div>
+    <a class="sb-item" href="admin-payments.html">💳 Payment Monitoring</a>
+    <a class="sb-item" href="admin-analytics.html">📈 Analytics</a>
+    <div class="sb-section">Moderation</div>
+    <a class="sb-item" href="admin-reports.html">🚨 Reports & Complaints <span class="sb-badge red">7</span></a>
+    <a class="sb-item" href="admin-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <div class="sb-section">System</div>
+    <a class="sb-item" href="admin-security.html">🔒 Security</a>
+    <a class="sb-item" href="admin-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="admin-settings.html">
+      <div class="avatar" style="background:#dc2626">SA</div>
+      <div><div class="av-name">Super Admin</div><div class="av-role">Administrator</div></div>
+    </a>
+  </div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>User Management</h1><p>View, verify, and moderate all platform users</p></div>
+      <div class="topbar-r">
+        <a href="admin-reports.html" class="icon-btn" title="Reports">🚨</a>
+        <a href="admin-notifications.html" class="icon-btn">🔔</a>
+        <a href="admin-settings.html"><div class="avatar" style="background:#dc2626">SA</div></a>
+      </div>
+    </div>
+
+    <div class="db">
+
+      <div class="stat-row">
+        <div class="sc"><div class="sl">Total Users</div><div class="sv">1,284</div><div class="ss">+24 this week</div></div>
+        <div class="sc"><div class="sl">Landlords</div><div class="sv">312</div><div class="ss">48 pending verify</div></div>
+        <div class="sc"><div class="sl">Tenants</div><div class="sv">972</div></div>
+        <div class="sc"><div class="sl">Banned</div><div class="sv">23</div><div class="ss red">3 this week</div></div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="cc" style="padding:14px 20px;margin-bottom:14px">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <div class="form-group" style="margin-bottom:0;flex:1;min-width:180px">
+            <input type="text" placeholder="🔍  Search by name, email, or unit...">
+          </div>
+          <div class="form-group" style="margin-bottom:0;width:140px">
+            <select>
+              <option>All Roles</option>
+              <option>Landlord</option>
+              <option>Tenant</option>
+              <option>Admin</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;width:140px">
+            <select>
+              <option>All Statuses</option>
+              <option>Active</option>
+              <option>Pending</option>
+              <option>Banned</option>
+            </select>
+          </div>
+          <button class="btn-outline-green">Filter</button>
+        </div>
+      </div>
+
+      <!-- Pending Verifications -->
+      <div class="cc">
+        <h3>⏳ Landlords Pending Verification <span class="badge b-yellow">48</span></h3>
+        <table>
+          <thead><tr><th>Name</th><th>Email</th><th>Submitted</th><th>Documents</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:white">Pedro Villanueva</strong></td>
+              <td style="color:#64748b">pedro@email.com</td>
+              <td style="color:#64748b;font-size:11px">May 9, 2026</td>
+              <td><span class="badge b-blue">2 docs</span></td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-green" style="padding:5px 12px;border-radius:6px;font-size:11px">✅ Verify</button>
+                  <button class="btn-red" style="padding:5px 10px;font-size:11px">✗ Reject</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Carla Mendez</strong></td>
+              <td style="color:#64748b">carla@email.com</td>
+              <td style="color:#64748b;font-size:11px">May 8, 2026</td>
+              <td><span class="badge b-blue">3 docs</span></td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-green" style="padding:5px 12px;border-radius:6px;font-size:11px">✅ Verify</button>
+                  <button class="btn-red" style="padding:5px 10px;font-size:11px">✗ Reject</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Ramon Torres</strong></td>
+              <td style="color:#64748b">ramon@email.com</td>
+              <td style="color:#64748b;font-size:11px">May 7, 2026</td>
+              <td><span class="badge b-yellow">1 doc</span></td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-green" style="padding:5px 12px;border-radius:6px;font-size:11px">✅ Verify</button>
+                  <button class="btn-red" style="padding:5px 10px;font-size:11px">✗ Reject</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- All Users -->
+      <div class="cc">
+        <h3>All Users <a href="#" onclick="return false">⬇ Export CSV</a></h3>
+        <table>
+          <thead><tr><th>User</th><th>Role</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:white">Juan dela Cruz</strong><br><small style="color:#64748b">juan@homesync.ph</small></td>
+              <td><span class="badge b-blue">Landlord</span></td>
+              <td style="color:#64748b;font-size:11px">Jan 10, 2026</td>
+              <td><span class="badge b-green">Active · Verified</span></td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="font-size:11px;padding:5px 10px">👁 View</button>
+                  <button class="btn-outline-green" style="font-size:11px;padding:5px 10px">🔑 Reset PW</button>
+                  <button class="btn-red" style="font-size:11px;padding:5px 10px">🚫 Ban</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Ana Torres</strong><br><small style="color:#64748b">ana@email.com</small></td>
+              <td><span class="badge b-gray">Tenant</span></td>
+              <td style="color:#64748b;font-size:11px">Feb 3, 2026</td>
+              <td><span class="badge b-green">Active</span></td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="font-size:11px;padding:5px 10px">👁 View</button>
+                  <button class="btn-outline-green" style="font-size:11px;padding:5px 10px">🔑 Reset PW</button>
+                  <button class="btn-red" style="font-size:11px;padding:5px 10px">🚫 Ban</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Diego Ramos</strong><br><small style="color:#64748b">diego.ramos@email.com</small></td>
+              <td><span class="badge b-blue">Landlord</span></td>
+              <td style="color:#64748b;font-size:11px">Dec 14, 2025</td>
+              <td><span class="badge b-red">Banned</span></td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="font-size:11px;padding:5px 10px">👁 View</button>
+                  <button class="btn-green" style="padding:5px 10px;border-radius:6px;font-size:11px">✅ Unban</button>
+                  <button class="btn-red" style="font-size:11px;padding:5px 10px">🗑 Delete</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Rosa Santos</strong><br><small style="color:#64748b">rosa@email.com</small></td>
+              <td><span class="badge b-gray">Tenant</span></td>
+              <td style="color:#64748b;font-size:11px">Mar 22, 2026</td>
+              <td><span class="badge b-green">Active</span></td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="font-size:11px;padding:5px 10px">👁 View</button>
+                  <button class="btn-outline-green" style="font-size:11px;padding:5px 10px">🔑 Reset PW</button>
+                  <button class="btn-red" style="font-size:11px;padding:5px 10px">🚫 Ban</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Marco Reyes</strong><br><small style="color:#64748b">marco@email.com</small></td>
+              <td><span class="badge b-gray">Tenant</span></td>
+              <td style="color:#64748b;font-size:11px">Nov 5, 2025</td>
+              <td><span class="badge b-green">Active</span></td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="font-size:11px;padding:5px 10px">👁 View</button>
+                  <button class="btn-outline-green" style="font-size:11px;padding:5px 10px">🔑 Reset PW</button>
+                  <button class="btn-red" style="font-size:11px;padding:5px 10px">🚫 Ban</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;font-size:12px;color:#64748b">
+          <span>Showing 5 of 1,284 users</span>
+          <div style="display:flex;gap:6px">
+            <button class="btn-outline-green" style="font-size:11px;padding:4px 10px">← Prev</button>
+            <button class="btn-outline-green" style="font-size:11px;padding:4px 10px">Next →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

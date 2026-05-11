@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overview — HomeSync</title>
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+   <div class="sidebar">
+    <a class="sb-logo" href="#">Home<span>Sync</span></a>
+    <div class="sb-section">My Home</div>
+    <a class="sb-item active" href="tenant-overview.html">📊 Overview</a>
+    <a class="sb-item" href="tenant-lobby.html">🏠 Room Lobby</a>
+    <a class="sb-item" href="tenant-rent.html">💳 Pay Rent</a>
+    <a class="sb-item" href="tenant-tickets.html">🔧 My Tickets <span class="sb-badge red">1</span></a>
+    <div class="sb-section">Account</div>
+    <a class="sb-item" href="tenant-lease.html">📋 My Lease</a>
+    <a class="sb-item" href="tenant-documents.html">📁 Documents</a>
+    <a class="sb-item" href="tenant-utilities.html">⚡ Utilities</a>
+    <a class="sb-item" href="tenant-messages.html">💬 Messages <span class="sb-badge">2</span></a>
+    <a class="sb-item" href="tenant-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <a class="sb-item" href="tenant-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../index.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="tenant-settings.html">
+      <div class="avatar purple">MR</div>
+      <div><div class="av-name">Marco Reyes</div><div class="av-role">Tenant · Unit 3A</div></div>
+    </a>
+  </div>
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Overview</h1><p>Good morning, Marco 👋</p></div>
+      <div class="topbar-r">
+        <a href="tenant-notifications.html" class="icon-btn">🔔</a>
+        <a href="tenant-settings.html"><div class="avatar purple">MR</div></a>
+      </div>
+    </div>
+    <div class="db">
+      <div class="lease-banner">
+        <div>
+          <div class="lbl">This month's rent</div>
+          <div class="amount">₱8,500</div>
+          <div class="status">Due: May 5, 2026 · ✅ Paid</div>
+        </div>
+        <a href="tenant-rent.html"><button class="btn-outline-white">View payment history</button></a>
+      </div>
+      <div class="stat-row">
+        <div class="sc"><div class="sl">My Unit</div><div class="sv" style="font-size:17px">Unit 3A</div><div class="ss">Sunset Apartments, QC</div></div>
+        <div class="sc"><div class="sl">Open Tickets</div><div class="sv">1</div><div class="ss warn">Needs attention</div></div>
+        <div class="sc"><div class="sl">Lease Ends</div><div class="sv" style="font-size:17px">Dec 31</div><div class="ss">Year 2026</div></div>
+        <div class="sc"><div class="sl">Utility Bills</div><div class="sv" style="font-size:17px">2</div><div class="ss warn">Due this month</div></div>
+      </div>
+      <div class="qa">
+        <a href="tenant-rent.html" class="qa-btn">💳 Pay rent</a>
+        <a href="tenant-tickets.html" class="qa-btn">🔧 Report an issue</a>
+        <a href="tenant-messages.html" class="qa-btn">💬 Message landlord</a>
+        <a href="tenant-documents.html" class="qa-btn">📁 View documents</a>
+        <a href="tenant-utilities.html" class="qa-btn">⚡ Pay utilities</a>
+      </div>
+      <div class="grid2">
+        <div class="cc">
+          <h3>Recent Payments <a href="tenant-rent.html">View all</a></h3>
+          <table>
+            <tr><td>April 2026</td><td>₱8,500</td><td><span class="badge b-green">Paid</span></td></tr>
+            <tr><td>March 2026</td><td>₱8,500</td><td><span class="badge b-green">Paid</span></td></tr>
+            <tr><td>February 2026</td><td>₱8,500</td><td><span class="badge b-green">Paid</span></td></tr>
+          </table>
+        </div>
+        <div class="cc">
+          <h3>My Tickets <a href="tenant-tickets.html">View all</a></h3>
+          <table>
+            <tr><td>Leaking faucet — kitchen</td><td><span class="badge b-yellow">Open</span></td></tr>
+            <tr><td>Broken window latch</td><td><span class="badge b-green">Done</span></td></tr>
+            <tr><td>No hot water</td><td><span class="badge b-green">Done</span></td></tr>
+          </table>
+          <br>
+          <a href="tenant-tickets.html"><button class="btn-green" style="width:100%;border-radius:8px;padding:9px;font-size:12px">➕ Report new issue</button></a>
+        </div>
+      </div>
+      <div class="cc">
+        <h3>📢 Announcements from Landlord</h3>
+        <div class="ann">
+          <div class="ann-title">💧 Water interruption notice</div>
+          <div class="ann-text">Scheduled water interruption on March 22, 8 AM – 5 PM. Please store water in advance.</div>
+          <div class="ann-date">March 20, 2026</div>
+        </div>
+        <div class="ann" style="background:rgba(100,116,139,0.1);border-color:#4a5568">
+          <div class="ann-title" style="color:#94a3b8">📅 Reminder: Rent due April 5</div>
+          <div class="ann-text">Friendly reminder that rent for April is due on April 5. Please pay through the app.</div>
+          <div class="ann-date">March 28, 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="toast-wrap"></div>
+<script src="../ASSETS/js/tenant-overview.js"></script>
+</body>
+</html>

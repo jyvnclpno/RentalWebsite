@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications — HomeSync Admin</title>
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+  <div class="sidebar">
+    <a class="sb-logo" href="admin-overview.html">Home<span>Sync</span> <span style="font-size:9px;background:#dc2626;color:white;padding:2px 6px;border-radius:4px;font-weight:bold;margin-left:4px">ADMIN</span></a>
+    <div class="sb-section">Control Center</div>
+    <a class="sb-item" href="admin-overview.html">📊 Overview</a>
+    <a class="sb-item" href="admin-users.html">👤 User Management</a>
+    <a class="sb-item" href="admin-properties.html">🏠 Property Management</a>
+    <div class="sb-section">Finance</div>
+    <a class="sb-item" href="admin-payments.html">💳 Payment Monitoring</a>
+    <a class="sb-item" href="admin-analytics.html">📈 Analytics</a>
+    <div class="sb-section">Moderation</div>
+    <a class="sb-item" href="admin-reports.html">🚨 Reports & Complaints <span class="sb-badge red">7</span></a>
+    <a class="sb-item active" href="admin-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <div class="sb-section">System</div>
+    <a class="sb-item" href="admin-security.html">🔒 Security</a>
+    <a class="sb-item" href="admin-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="admin-settings.html">
+      <div class="avatar" style="background:#dc2626">SA</div>
+      <div><div class="av-name">Super Admin</div><div class="av-role">Administrator</div></div>
+    </a>
+  </div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Notifications</h1><p>Manage and send system-wide announcements</p></div>
+      <div class="topbar-r">
+        <a href="admin-reports.html" class="icon-btn">🚨</a>
+        <a href="admin-notifications.html" class="icon-btn">🔔</a>
+        <a href="admin-settings.html"><div class="avatar" style="background:#dc2626">SA</div></a>
+      </div>
+    </div>
+
+    <div class="db">
+
+      <!-- Send Announcement -->
+      <div class="cc">
+        <h3>📢 Send Announcement</h3>
+        <p style="font-size:13px;color:#64748b;margin-bottom:14px">Broadcast messages to all users, landlords, or tenants.</p>
+        <div class="form-row" style="margin-bottom:12px">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" placeholder="e.g. Scheduled Maintenance Notice">
+          </div>
+          <div class="form-group" style="max-width:180px">
+            <label>Send To</label>
+            <select>
+              <option>All Users</option>
+              <option>Landlords Only</option>
+              <option>Tenants Only</option>
+              <option>Specific User</option>
+            </select>
+          </div>
+          <div class="form-group" style="max-width:160px">
+            <label>Type</label>
+            <select>
+              <option>📢 Announcement</option>
+              <option>⚠️ Warning</option>
+              <option>🔧 Maintenance</option>
+              <option>🎉 Promo</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="4" placeholder="Write your announcement here..."></textarea>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px">📤 Send Now</button>
+          <button class="btn-outline-green">Schedule Later</button>
+        </div>
+      </div>
+
+      <!-- Admin Inbox -->
+      <div class="cc">
+        <h3>System Alerts for Admin</h3>
+        <div class="notif unread"><div class="notif-ico" style="background:rgba(239,68,68,0.15)">🚨</div><div><div class="notif-title">New scam report — Diego Ramos flagged</div><div class="notif-desc">Reported by 3 different tenants · Makati area</div></div><div class="notif-time"><span class="badge b-red">Alert</span><br>5 min ago</div></div>
+        <div class="notif unread"><div class="notif-ico" style="background:rgba(245,158,11,0.15)">⏳</div><div><div class="notif-title">48 landlords awaiting verification</div><div class="notif-desc">Oldest submission: 6 days ago</div></div><div class="notif-time"><span class="badge b-yellow">Pending</span><br>1h ago</div></div>
+        <div class="notif unread"><div class="notif-ico" style="background:rgba(239,68,68,0.15)">💳</div><div><div class="notif-title">Disputed payment — TXN #20255</div><div class="notif-desc">Rosa Santos · ₱7,500 · Landlord denies receipt</div></div><div class="notif-time"><span class="badge b-red">Urgent</span><br>2h ago</div></div>
+        <div class="notif"><div class="notif-ico" style="background:rgba(34,197,94,0.15)">✅</div><div><div class="notif-title">Listing approved — Sunshine Studio BGC</div><div class="notif-desc">Approved by Admin · Pedro Villanueva notified</div></div><div class="notif-time">3h ago</div></div>
+        <div class="notif"><div class="notif-ico" style="background:rgba(59,130,246,0.15)">👤</div><div><div class="notif-title">New admin registered</div><div class="notif-desc">support.admin@homesync.ph added</div></div><div class="notif-time">Today</div></div>
+      </div>
+
+      <!-- Sent Announcements Log -->
+      <div class="cc">
+        <h3>Sent Announcements</h3>
+        <table>
+          <thead><tr><th>Title</th><th>Type</th><th>Sent To</th><th>Date</th><th>Reach</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:white">Scheduled maintenance on May 12</strong></td>
+              <td><span class="badge b-yellow">🔧 Maintenance</span></td>
+              <td>All Users</td>
+              <td style="color:#64748b;font-size:11px">May 8, 2026</td>
+              <td style="color:#22c55e">1,284</td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">New landlord verification policy</strong></td>
+              <td><span class="badge b-blue">📢 Announcement</span></td>
+              <td>Landlords Only</td>
+              <td style="color:#64748b;font-size:11px">May 1, 2026</td>
+              <td style="color:#22c55e">312</td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Warning: Do not share credentials</strong></td>
+              <td><span class="badge b-red">⚠️ Warning</span></td>
+              <td>All Users</td>
+              <td style="color:#64748b;font-size:11px">Apr 28, 2026</td>
+              <td style="color:#22c55e">1,260</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

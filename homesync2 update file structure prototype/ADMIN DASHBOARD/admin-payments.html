@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Monitoring — HomeSync Admin</title>
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+  <div class="sidebar">
+    <a class="sb-logo" href="admin-overview.html">Home<span>Sync</span> <span style="font-size:9px;background:#dc2626;color:white;padding:2px 6px;border-radius:4px;font-weight:bold;margin-left:4px">ADMIN</span></a>
+    <div class="sb-section">Control Center</div>
+    <a class="sb-item" href="admin-overview.html">📊 Overview</a>
+    <a class="sb-item" href="admin-users.html">👤 User Management</a>
+    <a class="sb-item" href="admin-properties.html">🏠 Property Management</a>
+    <div class="sb-section">Finance</div>
+    <a class="sb-item active" href="admin-payments.html">💳 Payment Monitoring</a>
+    <a class="sb-item" href="admin-analytics.html">📈 Analytics</a>
+    <div class="sb-section">Moderation</div>
+    <a class="sb-item" href="admin-reports.html">🚨 Reports & Complaints <span class="sb-badge red">7</span></a>
+    <a class="sb-item" href="admin-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <div class="sb-section">System</div>
+    <a class="sb-item" href="admin-security.html">🔒 Security</a>
+    <a class="sb-item" href="admin-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="admin-settings.html">
+      <div class="avatar" style="background:#dc2626">SA</div>
+      <div><div class="av-name">Super Admin</div><div class="av-role">Administrator</div></div>
+    </a>
+  </div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Payment Monitoring</h1><p>Track transactions, commissions, and payment proofs</p></div>
+      <div class="topbar-r">
+        <a href="admin-reports.html" class="icon-btn">🚨</a>
+        <a href="admin-notifications.html" class="icon-btn">🔔</a>
+        <a href="admin-settings.html"><div class="avatar" style="background:#dc2626">SA</div></a>
+      </div>
+    </div>
+
+    <div class="db">
+
+      <div class="stat-row">
+        <div class="sc"><div class="sl">Total Collected (May)</div><div class="sv">₱4.82M</div><div class="ss">+12% vs April</div></div>
+        <div class="sc"><div class="sl">Commissions Earned</div><div class="sv">₱241,000</div><div class="ss">5% platform fee</div></div>
+        <div class="sc"><div class="sl">Pending Verification</div><div class="sv">9</div><div class="ss warn">Needs review</div></div>
+        <div class="sc"><div class="sl">Disputed Payments</div><div class="sv">2</div><div class="ss red">Action required</div></div>
+      </div>
+
+      <!-- Pending Verification -->
+      <div class="cc">
+        <h3>⏳ Payments Pending Verification</h3>
+        <table>
+          <thead><tr><th>Transaction ID</th><th>Tenant</th><th>Landlord</th><th>Amount</th><th>Method</th><th>Proof</th><th>Date</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr>
+              <td style="color:#64748b;font-size:11px">#TXN-20261</td>
+              <td><strong style="color:white">Marco Reyes</strong></td>
+              <td>Juan dela Cruz</td>
+              <td style="color:#22c55e;font-weight:bold">₱8,500</td>
+              <td>GCash</td>
+              <td><button class="btn-outline-green" style="font-size:11px;padding:4px 10px">📎 View Proof</button></td>
+              <td style="color:#64748b;font-size:11px">May 10, 2026</td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-green" style="padding:5px 10px;border-radius:6px;font-size:11px">✅ Verify</button>
+                  <button class="btn-red" style="font-size:11px;padding:5px 10px">✗ Flag</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="color:#64748b;font-size:11px">#TXN-20260</td>
+              <td><strong style="color:white">Lito Cruz</strong></td>
+              <td>Juan dela Cruz</td>
+              <td style="color:#22c55e;font-weight:bold">₱9,000</td>
+              <td>Bank Transfer</td>
+              <td><button class="btn-outline-green" style="font-size:11px;padding:4px 10px">📎 View Proof</button></td>
+              <td style="color:#64748b;font-size:11px">May 10, 2026</td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-green" style="padding:5px 10px;border-radius:6px;font-size:11px">✅ Verify</button>
+                  <button class="btn-red" style="font-size:11px;padding:5px 10px">✗ Flag</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- All Transactions -->
+      <div class="cc">
+        <h3>All Transactions <a href="#">⬇ Export CSV</a></h3>
+        <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+          <div class="form-group" style="margin-bottom:0;flex:1;min-width:160px">
+            <input type="text" placeholder="🔍  Search tenant, landlord, or ID...">
+          </div>
+          <div class="form-group" style="margin-bottom:0;width:130px">
+            <select>
+              <option>All Methods</option>
+              <option>GCash</option>
+              <option>Maya</option>
+              <option>Bank Transfer</option>
+              <option>Cash</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;width:130px">
+            <select>
+              <option>All Statuses</option>
+              <option>Verified</option>
+              <option>Pending</option>
+              <option>Disputed</option>
+            </select>
+          </div>
+          <button class="btn-outline-green">Filter</button>
+        </div>
+        <table>
+          <thead><tr><th>ID</th><th>Tenant</th><th>Landlord</th><th>Unit</th><th>Amount</th><th>Commission</th><th>Method</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td style="color:#64748b;font-size:11px">#TXN-20259</td>
+              <td>Ana Torres</td>
+              <td>Juan dela Cruz</td>
+              <td>Unit 2B</td>
+              <td style="color:#22c55e;font-weight:bold">₱9,200</td>
+              <td style="color:#64748b">₱460</td>
+              <td>Bank Transfer</td>
+              <td style="color:#64748b;font-size:11px">May 5, 2026</td>
+              <td><span class="badge b-green">Verified</span></td>
+            </tr>
+            <tr>
+              <td style="color:#64748b;font-size:11px">#TXN-20258</td>
+              <td>Jose Mendoza</td>
+              <td>Juan dela Cruz</td>
+              <td>Unit 4A</td>
+              <td style="color:#22c55e;font-weight:bold">₱8,800</td>
+              <td style="color:#64748b">₱440</td>
+              <td>Maya</td>
+              <td style="color:#64748b;font-size:11px">May 4, 2026</td>
+              <td><span class="badge b-green">Verified</span></td>
+            </tr>
+            <tr>
+              <td style="color:#64748b;font-size:11px">#TXN-20255</td>
+              <td>Rosa Santos</td>
+              <td>Juan dela Cruz</td>
+              <td>Unit 6B</td>
+              <td style="color:#22c55e;font-weight:bold">₱7,500</td>
+              <td style="color:#64748b">₱375</td>
+              <td>GCash</td>
+              <td style="color:#64748b;font-size:11px">Apr 28, 2026</td>
+              <td><span class="badge b-red">Disputed</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;font-size:12px;color:#64748b">
+          <span>Showing 3 of 1,842 transactions</span>
+          <div style="display:flex;gap:6px">
+            <button class="btn-outline-green" style="font-size:11px;padding:4px 10px">← Prev</button>
+            <button class="btn-outline-green" style="font-size:11px;padding:4px 10px">Next →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tenants — HomeSync</title>
+ <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+  <div class="sidebar">
+    <a class="sb-logo" href="index.html">Home<span>Sync</span></a>
+    <div class="sb-section">Main</div>
+    <a class="sb-item" href="landlord-overview.html">📊 Overview</a>
+    <a class="sb-item" href="landlord-properties.html">🏠 Properties</a>
+    <a class="sb-item active" href="landlord-tenants.html">👥 Tenants</a>
+    <a class="sb-item" href="landlord-tickets.html">🔧 Tickets <span class="sb-badge red">3</span></a>
+    <div class="sb-section">Finance</div>
+    <a class="sb-item" href="landlord-payments.html">💳 Rent &amp; Payments</a>
+    <a class="sb-item" href="landlord-reports.html">📈 Reports</a>
+    <div class="sb-section">Manage</div>
+    <a class="sb-item" href="landlord-documents.html">📁 Documents</a>
+    <a class="sb-item" href="landlord-messages.html">💬 Messages <span class="sb-badge">4</span></a>
+    <a class="sb-item" href="landlord-notifications.html">🔔 Notifications <span class="sb-badge">5</span></a>
+    <a class="sb-item" href="landlord-support.html">❓ Support</a>
+    <a class="sb-item" href="landlord-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="landlord-settings.html"><div class="avatar">JD</div><div><div class="av-name">Juan dela Cruz</div><div class="av-role">Landlord · Pro</div></div></a>
+  </div>
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Tenants</h1><p>View and manage all tenants</p></div>
+      <div class="topbar-r"><a href="landlord-notifications.html" class="icon-btn">🔔</a><a href="landlord-settings.html"><div class="avatar">JD</div></a></div>
+    </div>
+    <div class="db">
+      <div class="stat-row">
+        <div class="sc"><div class="sl">Total Tenants</div><div class="sv">38</div><div class="ss">+3 this month</div></div>
+        <div class="sc"><div class="sl">Active</div><div class="sv">35</div></div>
+        <div class="sc"><div class="sl">Lease Expiring (30d)</div><div class="sv">4</div><div class="ss warn">Needs renewal</div></div>
+        <div class="sc"><div class="sl">Overdue Payments</div><div class="sv">2</div><div class="ss red">Action needed</div></div>
+      </div>
+      <div class="cc">
+        <h3>All Tenants <a href="landlord-overview.html" class="btn-outline-green" style="text-decoration:none">➕ Add Tenant</a></h3>
+        <table>
+          <thead><tr><th>Tenant</th><th>Unit</th><th>Property</th><th>Rent</th><th>Lease Ends</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong style="color:white">Marco Reyes</strong><br><small style="color:#64748b">marco@email.com</small></td><td>Unit 3A</td><td>Sunset Apts</td><td>₱8,500</td><td>Dec 2026</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><strong style="color:white">Ana Torres</strong><br><small style="color:#64748b">ana@email.com</small></td><td>Unit 2B</td><td>Bayside Res.</td><td>₱9,200</td><td>Mar 2027</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><strong style="color:white">Lito Cruz</strong><br><small style="color:#64748b">lito@email.com</small></td><td>Unit 7A</td><td>Sunset Apts</td><td>₱9,000</td><td>Jun 2026</td><td><span class="badge b-yellow">Expiring</span></td></tr>
+            <tr><td><strong style="color:white">Rosa Santos</strong><br><small style="color:#64748b">rosa@email.com</small></td><td>Unit 6B</td><td>Villa Hermosa</td><td>₱7,500</td><td>Aug 2026</td><td><span class="badge b-red">Overdue</span></td></tr>
+            <tr><td><strong style="color:white">Jose Mendoza</strong><br><small style="color:#64748b">jose@email.com</small></td><td>Unit 4A</td><td>Bayside Res.</td><td>₱8,800</td><td>Sep 2026</td><td><span class="badge b-green">Active</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

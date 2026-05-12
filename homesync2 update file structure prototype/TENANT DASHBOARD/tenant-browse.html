@@ -4,12 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HomeSync — Browse Rooms</title>
- <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
-  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
-  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
-  <link rel="stylesheet" href="../ASSETS/css/forms.css">
-  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
-  <link rel="stylesheet" href="../ASSETS/css/tenant-lobby.css">
+<link rel="stylesheet" href="../ASSETS/style.css">
 </head>
 <body>
 <div class="dashboard">
@@ -89,6 +84,201 @@
 
 <script src="../ASSETS/main.js"></script>
 <script>guardPage("tenant");</script>
-<script src="../ASSETS/js/tenant-browse.js"></script>
+<script>
+var rooms = [
+  {id:1,name:'Room 2B',prop:'Sunset Apartments, QC',gender:'boys',type:'Shared Room',beds:4,avail:1,bedtype:'Single & Bunk',price:2800,dep:'2 months',amen:['📶','❄️','🚿','🧺','🔒'],emoji:'🛏️',full:false,held:true,promos:['student','pwd']},
+  {id:2,name:'Studio 4',prop:'Bayside Residences, Pasig',gender:'girls',type:'Private Room',beds:1,avail:0,bedtype:'Double Bed',price:6500,dep:'1 month',amen:['📶','❄️','🚿','🍳','🔒','🛁'],emoji:'🏠',full:true,held:false,promos:['senior']},
+  {id:3,name:'Dorm A',prop:'Villa Hermosa, Taguig',gender:'mixed',type:'Dormitory',beds:8,avail:0,bedtype:'Bunk Beds',price:1800,dep:'1 month',amen:['📶','🚿','🔒'],emoji:'🏡',full:true,held:false,promos:['student']},
+  {id:4,name:'Room 1C',prop:'Green Park, Mandaluyong',gender:'girls',type:'Shared Room',beds:3,avail:2,bedtype:'Single Beds',price:3200,dep:'2 months',amen:['📶','❄️','🚿','🍳'],emoji:'🏢',full:false,held:false,promos:['student','senior']},
+  {id:5,name:'Bedspace 5',prop:'Sunset Apartments, QC',gender:'boys',type:'Bedspace',beds:6,avail:3,bedtype:'Foam/Floor',price:1500,dep:'1 month',amen:['📶','🚿'],emoji:'🛌',full:false,held:false,promos:['student','pwd']},
+  {id:6,name:'Room 3A',prop:'Bayside Residences, Pasig',gender:'mixed',type:'Private Room',beds:1,avail:1,bedtype:'Queen Bed',price:8500,dep:'2 months',amen:['📶','❄️','🚿','🍳','📺'],emoji:'🏘️',full:false,held:false,promos:['senior']},
+];
+
+var discounts = {1:0,3:3,6:7,12:15};
+var specialDiscounts = {student:10,senior:20,pwd:20,solo:10,gov:5};
+var curRoom = null, bStep = 1, bFor = 'self', selLease = 6, selPromo = '';
+
+function renderRooms() {
+  var h = '';
+  rooms.forEach(function(r) {
+    var gc = r.gender==='boys' ? 'badge-blue' : r.gender==='girls' ? 'badge-pink' : 'badge-purple';
+    var gl = r.gender==='boys' ? 'Boys Only' : r.gender==='girls' ? 'Girls Only' : 'Mixed';
+    var statusBadge = r.full ? '<span class="badge badge-red">Full</span>' : (r.held ? '<span class="badge badge-amber">1 Held</span>' : '<span class="badge badge-green">'+r.avail+' Available</span>');
+    var promoTags = r.promos.map(function(p){
+      var labels = {student:'🎓 Student',senior:'👴 Senior',pwd:'♿ PWD',solo:'👩‍👧 Solo Parent',gov:'🏛️ Gov\'t'};
+      return '<span class="promo-tag '+p+'">'+labels[p]+'</span>';
+    }).join('');
+    var click = r.full ? "showToast('This room is currently full.','warning')" : 'openBooking('+r.id+')';
+    h += '<div class="room-card" onclick="'+click+'">' +
+      '<div class="room-thumb">' +
+        '<span>'+r.emoji+'</span>' +
+        '<div class="thumb-badge"><span class="badge '+gc+'">'+gl+'</span></div>' +
+        '<div class="thumb-badge-r">'+statusBadge+'</div>' +
+        (!r.full ? '<div class="disc-sticker">Up to 20% off</div>' : '') +
+      '</div>' +
+      '<div class="room-body">' +
+        '<div class="room-name">'+r.name+'</div>' +
+        '<div class="room-loc">'+r.prop+'</div>' +
+        '<div class="room-price">₱'+r.price.toLocaleString()+'<span>/bed/mo</span></div>' +
+        '<div style="font-size:10px;color:#22c55e;margin-top:2px">From ₱'+Math.round(r.price*0.80).toLocaleString()+'/mo with discounts</div>' +
+        '<div class="room-meta"><span class="meta-tag">🛏️ '+r.bedtype+'</span><span class="meta-tag">'+r.type+'</span><span class="meta-tag">Dep: '+r.dep+'</span></div>' +
+        '<div class="promo-badge">'+promoTags+'</div>' +
+        '<div class="room-amen" style="margin-top:8px">'+r.amen.map(function(a){return '<span>'+a+'</span>'}).join('')+'</div>' +
+      '</div>' +
+      '<div class="room-card-actions">' +
+        (r.full ? '<button class="btn-sm btn-sm-outline" style="flex:1" onclick="event.stopPropagation();showToast(\'Room is full\',\'warning\')">Full</button>' :
+          '<button class="btn-sm btn-sm-green" style="flex:1" onclick="event.stopPropagation();openBooking('+r.id+')">Book Now</button>' +
+          '<button class="btn-sm btn-sm-amber" onclick="event.stopPropagation();window.location.href=\'tenant-hold.html\'">Hold</button>') +
+      '</div>' +
+    '</div>';
+  });
+  document.getElementById('rooms-grid').innerHTML = h;
+}
+
+function openBooking(id) {
+  curRoom = rooms.find(function(r){return r.id===id;});
+  bStep = 1; bFor = 'self'; selLease = 6; selPromo = '';
+  document.getElementById('book-modal-title').textContent = 'Book: ' + curRoom.name;
+  openModal('book-modal');
+  renderBookStep();
+}
+
+function renderBookStep() {
+  var r = curRoom;
+  var dep = r.price * (r.dep==='1 month' ? 1 : 2);
+  var leasePct = discounts[selLease] || 0;
+  var specialPct = specialDiscounts[selPromo] || 0;
+  var combinedPct = Math.min(leasePct + specialPct, 40);
+  var monthly = Math.round(r.price * (1 - combinedPct/100));
+
+  var dots = '<div class="step-bar">' + [1,2,3,4,5].map(function(i){
+    return '<div class="step-dot'+(i<bStep?' done':i===bStep?' current':'')+'"></div>';
+  }).join('') + '</div>';
+
+  if (bStep === 1) {
+    document.getElementById('book-modal-body').innerHTML = dots +
+      '<p style="font-size:13px;font-weight:bold;margin-bottom:12px">Who will be living here?</p>' +
+      '<div class="grid-2 mb-14">' +
+        '<div style="border:1px solid '+(bFor==='self'?'#22c55e':'#4a5568')+';border-radius:10px;padding:14px;text-align:center;cursor:pointer;background:'+(bFor==='self'?'rgba(34,197,94,0.08)':'#3d4a56')+'" onclick="bFor=\'self\';renderBookStep()">' +
+          '<div style="font-size:24px">👤</div><div style="font-size:12px;font-weight:bold;color:'+(bFor==='self'?'#22c55e':'white')+'">For Myself</div><div style="font-size:11px;color:#94a3b8">I will be the occupant</div>' +
+        '</div>' +
+        '<div style="border:1px solid '+(bFor==='other'?'#22c55e':'#4a5568')+';border-radius:10px;padding:14px;text-align:center;cursor:pointer;background:'+(bFor==='other'?'rgba(34,197,94,0.08)':'#3d4a56')+'" onclick="bFor=\'other\';renderBookStep()">' +
+          '<div style="font-size:24px">👨‍👩‍👦</div><div style="font-size:12px;font-weight:bold;color:'+(bFor==='other'?'#22c55e':'white')+'">For Someone Else</div><div style="font-size:11px;color:#94a3b8">Booking on behalf of another</div>' +
+        '</div>' +
+      '</div>' +
+      (bFor==='other' ? '<div class="info-box">You manage payments and communications. The occupant\'s info is on record for check-in.</div>' +
+        '<div class="form-grid-2"><div class="form-group"><label>Occupant\'s Full Name</label><input placeholder="e.g. Juan dela Cruz Jr."></div>' +
+        '<div class="form-group"><label>Relationship</label><select><option>Son</option><option>Daughter</option><option>Sibling</option><option>Spouse</option><option>Other</option></select></div></div>' +
+        '<div class="form-grid-2"><div class="form-group"><label>Occupant Contact No.</label><input placeholder="+63 9XX XXX XXXX"></div>' +
+        '<div class="form-group"><label>Valid ID to Present</label><input placeholder="e.g. Student ID, National ID"></div></div>' : '') +
+      '<div class="btn-row" style="justify-content:flex-end"><button class="btn-green" onclick="bStep=2;renderBookStep()">Next →</button></div>';
+
+  } else if (bStep === 2) {
+    var discHTML = [
+      {mo:1,label:'Monthly',sub:'No commitment'},
+      {mo:3,label:'3 Months',sub:discounts[3]+'% off'},
+      {mo:6,label:'6 Months',sub:discounts[6]+'% off'},
+      {mo:12,label:'1 Year',sub:discounts[12]+'% off — Best Deal'},
+    ].map(function(d){
+      var isSel = selLease===d.mo;
+      return '<div class="discount-card'+(isSel?' selected':'')+'" onclick="selLease='+d.mo+';renderBookStep()" '+(d.mo===12?'style="border-color:#f59e0b"':'')+'>' +
+        (d.mo===12?'<div class="dc-badge">Best Deal</div>':'') +
+        '<div class="dc-label">'+d.label+'</div>' +
+        '<div class="dc-pct" style="'+(!discounts[d.mo]?'font-size:16px;color:#94a3b8':d.mo===12?'color:#f59e0b':'')+'">'+(!discounts[d.mo]?'No disc.':discounts[d.mo]+'%')+'</div>' +
+        '<div class="dc-save">₱'+Math.round(r.price*(1-(discounts[d.mo]||0)/100)).toLocaleString()+'/mo</div>' +
+      '</div>';
+    }).join('');
+
+    var promoHTML = [
+      {k:'',label:'No Promo',ico:'—'},
+      {k:'student',label:'Student (10%)',ico:'🎓',note:'Present valid school ID + COE'},
+      {k:'senior',label:'Senior Citizen (20%)',ico:'👴',note:'Present OSCA Senior ID'},
+      {k:'pwd',label:'PWD (20%)',ico:'♿',note:'Present PDAO PWD ID'},
+      {k:'solo',label:'Solo Parent (10%)',ico:'👩‍👧',note:'Present DSWD Solo Parent ID'},
+    ].map(function(p){
+      var isSel = selPromo===p.k;
+      return '<div style="border:1px solid '+(isSel?'#22c55e':'#4a5568')+';border-radius:8px;padding:10px;cursor:pointer;background:'+(isSel?'rgba(34,197,94,0.08)':'#3d4a56')+';margin-bottom:6px;display:flex;align-items:center;gap:10px" onclick="selPromo=\''+p.k+'\';renderBookStep()">' +
+        '<span style="font-size:18px;width:24px">'+p.ico+'</span>' +
+        '<div style="flex:1"><div style="font-size:12px;font-weight:bold;color:'+(isSel?'#22c55e':'white')+'">'+p.label+'</div>'+(p.note?'<div style="font-size:10px;color:#94a3b8">'+p.note+'</div>':'')+'</div>' +
+        (isSel?'<span style="color:#22c55e;font-size:18px">✓</span>':'') +
+      '</div>';
+    }).join('');
+
+    document.getElementById('book-modal-body').innerHTML = dots +
+      '<p style="font-size:13px;font-weight:bold;margin-bottom:12px">Choose Lease Length</p>' +
+      '<div class="discount-grid mb-14">'+discHTML+'</div>' +
+      (leasePct>0?'<div class="success-box mb-14"><h4>'+leasePct+'% lease discount locked in!</h4><p>Monthly rate: ₱'+Math.round(r.price*(1-leasePct/100)).toLocaleString()+'/mo (before promo)</p></div>':'') +
+      '<p style="font-size:13px;font-weight:bold;margin-bottom:10px">Special Promo / ID Discount</p>' +
+      promoHTML +
+      (combinedPct>0?'<div class="success-box" style="margin-top:10px"><h4>Total '+combinedPct+'% discount applied</h4><p>Your monthly rate: <strong style="color:#22c55e">₱'+monthly.toLocaleString()+'/mo</strong> (ID to be verified on move-in)</p></div>':'') +
+      '<div class="btn-row" style="justify-content:flex-end;margin-top:14px"><button class="btn-outline-green" onclick="bStep=1;renderBookStep()">← Back</button><button class="btn-green" onclick="bStep=3;renderBookStep()">Next →</button></div>';
+
+  } else if (bStep === 3) {
+    var bedH = '';
+    for(var i=1;i<=r.beds;i++){
+      var types=['Single','Single','Double','Bunk Top'];
+      var taken=i===1;
+      bedH+='<div class="bed-slot '+(taken?'occupied':'available')+'" style="cursor:pointer" onclick="'+(taken?"showToast('Bed taken','warning')":'showToast(\'Bed '+i+' selected\',\'success\')')+'"><div class="bs-ico">'+(taken?'🧑':'🛏️')+'</div><div class="bs-num">Bed '+i+'</div><div class="bs-sub">'+types[(i-1)%types.length]+'</div><div class="bs-status '+(taken?'badge-green':'badge-gray')+'">'+(taken?'Taken':'Select')+'</div></div>';
+    }
+    document.getElementById('book-modal-body').innerHTML = dots +
+      '<p style="font-size:13px;font-weight:bold;margin-bottom:12px">Select Bed & Move-in Date</p>' +
+      '<div class="bed-map mb-14">'+bedH+'</div>' +
+      '<div class="form-grid-2"><div class="form-group"><label>Move-in Date</label><input type="date"></div>' +
+      '<div class="form-group"><label>Lease Duration</label><select><option>'+[1,3,6,12].map(function(m){return m===selLease?'<option selected>'+m+' month'+(m>1?'s':'')+'</option>':'<option>'+m+' month'+(m>1?'s':'')+'</option>';}).join('')+'</select></div></div>' +
+      '<div class="btn-row" style="justify-content:flex-end;margin-top:14px"><button class="btn-outline-green" onclick="bStep=2;renderBookStep()">← Back</button><button class="btn-green" onclick="bStep=4;renderBookStep()">Next →</button></div>';
+
+  } else if (bStep === 4) {
+    var addons = [{ico:'🅿️',n:'Parking',p:500},{ico:'📺',n:'Cable TV',p:200},{ico:'🧹',n:'Weekly Cleaning',p:150}];
+    document.getElementById('book-modal-body').innerHTML = dots +
+      '<div class="info-box">Room: <strong>'+r.name+'</strong> · '+selLease+'-month lease' +
+      (combinedPct>0?' · <strong style="color:#22c55e">'+combinedPct+'% total discount</strong>':'') +
+      (bFor==='other'?' · Booking for occupant':'')+
+      '</div>' +
+      '<div class="cost-row"><span class="cost-label">Monthly rent (discounted)</span><span>₱'+monthly.toLocaleString()+'/mo</span></div>' +
+      '<div class="cost-row"><span class="cost-label">Security deposit ('+r.dep+')</span><span>₱'+dep.toLocaleString()+'</span></div>' +
+      '<div class="cost-row"><span class="cost-label">1 month advance rent</span><span>₱'+r.price.toLocaleString()+'</span></div>' +
+      (combinedPct>0?'<div class="cost-row"><span class="cost-label">Total savings over '+selLease+' months</span><span style="color:#22c55e">−₱'+((r.price-monthly)*selLease).toLocaleString()+'</span></div>':'') +
+      '<div class="cost-row"><span>Total due on move-in</span><span>₱'+(dep+r.price).toLocaleString()+'</span></div>' +
+      '<p style="font-size:12px;font-weight:bold;margin:14px 0 8px">Optional Add-ons</p>' +
+      addons.map(function(a){return '<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:5px 0"><input type="checkbox"> '+a.ico+' '+a.n+' — ₱'+a.p+'/mo</label>';}).join('') +
+      '<div class="btn-row" style="justify-content:flex-end;margin-top:14px"><button class="btn-outline-green" onclick="bStep=3;renderBookStep()">← Back</button><button class="btn-green" onclick="bStep=5;renderBookStep()">Next →</button></div>';
+
+  } else if (bStep === 5) {
+    document.getElementById('book-modal-body').innerHTML = dots +
+      '<div class="warn-box"><h4>⚠️ Deposit & Penalty Policy — '+r.name+'</h4><ul>' +
+      '<li>Security deposit of <strong>₱'+dep.toLocaleString()+'</strong> refundable subject to move-out inspection</li>' +
+      '<li>Property damage deducted from deposit</li>' +
+      '<li>Early termination without 30-day notice: forfeit 1 month deposit</li>' +
+      '<li>Lost key/card: ₱500 replacement fee</li>' +
+      '<li>Move-out cleaning fee ₱500 if unit left unsanitary</li>' +
+      '</ul></div>' +
+      '<div class="info-box"><strong>House Rules:</strong> No pets · No smoking · Quiet hours 10PM–6AM · Cooking in common area only</div>' +
+      (selPromo?'<div class="info-box"><strong>ID Verification Required:</strong> Please bring your '+selPromo+' ID on move-in day. Discount will be confirmed upon ID verification.</div>':'') +
+      '<label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;cursor:pointer;margin-bottom:14px;line-height:1.7"><input type="checkbox" id="agree-chk" style="margin-top:2px"> I have read and agree to all policies, penalty terms, house rules, and the '+selLease+'-month lease commitment.</label>' +
+      '<div class="btn-row" style="justify-content:flex-end"><button class="btn-outline-green" onclick="bStep=4;renderBookStep()">← Back</button><button class="btn-green" onclick="submitBooking()">Confirm Booking</button></div>';
+  }
+}
+
+function submitBooking() {
+  var chk = document.getElementById('agree-chk');
+  if(!chk || !chk.checked){showToast('Please agree to the terms.','error');return;}
+  var leasePct = discounts[selLease]||0, specialPct = specialDiscounts[selPromo]||0;
+  var combinedPct = Math.min(leasePct+specialPct,40);
+  var monthly = Math.round(curRoom.price*(1-combinedPct/100));
+  document.getElementById('book-modal-body').innerHTML =
+    '<div style="text-align:center;padding:30px 20px">' +
+    '<div style="font-size:48px;margin-bottom:12px">✅</div>' +
+    '<h3 style="font-size:16px;color:#22c55e;margin-bottom:8px">Booking Request Sent!</h3>' +
+    '<p style="font-size:12px;color:#94a3b8;line-height:1.8"><strong style="color:white">'+curRoom.name+'</strong> is pending landlord approval.<br>' +
+    'Lease: <strong style="color:white">'+selLease+' month'+(selLease>1?'s':'')+'</strong>' +
+    (combinedPct>0?' · <strong style="color:#22c55e">'+combinedPct+'% discount</strong>':'') +
+    '<br>Monthly rate: <strong style="color:#22c55e">₱'+monthly.toLocaleString()+'/mo</strong>' +
+    (selPromo?'<br><em style="color:#f59e0b">Bring your '+selPromo+' ID on move-in day for discount verification.</em>':'') +
+    (bFor==='other'?'<br>Occupant will receive move-in instructions.':'') +
+    '</p><div style="margin-top:16px"><button class="btn-green" onclick="closeModal(\'book-modal\')">Done</button></div></div>';
+}
+
+renderRooms();
+</script>
 </body>
 </html>

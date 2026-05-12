@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Tickets — HomeSync</title>
-    <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
   <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
   <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
   <link rel="stylesheet" href="../ASSETS/css/forms.css">
@@ -12,17 +12,16 @@
 </head>
 <body>
 <div class="dashboard">
-   <div class="sidebar">
+  <div class="sidebar">
     <a class="sb-logo" href="#">Home<span>Sync</span></a>
     <div class="sb-section">My Home</div>
     <a class="sb-item" href="tenant-overview.html">📊 Overview</a>
-    <a class="sb-item" href="tenant-lobby.html">🏠 Room Lobby</a>
+    <a class="sb-item" href="tenant-browse.html">🔍 Browse Rooms</a>
     <a class="sb-item" href="tenant-rent.html">💳 Pay Rent</a>
     <a class="sb-item active" href="tenant-tickets.html">🔧 My Tickets <span class="sb-badge red">1</span></a>
     <div class="sb-section">Account</div>
     <a class="sb-item" href="tenant-lease.html">📋 My Lease</a>
     <a class="sb-item" href="tenant-documents.html">📁 Documents</a>
-    <a class="sb-item" href="tenant-utilities.html">⚡ Utilities</a>
     <a class="sb-item" href="tenant-messages.html">💬 Messages <span class="sb-badge">2</span></a>
     <a class="sb-item" href="tenant-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
     <a class="sb-item" href="tenant-settings.html">⚙️ Settings</a>
@@ -42,20 +41,20 @@
     </div>
     <div class="db">
       <div class="stat-row">
-        <div class="sc"><div class="sl">Open</div><div class="sv">1</div><div class="ss red">Urgent</div></div>
-        <div class="sc"><div class="sl">Resolved Total</div><div class="sv">8</div></div>
+        <div class="sc"><div class="sl">Open</div><div class="sv" id="open-count">1</div><div class="ss red">Urgent</div></div>
+        <div class="sc"><div class="sl">Resolved Total</div><div class="sv" id="resolved-count">8</div></div>
         <div class="sc"><div class="sl">Avg. Resolution</div><div class="sv">1.4 days</div></div>
       </div>
       <div class="cc">
         <h3>Submit a New Issue</h3>
         <div class="form-group">
           <label>Issue title *</label>
-          <input type="text" placeholder="e.g. Leaking faucet in kitchen">
+          <input type="text" id="ticket-title" placeholder="e.g. Leaking faucet in kitchen">
         </div>
         <div style="display:flex;gap:12px">
           <div class="form-group" style="flex:1">
             <label>Category</label>
-            <select>
+            <select id="ticket-category">
               <option>Plumbing</option>
               <option>Electrical</option>
               <option>HVAC</option>
@@ -65,7 +64,7 @@
           </div>
           <div class="form-group" style="flex:1">
             <label>Priority</label>
-            <select>
+            <select id="ticket-priority">
               <option>Low</option>
               <option>Medium</option>
               <option>High</option>
@@ -75,13 +74,14 @@
         </div>
         <div class="form-group">
           <label>Description *</label>
-          <textarea placeholder="Describe the problem..." style="height:80px;resize:vertical"></textarea>
+          <textarea id="ticket-desc" placeholder="Describe the problem..." style="height:80px;resize:vertical"></textarea>
         </div>
-      <div class="form-group">
-        <label>Attach Photo (Optional)</label>
-        <input type="file" id="ticket-photo" accept="image/*" style="padding: 5px 0;">
-      </div>
-        <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px">Submit Request</button>
+        <div class="form-group">
+          <label>Attach Photo (Optional)</label>
+          <input type="file" id="ticket-photo" accept="image/*" style="padding:5px 0;" onchange="photoSelected(this)">
+        </div>
+        <div id="photo-preview" style="display:none;font-size:12px;color:#22c55e;margin-bottom:10px"></div>
+        <button class="btn-green" style="border-radius:8px;padding:9px 20px;font-size:13px" onclick="submitTicket()">Submit Request</button>
       </div>
       <div class="cc">
         <h3>My Maintenance Requests</h3>
@@ -89,7 +89,7 @@
           <thead>
             <tr><th>#</th><th>Issue</th><th>Category</th><th>Priority</th><th>Date</th><th>Status</th></tr>
           </thead>
-          <tbody>
+          <tbody id="tickets-body">
             <tr><td style="color:#64748b">#1042</td><td><strong style="color:white">Leaking faucet</strong><br><small style="color:#64748b">Kitchen sink</small></td><td>Plumbing</td><td><span class="badge b-red">High</span></td><td>Mar 19</td><td><span class="badge b-yellow">Open</span></td></tr>
             <tr><td style="color:#64748b">#1031</td><td><strong style="color:white">Broken window latch</strong></td><td>Structural</td><td><span class="badge b-gray">Low</span></td><td>Feb 8</td><td><span class="badge b-green">Done</span></td></tr>
             <tr><td style="color:#64748b">#1018</td><td><strong style="color:white">No hot water</strong></td><td>Plumbing</td><td><span class="badge b-orange">Medium</span></td><td>Jan 20</td><td><span class="badge b-green">Done</span></td></tr>

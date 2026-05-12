@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomeSync — Browse Rooms</title>
+ <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+  <link rel="stylesheet" href="../ASSETS/css/tenant-lobby.css">
+</head>
+<body>
+<div class="dashboard">
+  <aside class="sidebar">
+    <a class="sb-logo" href="tenant-overview.html">Home<span>Sync</span></a>
+    <div class="sb-section">Main</div>
+    <a class="sb-item" href="tenant-overview.html">📊 Overview</a>
+    <a class="sb-item active" href="tenant-browse.html">🔍 Browse Rooms</a>
+    <a class="sb-item" href="tenant-rent.html">💳 Pay Rent</a>
+    <a class="sb-item" href="tenant-lease.html">📄 My Lease</a>
+    <a class="sb-item" href="tenant-hold.html">🔖 My Holds</a>
+    <div class="sb-section">Support</div>
+    <a class="sb-item" href="tenant-tickets.html">🔧 Tickets <span class="sb-badge red">2</span></a>
+    <a class="sb-item" href="tenant-messages.html">💬 Messages</a>
+    <a class="sb-item" href="tenant-documents.html">📁 Documents</a>
+    <a class="sb-item" href="tenant-report.html">🚨 Report</a>
+    <a class="sb-item" href="tenant-notifications.html">🔔 Notifications <span class="sb-badge">4</span></a>
+    <a class="sb-item" href="tenant-settings.html">⚙️ Settings</a>
+    <a class="sb-foot" href="../LOGIN AND SIGN IN PAGE/login.html" onclick="sessionStorage.clear()">
+      <div class="avatar blue">JD</div>
+      <div><div class="av-name">Juan dela Cruz</div><div class="av-role">Logout</div></div>
+    </a>
+  </aside>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Browse Available Rooms</h1><p>Find your perfect room across all properties in our network</p></div>
+      <div class="topbar-r">
+        <a class="icon-btn" href="tenant-hold.html">🔖</a>
+        <a class="icon-btn notif-btn" href="tenant-notifications.html">🔔<span class="notif-dot"></span></a>
+      </div>
+    </div>
+    <div class="page-body">
+
+      <!-- Hero / Promo Notice -->
+      <div class="browse-hero mb-20">
+        <div>
+          <h2>🎓 Student? 👴 Senior? ♿ PWD?</h2>
+          <p>You may qualify for special discounts. Select your promo type at checkout to verify your ID and get your reduced rate.</p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="badge badge-teal">Student — 10% off</span>
+          <span class="badge badge-green">Senior Citizen — 20% off</span>
+          <span class="badge badge-purple">PWD — 20% off</span>
+          <span class="badge badge-blue">Solo Parent — 10% off</span>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar mb-20">
+        <input class="search-input" placeholder="🔍 Search by room, property, location…">
+        <select class="filter-select"><option>Any Gender</option><option>Boys Only</option><option>Girls Only</option><option>Mixed / Co-ed</option></select>
+        <select class="filter-select"><option>Any Price</option><option>Under ₱2,000</option><option>₱2,000–₱4,000</option><option>₱4,000–₱7,000</option><option>₱7,000+</option></select>
+        <select class="filter-select"><option>Any Bed Type</option><option>Single</option><option>Double</option><option>Bunk</option><option>Queen</option><option>Foam/Floor</option></select>
+        <select class="filter-select"><option>Any Amenity</option><option>WiFi Included</option><option>With AC</option><option>Private Bathroom</option><option>With Kitchen</option><option>Parking</option></select>
+        <select class="filter-select"><option>Sort: Recommended</option><option>Price: Low–High</option><option>Price: High–Low</option><option>Newest</option></select>
+      </div>
+
+      <div style="font-size:13px;color:#94a3b8;margin-bottom:14px">Showing <strong style="color:white">6 rooms</strong> available now</div>
+
+      <div class="rooms-grid-3" id="rooms-grid"></div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay hidden" id="book-modal">
+  <div class="modal" style="max-width:580px">
+    <div class="modal-hd">
+      <h2 id="book-modal-title">Book a Room</h2>
+      <button class="modal-close" onclick="closeModal('book-modal')">✕</button>
+    </div>
+    <div class="modal-body" id="book-modal-body"></div>
+  </div>
+</div>
+
+<script src="../ASSETS/main.js"></script>
+<script>guardPage("tenant");</script>
+<script src="../ASSETS/js/tenant-browse.js"></script>
+</body>
+</html>

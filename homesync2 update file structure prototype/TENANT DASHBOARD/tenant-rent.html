@@ -10,39 +10,16 @@
   <link rel="stylesheet" href="../ASSETS/css/forms.css">
   <link rel="stylesheet" href="../ASSETS/css/buttons.css">
   <style>
-    /* ── Payment Flow ── */
     .pay-step { display: none; }
     .pay-step.active { display: block; }
-
-    .pay-method-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-    .pay-method-card {
-      border: 2px solid #4a5568;
-      border-radius: 10px;
-      padding: 16px;
-      cursor: pointer;
-      background: #3d4a56;
-      transition: all 0.15s;
-      text-align: center;
-    }
+    .pay-method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+    .pay-method-card { border: 2px solid #4a5568; border-radius: 10px; padding: 16px; cursor: pointer; background: #3d4a56; transition: all 0.15s; text-align: center; }
     .pay-method-card:hover { border-color: #22c55e; }
     .pay-method-card.selected { border-color: #22c55e; background: rgba(34,197,94,0.08); }
     .pay-method-card .pm-icon { font-size: 28px; margin-bottom: 6px; }
     .pay-method-card .pm-name { font-size: 13px; font-weight: bold; color: white; margin-bottom: 2px; }
     .pay-method-card .pm-desc { font-size: 11px; color: #64748b; }
-
-    .payment-instructions {
-      background: #2e3840;
-      border: 1px solid #4a5568;
-      border-radius: 10px;
-      padding: 16px;
-      margin-bottom: 16px;
-      font-size: 13px;
-    }
+    .payment-instructions { background: #2e3840; border: 1px solid #4a5568; border-radius: 10px; padding: 16px; margin-bottom: 16px; font-size: 13px; }
     .payment-instructions h4 { color: #22c55e; margin-bottom: 10px; font-size: 13px; }
     .instr-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 12px; }
     .instr-row:last-child { border-bottom: none; }
@@ -50,111 +27,35 @@
     .instr-row .value { color: white; font-weight: bold; }
     .copy-btn { font-size: 10px; background: rgba(34,197,94,0.15); color: #22c55e; border: none; border-radius: 4px; padding: 2px 7px; cursor: pointer; margin-left: 6px; }
     .copy-btn:hover { background: rgba(34,197,94,0.3); }
-
-    .upload-zone {
-      border: 2px dashed #4a5568;
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-      cursor: pointer;
-      font-size: 13px;
-      color: #64748b;
-      transition: all 0.15s;
-      margin-bottom: 14px;
-    }
+    .upload-zone { border: 2px dashed #4a5568; border-radius: 10px; padding: 20px; text-align: center; cursor: pointer; font-size: 13px; color: #64748b; transition: all 0.15s; margin-bottom: 14px; }
     .upload-zone:hover { border-color: #22c55e; color: white; }
     .upload-zone.has-file { border-color: #22c55e; background: rgba(34,197,94,0.05); }
     .upload-zone .uz-icon { font-size: 28px; margin-bottom: 6px; }
     .upload-zone .uz-text { font-size: 12px; }
-
-    .step-bar {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      margin-bottom: 20px;
-    }
-    .step-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 1;
-      position: relative;
-    }
-    .step-item::after {
-      content: '';
-      position: absolute;
-      top: 14px;
-      left: 50%;
-      width: 100%;
-      height: 2px;
-      background: #4a5568;
-      z-index: 0;
-    }
+    .step-bar { display: flex; align-items: center; gap: 0; margin-bottom: 20px; }
+    .step-item { display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; }
+    .step-item::after { content: ''; position: absolute; top: 14px; left: 50%; width: 100%; height: 2px; background: #4a5568; z-index: 0; }
     .step-item:last-child::after { display: none; }
     .step-item.done::after { background: #22c55e; }
-    .step-circle {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: #4a5568;
-      color: #64748b;
-      font-size: 12px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1;
-      position: relative;
-    }
+    .step-circle { width: 28px; height: 28px; border-radius: 50%; background: #4a5568; color: #64748b; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; z-index: 1; position: relative; }
     .step-item.active .step-circle { background: #22c55e; color: white; }
     .step-item.done .step-circle { background: #22c55e; color: white; }
     .step-name { font-size: 10px; color: #64748b; margin-top: 4px; text-align: center; }
     .step-item.active .step-name { color: #22c55e; }
-
-    .status-tracker {
-      background: #2e3840;
-      border: 1px solid #4a5568;
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 16px;
-    }
+    .status-tracker { background: #2e3840; border: 1px solid #4a5568; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
     .status-tracker h4 { color: white; font-size: 14px; margin-bottom: 14px; }
     .tracker-row { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px; }
     .tracker-row:last-child { border-bottom: none; }
     .tracker-row .t-label { color: #64748b; min-width: 120px; }
     .tracker-row .t-val { color: white; }
-
-    .pending-banner {
-      background: rgba(245,158,11,0.1);
-      border: 1px solid rgba(245,158,11,0.3);
-      border-radius: 10px;
-      padding: 14px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
+    .pending-banner { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); border-radius: 10px; padding: 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
     .pending-banner .pb-icon { font-size: 26px; flex-shrink: 0; }
     .pending-banner h4 { color: #fbbf24; font-size: 13px; margin-bottom: 2px; }
     .pending-banner p { font-size: 11px; color: #94a3b8; }
-
-    .success-banner {
-      background: rgba(34,197,94,0.1);
-      border: 1px solid rgba(34,197,94,0.3);
-      border-radius: 10px;
-      padding: 16px;
-      text-align: center;
-      margin-bottom: 16px;
-    }
+    .success-banner { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); border-radius: 10px; padding: 16px; text-align: center; margin-bottom: 16px; }
     .success-banner .sb-icon { font-size: 36px; margin-bottom: 8px; }
     .success-banner h4 { color: #22c55e; font-size: 15px; margin-bottom: 4px; }
     .success-banner p { font-size: 12px; color: #94a3b8; }
-
-    #toast-wrap { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; }
-    .toast { background: #2e3840; border: 1px solid #4a5568; border-radius: 10px; padding: 12px 16px; font-size: 13px; color: white; min-width: 220px; animation: slideIn 0.25s ease; }
-    .toast.success { border-color: #22c55e; }
-    .toast.error { border-color: #f87171; }
-    @keyframes slideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
   </style>
 </head>
 <body>
@@ -163,13 +64,12 @@
     <a class="sb-logo" href="#">Home<span>Sync</span></a>
     <div class="sb-section">My Home</div>
     <a class="sb-item" href="tenant-overview.html">📊 Overview</a>
-    <a class="sb-item " href="tenant-lobby.html">🏠 Room Lobby</a>
+    <a class="sb-item" href="tenant-browse.html">🔍 Browse Rooms</a>
     <a class="sb-item active" href="tenant-rent.html">💳 Pay Rent</a>
     <a class="sb-item" href="tenant-tickets.html">🔧 My Tickets <span class="sb-badge red">1</span></a>
     <div class="sb-section">Account</div>
     <a class="sb-item" href="tenant-lease.html">📋 My Lease</a>
     <a class="sb-item" href="tenant-documents.html">📁 Documents</a>
-    <a class="sb-item" href="tenant-utilities.html">⚡ Utilities</a>
     <a class="sb-item" href="tenant-messages.html">💬 Messages <span class="sb-badge">2</span></a>
     <a class="sb-item" href="tenant-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
     <a class="sb-item" href="tenant-settings.html">⚙️ Settings</a>
@@ -179,28 +79,25 @@
       <div><div class="av-name">Marco Reyes</div><div class="av-role">Tenant · Unit 3A</div></div>
     </a>
   </div>
-
   <div class="main-content">
     <div class="topbar">
-      <div><h1>Pay Rent</h1><p>View and manage your rent payments</p></div>
+      <div><h1>Pay Rent</h1><p>Unit 3A — May 2026</p></div>
       <div class="topbar-r">
         <a href="tenant-notifications.html" class="icon-btn">🔔</a>
         <a href="tenant-settings.html"><div class="avatar purple">MR</div></a>
       </div>
     </div>
-
     <div class="db">
       <div class="grid2">
-
-        <!-- ══ LEFT: Payment Flow ══ -->
+        <!-- LEFT: Payment Flow -->
         <div>
-          <!-- Due amount summary -->
-          <div class="cc" style="margin-bottom:14px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <!-- Due card -->
+          <div class="cc" style="margin-bottom:14px;background:linear-gradient(135deg,#22c55e,#16a34a)">
+            <div style="display:flex;justify-content:space-between;align-items:center">
               <div>
-                <div style="font-size:11px;color:#64748b;font-weight:bold;text-transform:uppercase;margin-bottom:3px">Next Due</div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.75);font-weight:bold;text-transform:uppercase;margin-bottom:3px">Next Due</div>
                 <div style="font-size:28px;font-weight:bold;color:white">₱8,500</div>
-                <div style="font-size:12px;color:#22c55e;margin-top:2px">May 5, 2026 · No overdue balance</div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.9);margin-top:2px">May 5, 2026 · No overdue balance</div>
               </div>
               <span class="badge b-yellow" style="font-size:12px;padding:5px 12px">⏳ Unpaid</span>
             </div>
@@ -223,7 +120,7 @@
               </div>
             </div>
 
-            <!-- STEP 1: Choose method -->
+            <!-- STEP 1 -->
             <div class="pay-step active" id="pay-step-1">
               <p style="font-size:12px;color:#94a3b8;margin-bottom:14px">Please choose your payment method to proceed:</p>
               <div class="pay-method-grid">
@@ -248,19 +145,18 @@
                   <div class="pm-desc">Pay at Admin Office</div>
                 </div>
               </div>
-              <!-- Dynamic instructions per method -->
               <div class="payment-instructions" id="pay-instructions">
                 <h4>📱 GCash Instructions</h4>
                 <div class="instr-row"><span class="label">Send exact amount to</span><span class="value">0917-123-4567 <button class="copy-btn" onclick="copyText('0917-123-4567')">Copy</button></span></div>
                 <div class="instr-row"><span class="label">Account Name</span><span class="value">Juan dela Cruz</span></div>
                 <div class="instr-row"><span class="label">Amount</span><span class="value">₱8,500.00</span></div>
                 <div class="instr-row"><span class="label">Note / Remarks</span><span class="value">Unit 3A – May 2026 Rent</span></div>
-                <p style="font-size:11px;color:#94a3b8;margin-top:10px">📌 After sending, attach your GCash receipt screenshot on the next step and click <strong>Submit</strong>.</p>
+                <p style="font-size:11px;color:#94a3b8;margin-top:10px">📌 After sending, attach your receipt on the next step and click Submit.</p>
               </div>
               <button class="btn-green" style="width:100%;border-radius:8px;padding:10px;font-size:13px" onclick="goToStep(2)">Next: Upload Receipt →</button>
             </div>
 
-            <!-- STEP 2: Upload Receipt -->
+            <!-- STEP 2 -->
             <div class="pay-step" id="pay-step-2">
               <p style="font-size:12px;color:#94a3b8;margin-bottom:14px">Attach your proof of payment and enter the reference number.</p>
               <div class="form-group">
@@ -281,11 +177,11 @@
               </div>
               <div style="display:flex;gap:8px">
                 <button class="btn-outline-green" style="padding:10px 16px;font-size:13px" onclick="goToStep(1)">← Back</button>
-                <button class="btn-green" style="border-radius:8px;padding:10px;font-size:13px;flex:1" id="btn-submit-payment" onclick="submitPayment()">✅ Submit Payment</button>
+                <button class="btn-green" style="border-radius:8px;padding:10px;font-size:13px;flex:1" onclick="submitPayment()">✅ Submit Payment</button>
               </div>
             </div>
 
-            <!-- STEP 3: Confirmation / Pending -->
+            <!-- STEP 3 -->
             <div class="pay-step" id="pay-step-3">
               <div class="success-banner">
                 <div class="sb-icon">✅</div>
@@ -296,7 +192,7 @@
                 <div class="pb-icon">⏳</div>
                 <div>
                   <h4>Current Status: Pending Approval</h4>
-                  <p>Please wait while we verify your transaction. You don't need to do anything else. We will notify you once your payment has been checked and approved by the landlord.</p>
+                  <p>Please wait while we verify your transaction. You don't need to do anything else. We will notify you once your payment has been approved by the landlord.</p>
                 </div>
               </div>
               <div class="status-tracker">
@@ -318,7 +214,7 @@
           </div>
         </div>
 
-        <!-- ══ RIGHT: History ══ -->
+        <!-- RIGHT: History -->
         <div>
           <div class="cc">
             <h3>Payment History</h3>
@@ -326,10 +222,9 @@
               <thead>
                 <tr><th>Month</th><th>Amount</th><th>Paid On</th><th>Method</th><th>Status</th></tr>
               </thead>
-              <tbody>
+              <tbody id="payment-history-body">
                 <tr>
-                  <td>May 2026</td>
-                  <td>₱8,500</td>
+                  <td>May 2026</td><td>₱8,500</td>
                   <td id="hist-may-date">—</td>
                   <td id="hist-may-method">—</td>
                   <td id="hist-may-status"><span class="badge b-yellow">Unpaid</span></td>
@@ -356,7 +251,6 @@
     </div>
   </div>
 </div>
-
 <div id="toast-wrap"></div>
 <script src="../ASSETS/js/tenant-rent.js"></script>
 </body>

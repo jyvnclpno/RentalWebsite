@@ -12,17 +12,16 @@
 </head>
 <body>
 <div class="dashboard">
-   <div class="sidebar">
+  <div class="sidebar">
     <a class="sb-logo" href="#">Home<span>Sync</span></a>
     <div class="sb-section">My Home</div>
     <a class="sb-item" href="tenant-overview.html">📊 Overview</a>
-    <a class="sb-item" href="tenant-lobby.html">🏠 Room Lobby</a>
+    <a class="sb-item" href="tenant-browse.html">🔍 Browse Rooms</a>
     <a class="sb-item" href="tenant-rent.html">💳 Pay Rent</a>
     <a class="sb-item" href="tenant-tickets.html">🔧 My Tickets <span class="sb-badge red">1</span></a>
     <div class="sb-section">Account</div>
     <a class="sb-item active" href="tenant-lease.html">📋 My Lease</a>
     <a class="sb-item" href="tenant-documents.html">📁 Documents</a>
-    <a class="sb-item" href="tenant-utilities.html">⚡ Utilities</a>
     <a class="sb-item" href="tenant-messages.html">💬 Messages <span class="sb-badge">2</span></a>
     <a class="sb-item" href="tenant-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
     <a class="sb-item" href="tenant-settings.html">⚙️ Settings</a>
@@ -56,7 +55,7 @@
           <div class="alert alert-yellow" style="margin-top:13px">⚠️ Your lease ends in 9 months. Contact your landlord to discuss renewal.</div>
           <div style="display:flex;gap:8px;margin-top:13px">
             <a href="tenant-messages.html"><button class="btn-green" style="border-radius:8px;padding:9px 16px;font-size:13px">Request renewal</button></a>
-            <button class="btn-outline-green" style="padding:9px 16px;font-size:13px">Download lease</button>
+            <button class="btn-outline-green" style="padding:9px 16px;font-size:13px" onclick="downloadLease()">Download lease</button>
           </div>
         </div>
         <div>

@@ -1,25 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
     const roleOptions = document.querySelectorAll('.role-opt');
-    const signInLink = document.querySelector('a[href="landlord-overview.html"]');
+    // Targets the <a> tag wrapping the "Sign in" button
+    const signInLink = document.querySelector('.btn-green-full').parentElement;
 
     roleOptions.forEach(option => {
         option.addEventListener('click', (e) => {
-            // Prevent the link from refreshing the page
             e.preventDefault();
 
-            // 1. Remove 'selected' class from all options
+            // 1. UI Update: Toggle 'selected' class
             roleOptions.forEach(opt => opt.classList.remove('selected'));
-
-            // 2. Add 'selected' class to the clicked option
             option.classList.add('selected');
 
-            // 3. Update the button destination based on the text content
-            if (option.textContent.includes('Tenant')) {
-                // Point to the Tenant Dashboard
+            // 2. Logic Update: Change destination based on selected role
+            // We use trim() to handle any accidental whitespace in the HTML
+            const selectedRole = option.textContent.trim();
+
+            if (selectedRole.includes('Tenant')) {
+                // Path for Tenant Dashboard
                 signInLink.setAttribute('href', '../TENANT DASHBOARD/tenant-overview.html');
+                console.log("Mode: Tenant");
             } else {
-                // Point to the Landlord Dashboard
+                // Path for Landlord Dashboard
                 signInLink.setAttribute('href', '../LANDLORD DASHBOARD/landlord-overview.html');
+                console.log("Mode: Landlord");
             }
         });
     });

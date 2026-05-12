@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management — HomeSync Admin</title>
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+  <style>
+    .tab-strip{display:flex;gap:4px;background:#2e3840;padding:5px;border-radius:10px;width:fit-content;margin-bottom:18px}
+    .tab-pill{padding:8px 18px;border-radius:7px;font-size:13px;font-weight:bold;cursor:pointer;color:#94a3b8;border:none;background:transparent;transition:.15s}
+    .tab-pill.active{background:#22c55e;color:#fff}
+    .tab-panel{display:none}.tab-panel.active{display:block}
+
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:500;align-items:center;justify-content:center;padding:16px}
+    .modal-overlay.open{display:flex}
+    .modal-box{background:#2e3840;border-radius:14px;width:100%;max-width:640px;max-height:93vh;overflow-y:auto;position:relative;box-shadow:0 28px 70px rgba(0,0,0,.6)}
+    .modal-head{background:#263340;padding:22px 24px 18px;border-radius:14px 14px 0 0;display:flex;align-items:center;gap:14px;border-bottom:1px solid #3d4a56;position:sticky;top:0;z-index:2}
+    .modal-body{padding:22px 24px}
+    .modal-close{position:absolute;top:14px;right:14px;background:#3d4a56;border:none;border-radius:7px;width:32px;height:32px;font-size:17px;cursor:pointer;color:white;display:flex;align-items:center;justify-content:center;line-height:1}
+    .modal-close:hover{background:#4a5568}
+    .modal-footer{padding:16px 24px;border-top:1px solid #3d4a56;display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:#263340;border-radius:0 0 14px 14px;position:sticky;bottom:0}
+
+    .info-section{margin-bottom:18px}
+    .info-section-title{font-size:11px;font-weight:bold;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #3d4a56}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .info-grid.cols3{grid-template-columns:1fr 1fr 1fr}
+    .info-cell{background:#3d4a56;border-radius:8px;padding:11px 14px}
+    .info-cell .lbl{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+    .info-cell .val{font-size:13px;font-weight:bold;color:white;word-break:break-word}
+    .info-cell.full{grid-column:1/-1}
+    .val.green{color:#22c55e}.val.red{color:#f87171}.val.yellow{color:#fbbf24}
+
+    .confirm-box{background:#2e3840;border-radius:14px;padding:30px;width:100%;max-width:400px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+    .confirm-box h3{color:white;margin-bottom:8px;font-size:17px}
+    .confirm-box p{color:#94a3b8;font-size:13px;margin-bottom:22px;line-height:1.6}
+
+    .user-row{cursor:pointer}
+    .user-row:hover td{background:rgba(255,255,255,.03)}
+
+    .log-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid #3d4a56;font-size:12px}
+    .log-item:last-child{border-bottom:none}
+    .log-dot{width:8px;height:8px;border-radius:50%;margin-top:3px;flex-shrink:0}
+
+    #toast-wrap{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+    .toast{background:#22c55e;color:white;padding:12px 18px;border-radius:9px;font-size:13px;font-weight:bold;box-shadow:0 4px 20px rgba(0,0,0,.4);animation:tIn .25s ease;min-width:230px}
+    .toast.err{background:#dc2626}
+    @keyframes tIn{from{transform:translateX(110%);opacity:0}to{transform:translateX(0);opacity:1}}
+  </style>
+</head>
+<body>
+<div class="dashboard">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <a class="sb-logo" href="admin-overview.html">Home<span>Sync</span>
+      <span style="font-size:9px;background:#dc2626;color:white;padding:2px 6px;border-radius:4px;font-weight:bold;margin-left:4px">ADMIN</span>
+    </a>
+    <div class="sb-section">Control Center</div>
+    <a class="sb-item" href="admin-overview.html">📊 Overview</a>
+    <a class="sb-item active" href="admin-users.html">👤 User Management</a>
+    <a class="sb-item" href="admin-account-approval.html">✅ Account Approvals <span class="sb-badge red">11</span></a>
+    <a class="sb-item" href="admin-properties.html">🏠 Property Management</a>
+    <div class="sb-section">Finance</div>
+    <a class="sb-item" href="admin-payments.html">💳 Payment Monitoring</a>
+    <a class="sb-item" href="admin-analytics.html">📈 Analytics</a>
+    <div class="sb-section">Moderation</div>
+    <a class="sb-item" href="admin-reports.html">🚨 Reports &amp; Complaints <span class="sb-badge red">7</span></a>
+    <a class="sb-item" href="admin-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <div class="sb-section">System</div>
+    <a class="sb-item" href="admin-security.html">🔒 Security</a>
+    <a class="sb-item" href="admin-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/ADMIN-LOGIN-PAGE.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="admin-settings.html">
+      <div class="avatar" style="background:#dc2626">SA</div>
+      <div><div class="av-name">Super Admin</div><div class="av-role">Administrator</div></div>
+    </a>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>User Management</h1><p>View full profiles, moderate, and manage all platform users</p></div>
+      <div class="topbar-r">
+        <a href="admin-account-approval.html" class="btn-green" style="padding:7px 14px;border-radius:8px;font-size:12px;text-decoration:none;white-space:nowrap">✅ New Accounts (11)</a>
+        <a href="admin-reports.html" class="icon-btn">🚨</a>
+        <a href="admin-notifications.html" class="icon-btn">🔔</a>
+        <a href="admin-settings.html"><div class="avatar" style="background:#dc2626">SA</div></a>
+      </div>
+    </div>
+
+    <div class="db">
+
+      <!-- Stats -->
+      <div class="stat-row">
+        <div class="sc"><div class="sl">Total Users</div><div class="sv" id="stat-total">8</div><div class="ss">+24 this week</div></div>
+        <div class="sc"><div class="sl">Landlords</div><div class="sv" id="stat-ll">3</div></div>
+        <div class="sc"><div class="sl">Tenants</div><div class="sv" id="stat-tn">5</div></div>
+        <div class="sc"><div class="sl">Banned</div><div class="sv" id="stat-banned" style="color:#f87171">1</div></div>
+        <div class="sc"><div class="sl">🆕 Awaiting Approval</div><div class="sv"><a href="admin-account-approval.html" style="color:#fbbf24;text-decoration:none">11 →</a></div></div>
+      </div>
+
+      <!-- Approval shortcut -->
+      <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:9px;padding:14px 18px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div>
+          <div style="font-size:13px;font-weight:bold;color:white">✅ 11 new registrations are waiting for approval</div>
+          <div style="font-size:12px;color:#64748b;margin-top:2px">View full profiles, submitted documents, and decide to accept or decline.</div>
+        </div>
+        <a href="admin-account-approval.html" class="btn-green" style="padding:8px 18px;border-radius:8px;font-size:13px;text-decoration:none">Go to Account Approvals →</a>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tab-strip">
+        <button class="tab-pill active" onclick="switchTab('all',this)">📋 All Users</button>
+        <button class="tab-pill" onclick="switchTab('landlords',this)">🏠 Landlords</button>
+        <button class="tab-pill" onclick="switchTab('tenants',this)">👥 Tenants</button>
+        <button class="tab-pill" onclick="switchTab('banned',this)">🚫 Banned</button>
+      </div>
+
+      <!-- Search / filter bar -->
+      <div class="cc" style="padding:13px 18px;margin-bottom:14px">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <div class="form-group" style="margin-bottom:0;flex:1;min-width:200px">
+            <input type="text" id="search-input" placeholder="🔍  Search name or email..." oninput="renderAll()">
+          </div>
+          <div class="form-group" style="margin-bottom:0;width:140px">
+            <select id="filter-role" onchange="renderAll()">
+              <option value="">All Roles</option>
+              <option value="landlord">Landlord</option>
+              <option value="tenant">Tenant</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;width:140px">
+            <select id="filter-status" onchange="renderAll()">
+              <option value="">All Statuses</option>
+              <option value="active">Active</option>
+              <option value="banned">Banned</option>
+            </select>
+          </div>
+          <button class="btn-outline-green" onclick="clearFilter()">Clear</button>
+          <button class="btn-outline-green" onclick="exportCSV()">⬇ CSV</button>
+        </div>
+      </div>
+
+      <!-- Tab panels -->
+      <div id="tab-all" class="tab-panel active">
+        <div class="cc">
+          <h3>All Users &nbsp;<span id="showing-label" style="font-size:12px;font-weight:normal;color:#64748b"></span></h3>
+          <table><thead><tr><th>User</th><th>Role</th><th>Phone</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="tbody-all"></tbody></table>
+        </div>
+      </div>
+
+      <div id="tab-landlords" class="tab-panel">
+        <div class="cc">
+          <h3>All Landlords</h3>
+          <table><thead><tr><th>Landlord</th><th>Phone</th><th>City</th><th>Units</th><th>Tenants</th><th>Plan</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="tbody-landlords"></tbody></table>
+        </div>
+      </div>
+
+      <div id="tab-tenants" class="tab-panel">
+        <div class="cc">
+          <h3>All Tenants</h3>
+          <table><thead><tr><th>Tenant</th><th>Phone</th><th>Unit / Property</th><th>Rent/mo</th><th>Lease Ends</th><th>Payment</th><th>Actions</th></tr></thead>
+          <tbody id="tbody-tenants"></tbody></table>
+        </div>
+      </div>
+
+      <div id="tab-banned" class="tab-panel">
+        <div class="cc">
+          <h3>Banned Users</h3>
+          <table><thead><tr><th>User</th><th>Role</th><th>Banned On</th><th>Reason</th><th>Actions</th></tr></thead>
+          <tbody id="tbody-banned"></tbody></table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE MODAL -->
+<div class="modal-overlay" id="profile-modal">
+  <div class="modal-box" id="modal-content"></div>
+</div>
+
+<!-- CONFIRM MODAL -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="confirm-box">
+    <div style="font-size:38px;margin-bottom:10px" id="c-icon">⚠️</div>
+    <h3 id="c-title">Are you sure?</h3>
+    <p id="c-msg">This action cannot be undone.</p>
+    <div style="display:flex;gap:10px;justify-content:center">
+      <button class="btn-outline-green" onclick="closeConfirm()">Cancel</button>
+      <button id="c-ok" style="padding:9px 22px;font-size:13px;border-radius:8px">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-wrap"></div>
+
+<script>
+// ── DATA ──────────────────────────────────────
+const USERS = [
+  { id:'u1', role:'landlord', status:'active', name:'Juan dela Cruz', initials:'JD', bg:'#22c55e',
+    email:'juan@homesync.ph', phone:'+63 917 123 4567', birthdate:'April 5, 1978', age:'47', gender:'Male',
+    address:'Km. 5, Davao City', city:'Davao City', idType:'PhilSys ID', idNo:'PSN-2024-00011122',
+    joined:'Jan 10, 2026', plan:'Pro', verified:true, properties:12, tenants:38,
+    businessName:'JDC Properties', tinNo:'123-456-789', experience:'10 years',
+    bio:'Experienced landlord managing 12 properties across 3 cities. Pro Plan subscriber.',
+    banReason:null,
+    activity:[
+      {c:'#22c55e',t:'Rent collected — ₱124,500',d:'1h ago'},
+      {c:'#3b82f6',t:'New tenant added — Ana Torres',d:'Today'},
+      {c:'#f59e0b',t:'Ticket resolved — Unit 7C lock',d:'Yesterday'},
+    ]
+  },
+  { id:'u2', role:'landlord', status:'active', name:'Perla Manalo', initials:'PM', bg:'#0f766e',
+    email:'perla@email.com', phone:'+63 909 765 4321', birthdate:'June 12, 1982', age:'43', gender:'Female',
+    address:'Lahug, Cebu City', city:'Cebu City', idType:'SSS UMID', idNo:'CRN-0093456789',
+    joined:'Feb 18, 2026', plan:'Basic', verified:true, properties:4, tenants:14,
+    businessName:'Manalo Suites', tinNo:'234-567-890', experience:'6 years',
+    bio:'Manages 4 units in Cebu. Good payment track record.',
+    banReason:null,
+    activity:[
+      {c:'#22c55e',t:'Monthly report generated',d:'2d ago'},
+      {c:'#3b82f6',t:'Message sent to tenant',d:'3d ago'},
+    ]
+  },
+  { id:'u3', role:'landlord', status:'banned', name:'Diego Ramos', initials:'DR', bg:'#dc2626',
+    email:'diego.ramos@email.com', phone:'+63 915 000 1111', birthdate:'Oct 30, 1979', age:'46', gender:'Male',
+    address:'Makati CBD, Makati', city:'Makati', idType:"Driver's License", idNo:'N01-79-000111',
+    joined:'Dec 14, 2025', plan:'Basic', verified:false, properties:2, tenants:0,
+    businessName:'Ramos Rentals', tinNo:'345-678-901', experience:'3 years',
+    bio:'Account banned due to scam activity. Multiple tenant complaints filed.',
+    banReason:'Multiple scam reports from tenants. Fake listing (#4821) detected and removed.',
+    activity:[
+      {c:'#f87171',t:'Account BANNED by Admin',d:'May 9, 2026'},
+      {c:'#f87171',t:'Listing #4821 removed — fake',d:'May 9, 2026'},
+      {c:'#f59e0b',t:'3 scam reports filed against user',d:'May 8, 2026'},
+    ]
+  },
+  { id:'u4', role:'tenant', status:'active', name:'Marco Reyes', initials:'MR', bg:'#22c55e',
+    email:'marco@email.com', phone:'+63 916 444 5555', birthdate:'Sep 20, 1995', age:'30', gender:'Male',
+    address:'Unit 3A, Sunset Apartments, QC', city:'Quezon City', idType:'PhilSys ID', idNo:'PSN-2024-00333344',
+    joined:'Nov 5, 2025', plan:'—', verified:true,
+    unit:'Unit 3A', property:'Sunset Apartments', landlord:'Juan dela Cruz',
+    rent:'₱8,500', leaseEnd:'Dec 2026', paymentStatus:'Paid', paymentBadge:'b-green',
+    occupation:'Engineer', employer:'DMCI Holdings', income:'₱52,000', emergency:'Liza Reyes · +63 917 999 0000',
+    bio:'Long-time tenant, pays on time. 1 maintenance ticket submitted this month.',
+    banReason:null,
+    activity:[
+      {c:'#22c55e',t:'Rent paid — ₱8,500',d:'1h ago'},
+      {c:'#f59e0b',t:'Maintenance ticket — leaking faucet',d:'Today'},
+    ]
+  },
+  { id:'u5', role:'tenant', status:'active', name:'Ana Torres', initials:'AT', bg:'#7c3aed',
+    email:'ana@email.com', phone:'+63 920 111 2222', birthdate:'Feb 14, 1997', age:'29', gender:'Female',
+    address:'Unit 2B, Bayside Residences, Pasig', city:'Pasig', idType:"Driver's License", idNo:'N04-97-002222',
+    joined:'Feb 3, 2026', plan:'—', verified:true,
+    unit:'Unit 2B', property:'Bayside Residences', landlord:'Juan dela Cruz',
+    rent:'₱9,200', leaseEnd:'Mar 2027', paymentStatus:'Paid', paymentBadge:'b-green',
+    occupation:'Accountant', employer:'SGV & Co.', income:'₱48,000', emergency:'Carlo Torres · +63 918 333 4444',
+    bio:'Reliable tenant. Never missed a payment. Up for lease renewal.',
+    banReason:null,
+    activity:[
+      {c:'#22c55e',t:'Rent paid via bank transfer',d:'May 5'},
+      {c:'#3b82f6',t:'Message sent to landlord',d:'Yesterday'},
+    ]
+  },
+  { id:'u6', role:'tenant', status:'active', name:'Lito Cruz', initials:'LC', bg:'#0f766e',
+    email:'lito@email.com', phone:'+63 929 555 6666', birthdate:'Mar 3, 1990', age:'36', gender:'Male',
+    address:'Unit 7A, Sunset Apartments, QC', city:'Quezon City', idType:'PhilSys ID', idNo:'PSN-2024-00777788',
+    joined:'Aug 10, 2025', plan:'—', verified:true,
+    unit:'Unit 7A', property:'Sunset Apartments', landlord:'Juan dela Cruz',
+    rent:'₱9,000', leaseEnd:'Jun 2026', paymentStatus:'Pending', paymentBadge:'b-yellow',
+    occupation:'IT Support', employer:'Globe Telecom', income:'₱35,000', emergency:'Maria Cruz · +63 910 777 8888',
+    bio:'Lease expiring in 2 months. Has expressed interest in renewal.',
+    banReason:null,
+    activity:[
+      {c:'#f59e0b',t:'Lease expiry notice sent',d:'Today'},
+      {c:'#3b82f6',t:'Sent message about renewal',d:'Mar 17'},
+    ]
+  },
+  { id:'u7', role:'tenant', status:'active', name:'Rosa Santos', initials:'RS', bg:'#b45309',
+    email:'rosa@email.com', phone:'+63 933 777 8888', birthdate:'Jul 15, 1988', age:'37', gender:'Female',
+    address:'Unit 6B, Villa Hermosa, Taguig', city:'Taguig', idType:'Postal ID', idNo:'2024-TAG-009812',
+    joined:'Mar 22, 2026', plan:'—', verified:true,
+    unit:'Unit 6B', property:'Villa Hermosa', landlord:'Juan dela Cruz',
+    rent:'₱7,500', leaseEnd:'Aug 2026', paymentStatus:'Overdue', paymentBadge:'b-red',
+    occupation:'Sales Associate', employer:'SM Retail', income:'₱22,000', emergency:'Ben Santos · +63 921 999 0011',
+    bio:'Payment is 3 days overdue. Promised to pay by Friday.',
+    banReason:null,
+    activity:[
+      {c:'#f87171',t:'Rent overdue — ₱7,500',d:'3d ago'},
+      {c:'#f59e0b',t:'Admin notification sent',d:'2d ago'},
+    ]
+  },
+  { id:'u8', role:'tenant', status:'active', name:'Jose Mendoza', initials:'JM', bg:'#1d4ed8',
+    email:'jose@email.com', phone:'+63 908 222 3333', birthdate:'Dec 25, 1992', age:'33', gender:'Male',
+    address:'Unit 4A, Bayside Residences, Pasig', city:'Pasig', idType:'Philippine Passport', idNo:'P1928374B',
+    joined:'Oct 1, 2025', plan:'—', verified:true,
+    unit:'Unit 4A', property:'Bayside Residences', landlord:'Juan dela Cruz',
+    rent:'₱8,800', leaseEnd:'Sep 2026', paymentStatus:'Paid', paymentBadge:'b-green',
+    occupation:'Pharmacist', employer:'Mercury Drug', income:'₱44,000', emergency:'Tessie Mendoza · +63 927 444 5555',
+    bio:'Consistent payer. No complaints or tickets this month.',
+    banReason:null,
+    activity:[
+      {c:'#22c55e',t:'Rent paid via Maya',d:'May 4'},
+    ]
+  },
+];
+
+// ── RENDER ALL TABLES ─────────────────────────
+function renderAll() {
+  const q   = (document.getElementById('search-input').value||'').toLowerCase();
+  const rF  = document.getElementById('filter-role').value;
+  const sF  = document.getElementById('filter-status').value;
+
+  const filt = USERS.filter(u =>
+    (!q  || u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q)) &&
+    (!rF || u.role===rF) &&
+    (!sF || u.status===sF)
+  );
+
+  // ─ All users ─
+  document.getElementById('tbody-all').innerHTML = filt.map(u => `
+    <tr class="user-row" onclick="openProfile('${u.id}')">
+      <td><div style="display:flex;align-items:center;gap:9px">
+        <div class="avatar" style="width:30px;height:30px;font-size:10px;background:${u.bg};flex-shrink:0">${u.initials}</div>
+        <div><strong style="color:${u.status==='banned'?'#f87171':'white'}">${u.name}</strong><br>
+        <small style="color:#64748b">${u.email}</small></div>
+      </div></td>
+      <td>${u.role==='landlord'?'<span class="badge b-blue">🏠 Landlord</span>':'<span class="badge b-gray">👥 Tenant</span>'}</td>
+      <td style="font-size:12px;color:#94a3b8">${u.phone}</td>
+      <td style="color:#64748b;font-size:11px">${u.joined}</td>
+      <td>${u.status==='active'?`<span class="badge b-green">Active${u.verified?' ✓':''}</span>`:'<span class="badge b-red">Banned</span>'}</td>
+      <td onclick="event.stopPropagation()">
+        <div class="btn-row">
+          <button class="btn-outline-green" style="font-size:11px;padding:5px 10px" onclick="openProfile('${u.id}')">👁 View</button>
+          <button class="btn-outline-green" style="font-size:11px;padding:5px 10px" onclick="doConfirm('resetpw','${u.id}')">🔑 Reset PW</button>
+          ${u.status==='active'
+            ?`<button class="btn-red" style="font-size:11px;padding:5px 10px" onclick="doConfirm('ban','${u.id}')">🚫 Ban</button>`
+            :`<button class="btn-green" style="padding:5px 10px;border-radius:6px;font-size:11px" onclick="doConfirm('unban','${u.id}')">✅ Unban</button>
+              <button class="btn-red" style="font-size:11px;padding:5px 8px" onclick="doConfirm('delete','${u.id}')">🗑</button>`}
+        </div>
+      </td>
+    </tr>`).join('') || noResults(6);
+  document.getElementById('showing-label').textContent = `Showing ${filt.length} of ${USERS.length}`;
+
+  // ─ Landlords ─
+  const lls = USERS.filter(u => u.role==='landlord');
+  document.getElementById('tbody-landlords').innerHTML = lls.map(u => `
+    <tr class="user-row" onclick="openProfile('${u.id}')">
+      <td><div style="display:flex;align-items:center;gap:9px">
+        <div class="avatar" style="width:30px;height:30px;font-size:10px;background:${u.bg};flex-shrink:0">${u.initials}</div>
+        <div><strong style="color:${u.status==='banned'?'#f87171':'white'}">${u.name}</strong><br>
+        <small style="color:#64748b">${u.email}</small></div>
+      </div></td>
+      <td style="font-size:12px;color:#94a3b8">${u.phone}</td>
+      <td style="font-size:12px;color:#94a3b8">${u.city}</td>
+      <td style="text-align:center;font-weight:bold;color:white">${u.properties}</td>
+      <td style="text-align:center;font-weight:bold;color:white">${u.tenants}</td>
+      <td><span class="badge ${u.plan==='Pro'?'b-green':'b-gray'}">${u.plan}</span></td>
+      <td>${u.status==='active'?`<span class="badge b-green">Active${u.verified?' ✓':''}</span>`:'<span class="badge b-red">Banned</span>'}</td>
+      <td onclick="event.stopPropagation()">
+        <div class="btn-row">
+          <button class="btn-outline-green" style="font-size:11px;padding:5px 10px" onclick="openProfile('${u.id}')">👁 View</button>
+          ${u.status==='active'
+            ?`<button class="btn-red" style="font-size:11px;padding:5px 10px" onclick="doConfirm('ban','${u.id}')">🚫 Ban</button>`
+            :`<button class="btn-green" style="padding:5px 10px;border-radius:6px;font-size:11px" onclick="doConfirm('unban','${u.id}')">✅ Unban</button>`}
+        </div>
+      </td>
+    </tr>`).join('');
+
+  // ─ Tenants ─
+  const tns = USERS.filter(u => u.role==='tenant');
+  document.getElementById('tbody-tenants').innerHTML = tns.map(u => `
+    <tr class="user-row" onclick="openProfile('${u.id}')">
+      <td><div style="display:flex;align-items:center;gap:9px">
+        <div class="avatar" style="width:30px;height:30px;font-size:10px;background:${u.bg};flex-shrink:0">${u.initials}</div>
+        <div><strong style="color:white">${u.name}</strong><br>
+        <small style="color:#64748b">${u.email}</small></div>
+      </div></td>
+      <td style="font-size:12px;color:#94a3b8">${u.phone}</td>
+      <td style="font-size:12px">${u.unit||'—'}<br><small style="color:#64748b">${u.property||'—'}</small></td>
+      <td style="font-weight:bold;color:#22c55e">${u.rent||'—'}</td>
+      <td style="font-size:12px;color:#94a3b8">${u.leaseEnd||'—'}</td>
+      <td><span class="badge ${u.paymentBadge||'b-gray'}">${u.paymentStatus||'—'}</span></td>
+      <td onclick="event.stopPropagation()">
+        <div class="btn-row">
+          <button class="btn-outline-green" style="font-size:11px;padding:5px 10px" onclick="openProfile('${u.id}')">👁 View</button>
+          <button class="btn-red" style="font-size:11px;padding:5px 10px" onclick="doConfirm('ban','${u.id}')">🚫 Ban</button>
+        </div>
+      </td>
+    </tr>`).join('');
+
+  // ─ Banned ─
+  const bnd = USERS.filter(u => u.status==='banned');
+  document.getElementById('tbody-banned').innerHTML = bnd.length ? bnd.map(u => `
+    <tr class="user-row" onclick="openProfile('${u.id}')">
+      <td><div style="display:flex;align-items:center;gap:9px">
+        <div class="avatar" style="width:30px;height:30px;font-size:10px;background:${u.bg};flex-shrink:0">${u.initials}</div>
+        <div><strong style="color:#f87171">${u.name}</strong><br>
+        <small style="color:#64748b">${u.email}</small></div>
+      </div></td>
+      <td>${u.role==='landlord'?'<span class="badge b-blue">Landlord</span>':'<span class="badge b-gray">Tenant</span>'}</td>
+      <td style="color:#64748b;font-size:11px">May 9, 2026</td>
+      <td style="font-size:12px;color:#f87171;max-width:220px">${u.banReason||'Policy violation'}</td>
+      <td onclick="event.stopPropagation()">
+        <div class="btn-row">
+          <button class="btn-outline-green" style="font-size:11px;padding:5px 10px" onclick="openProfile('${u.id}')">👁 View</button>
+          <button class="btn-green" style="padding:5px 10px;border-radius:6px;font-size:11px" onclick="doConfirm('unban','${u.id}')">✅ Unban</button>
+          <button class="btn-red" style="font-size:11px;padding:5px 10px" onclick="doConfirm('delete','${u.id}')">🗑 Delete</button>
+        </div>
+      </td>
+    </tr>`).join('')
+  : noResults(5, 'No banned users.');
+
+  document.getElementById('stat-total').textContent  = USERS.length;
+  document.getElementById('stat-ll').textContent     = USERS.filter(u=>u.role==='landlord').length;
+  document.getElementById('stat-tn').textContent     = USERS.filter(u=>u.role==='tenant').length;
+  document.getElementById('stat-banned').textContent = USERS.filter(u=>u.status==='banned').length;
+}
+
+function noResults(cols, msg='No users match your search.') {
+  return `<tr><td colspan="${cols}" style="text-align:center;color:#64748b;padding:22px">${msg}</td></tr>`;
+}
+
+// ── PROFILE MODAL ────────────────────────────
+function openProfile(id) {
+  const u = USERS.find(x=>x.id===id); if(!u) return;
+  const isLL = u.role==='landlord';
+  const sc   = u.status==='active' ? '#22c55e' : '#f87171';
+
+  const extra = isLL ? `
+    <div class="info-cell"><div class="lbl">Business Name</div><div class="val">${u.businessName}</div></div>
+    <div class="info-cell"><div class="lbl">TIN Number</div><div class="val">${u.tinNo}</div></div>
+    <div class="info-cell"><div class="lbl">Total Properties</div><div class="val green">${u.properties}</div></div>
+    <div class="info-cell"><div class="lbl">Total Tenants</div><div class="val green">${u.tenants}</div></div>
+    <div class="info-cell"><div class="lbl">Experience</div><div class="val">${u.experience}</div></div>
+    <div class="info-cell"><div class="lbl">Plan</div><div class="val">${u.plan}</div></div>
+  ` : `
+    <div class="info-cell"><div class="lbl">Current Unit</div><div class="val">${u.unit||'—'}</div></div>
+    <div class="info-cell"><div class="lbl">Property</div><div class="val">${u.property||'—'}</div></div>
+    <div class="info-cell"><div class="lbl">Landlord</div><div class="val">${u.landlord||'—'}</div></div>
+    <div class="info-cell"><div class="lbl">Monthly Rent</div><div class="val green">${u.rent||'—'}</div></div>
+    <div class="info-cell"><div class="lbl">Lease Ends</div><div class="val">${u.leaseEnd||'—'}</div></div>
+    <div class="info-cell"><div class="lbl">Payment Status</div><div class="val"><span class="badge ${u.paymentBadge||'b-gray'}">${u.paymentStatus||'—'}</span></div></div>
+    <div class="info-cell"><div class="lbl">Occupation</div><div class="val">${u.occupation||'—'}</div></div>
+    <div class="info-cell"><div class="lbl">Employer</div><div class="val">${u.employer||'—'}</div></div>
+    <div class="info-cell"><div class="lbl">Monthly Income</div><div class="val green">${u.income||'—'}</div></div>
+    <div class="info-cell"><div class="lbl">Emergency Contact</div><div class="val">${u.emergency||'—'}</div></div>
+  `;
+
+  const actHtml = (u.activity||[]).map(a =>
+    `<div class="log-item"><div class="log-dot" style="background:${a.c}"></div>
+     <div style="flex:1;color:#94a3b8">${a.t}</div>
+     <div style="color:#64748b;font-size:11px;white-space:nowrap">${a.d}</div></div>`
+  ).join('') || '<div style="color:#64748b;font-size:13px">No activity recorded.</div>';
+
+  const banBox = u.status==='banned' ? `
+    <div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:#f87171">
+      🚫 <strong>Account is banned.</strong> Reason: ${u.banReason}
+    </div>` : '';
+
+  const foot = u.status==='active' ? `
+    <div style="flex:1;font-size:12px;color:#64748b">User ID: ${u.id} · Since ${u.joined}</div>
+    <button class="btn-outline-green" style="font-size:12px;padding:7px 14px" onclick="closeProfile();doConfirm('resetpw','${u.id}')">🔑 Reset PW</button>
+    <button class="btn-red"           style="font-size:12px;padding:7px 14px" onclick="closeProfile();doConfirm('ban','${u.id}')">🚫 Ban User</button>
+  ` : `
+    <div style="flex:1;font-size:12px;color:#64748b">User ID: ${u.id} · Since ${u.joined}</div>
+    <button class="btn-green" style="border-radius:8px;padding:7px 16px;font-size:12px" onclick="closeProfile();doConfirm('unban','${u.id}')">✅ Unban</button>
+    <button class="btn-red"   style="font-size:12px;padding:7px 14px"                   onclick="closeProfile();doConfirm('delete','${u.id}')">🗑 Delete</button>
+  `;
+
+  document.getElementById('modal-content').innerHTML = `
+    <button class="modal-close" onclick="closeProfile()">✕</button>
+    <div class="modal-head">
+      <div class="avatar" style="width:50px;height:50px;font-size:17px;font-weight:bold;background:${u.bg};flex-shrink:0;border:2px solid ${sc}">${u.initials}</div>
+      <div style="flex:1">
+        <div style="font-size:17px;font-weight:bold;color:white">${u.name}</div>
+        <div style="font-size:12px;color:#64748b;margin-top:2px">${u.email} · ${isLL?'🏠 Landlord':'👥 Tenant'}</div>
+        <div style="margin-top:4px;font-size:12px;color:${sc}">${u.status==='active'?('● Active'+(u.verified?' · Verified':'')):'🚫 Banned'}</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      ${banBox}
+      <div class="info-section">
+        <div class="info-section-title">Personal Information</div>
+        <div class="info-grid cols3">
+          <div class="info-cell"><div class="lbl">Full Name</div><div class="val">${u.name}</div></div>
+          <div class="info-cell"><div class="lbl">Date of Birth</div><div class="val">${u.birthdate}</div></div>
+          <div class="info-cell"><div class="lbl">Age / Gender</div><div class="val">${u.age} · ${u.gender}</div></div>
+          <div class="info-cell full"><div class="lbl">Address</div><div class="val">${u.address}</div></div>
+          <div class="info-cell"><div class="lbl">Phone</div><div class="val">${u.phone}</div></div>
+          <div class="info-cell"><div class="lbl">Email</div><div class="val">${u.email}</div></div>
+          <div class="info-cell"><div class="lbl">ID Type</div><div class="val">${u.idType}</div></div>
+          <div class="info-cell"><div class="lbl">ID Number</div><div class="val">${u.idNo}</div></div>
+          <div class="info-cell"><div class="lbl">Joined</div><div class="val">${u.joined}</div></div>
+        </div>
+      </div>
+      <div class="info-section">
+        <div class="info-section-title">${isLL?'Landlord Details':'Tenant Details'}</div>
+        <div class="info-grid">${extra}</div>
+      </div>
+      <div class="info-section">
+        <div class="info-section-title">About</div>
+        <div style="background:#3d4a56;border-radius:8px;padding:12px 14px;font-size:13px;color:#94a3b8;line-height:1.6">${u.bio}</div>
+      </div>
+      <div class="info-section" style="margin-bottom:0">
+        <div class="info-section-title">Recent Activity</div>
+        ${actHtml}
+      </div>
+    </div>
+    <div class="modal-footer">${foot}</div>
+  `;
+  document.getElementById('profile-modal').classList.add('open');
+}
+function closeProfile(){ document.getElementById('profile-modal').classList.remove('open'); }
+
+// ── CONFIRM MODAL ─────────────────────────────
+function doConfirm(type, id) {
+  const u = USERS.find(x=>x.id===id);
+  const map = {
+    ban:     {icon:'🚫', title:`Ban ${u.name}?`,        msg:`Their account will be suspended immediately.`,                         cls:'btn-red',   txt:'🚫 Yes, Ban'},
+    unban:   {icon:'✅', title:`Unban ${u.name}?`,      msg:`Their account will be reactivated and they can log in again.`,         cls:'btn-green', txt:'✅ Yes, Unban'},
+    delete:  {icon:'🗑', title:`Delete ${u.name}?`,     msg:`All account data will be permanently deleted. Cannot be undone.`,      cls:'btn-red',   txt:'🗑 Delete Permanently'},
+    resetpw: {icon:'🔑', title:`Reset password?`,       msg:`A reset link will be sent to ${u.email}.`,                            cls:'btn-green', txt:'🔑 Send Reset Email'},
+  }[type];
+  document.getElementById('c-icon').textContent  = map.icon;
+  document.getElementById('c-title').textContent = map.title;
+  document.getElementById('c-msg').textContent   = map.msg;
+  const ok = document.getElementById('c-ok');
+  ok.className = map.cls;
+  ok.style.cssText = 'padding:9px 22px;font-size:13px;border-radius:8px';
+  ok.textContent = map.txt;
+  ok.onclick = () => execAction(type, id);
+  document.getElementById('confirm-modal').classList.add('open');
+}
+function closeConfirm(){ document.getElementById('confirm-modal').classList.remove('open'); }
+
+function execAction(type, id) {
+  closeConfirm();
+  const u = USERS.find(x=>x.id===id);
+  if (type==='ban')    { u.status='banned'; toast(`🚫 ${u.name} has been banned.`, true); }
+  if (type==='unban')  { u.status='active'; toast(`✅ ${u.name} has been unbanned.`); }
+  if (type==='delete') { USERS.splice(USERS.indexOf(u),1); toast(`🗑 ${u.name}'s account was deleted.`, true); }
+  if (type==='resetpw'){ toast(`🔑 Password reset email sent to ${u.email}.`); }
+  renderAll();
+}
+
+// ── TABS ─────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-pill').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── FILTER / EXPORT ──────────────────────────
+function clearFilter() {
+  document.getElementById('search-input').value = '';
+  document.getElementById('filter-role').value  = '';
+  document.getElementById('filter-status').value= '';
+  renderAll();
+}
+function exportCSV() {
+  const rows = [['Name','Email','Role','Phone','Joined','Status']];
+  USERS.forEach(u=>rows.push([u.name,u.email,u.role,u.phone,u.joined,u.status]));
+  const a = document.createElement('a');
+  a.href = 'data:text/csv,'+encodeURIComponent(rows.map(r=>r.join(',')).join('\n'));
+  a.download = 'homesync_users.csv'; a.click();
+  toast('⬇ CSV exported!');
+}
+
+// ── TOAST ────────────────────────────────────
+function toast(msg, err) {
+  const el = document.createElement('div');
+  el.className = 'toast'+(err?' err':'');
+  el.textContent = msg;
+  document.getElementById('toast-wrap').appendChild(el);
+  setTimeout(()=>el.remove(), 3400);
+}
+
+// ── BACKDROP CLOSE ────────────────────────────
+document.getElementById('profile-modal').addEventListener('click',function(e){if(e.target===this)closeProfile();});
+document.getElementById('confirm-modal').addEventListener('click',function(e){if(e.target===this)closeConfirm();});
+
+// ── INIT ─────────────────────────────────────
+renderAll();
+</script>
+</body>
+</html>

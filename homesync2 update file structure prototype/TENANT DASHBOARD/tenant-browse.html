@@ -8,26 +8,25 @@
 </head>
 <body>
 <div class="dashboard">
-  <aside class="sidebar">
-    <a class="sb-logo" href="tenant-overview.html">Home<span>Sync</span></a>
-    <div class="sb-section">Main</div>
+ <div class="sidebar">
+    <a class="sb-logo" href="#">Home<span>Sync</span></a>
+    <div class="sb-section">My Home</div>
     <a class="sb-item" href="tenant-overview.html">📊 Overview</a>
     <a class="sb-item active" href="tenant-browse.html">🔍 Browse Rooms</a>
     <a class="sb-item" href="tenant-rent.html">💳 Pay Rent</a>
-    <a class="sb-item" href="tenant-lease.html">📄 My Lease</a>
-    <a class="sb-item" href="tenant-hold.html">🔖 My Holds</a>
-    <div class="sb-section">Support</div>
-    <a class="sb-item" href="tenant-tickets.html">🔧 Tickets <span class="sb-badge red">2</span></a>
-    <a class="sb-item" href="tenant-messages.html">💬 Messages</a>
-    <a class="sb-item" href="tenant-documents.html">📁 Documents</a>
-    <a class="sb-item" href="tenant-report.html">🚨 Report</a>
-    <a class="sb-item" href="tenant-notifications.html">🔔 Notifications <span class="sb-badge">4</span></a>
+    <a class="sb-item" href="tenant-tickets.html">🔧 My Tickets <span class="sb-badge red">1</span></a>
+    <div class="sb-section">Account</div>
+    <a class="sb-item" href="tenant-lease.html">📋 My Lease</a>
+    <a class="sb-item " href="tenant-documents.html">📁 Documents</a>
+    <a class="sb-item" href="tenant-messages.html">💬 Messages <span class="sb-badge">2</span></a>
+    <a class="sb-item" href="tenant-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
     <a class="sb-item" href="tenant-settings.html">⚙️ Settings</a>
-    <a class="sb-foot" href="../LOGIN AND SIGN IN PAGE/login.html" onclick="sessionStorage.clear()">
-      <div class="avatar blue">JD</div>
-      <div><div class="av-name">Juan dela Cruz</div><div class="av-role">Logout</div></div>
+    <a class="sb-item" href="../index.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="tenant-settings.html">
+      <div class="avatar purple">MR</div>
+      <div><div class="av-name">Marco Reyes</div><div class="av-role">Tenant · Unit 3A</div></div>
     </a>
-  </aside>
+  </div>
 
   <div class="main-content">
     <div class="topbar">
@@ -39,7 +38,6 @@
     </div>
     <div class="page-body">
 
-      <!-- Hero / Promo Notice -->
       <div class="browse-hero mb-20">
         <div>
           <h2>🎓 Student? 👴 Senior? ♿ PWD?</h2>
@@ -53,7 +51,6 @@
         </div>
       </div>
 
-      <!-- Filter Bar -->
       <div class="filter-bar mb-20">
         <input class="search-input" placeholder="🔍 Search by room, property, location…">
         <select class="filter-select"><option>Any Gender</option><option>Boys Only</option><option>Girls Only</option><option>Mixed / Co-ed</option></select>
@@ -71,7 +68,6 @@
   </div>
 </div>
 
-<!-- BOOKING MODAL -->
 <div class="modal-overlay hidden" id="book-modal">
   <div class="modal" style="max-width:580px">
     <div class="modal-hd">
@@ -82,9 +78,13 @@
   </div>
 </div>
 
-<script src="../ASSETS/js/main.js"></script>
-<script>guardPage("tenant");</script>
 <script>
+// Missing Utility Functions
+function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+function showToast(msg, type) { alert(type.toUpperCase() + ": " + msg); }
+function guardPage(role) { console.log("Guarding for " + role); }
+
 var rooms = [
   {id:1,name:'Room 2B',prop:'Sunset Apartments, QC',gender:'boys',type:'Shared Room',beds:4,avail:1,bedtype:'Single & Bunk',price:2800,dep:'2 months',amen:['📶','❄️','🚿','🧺','🔒'],emoji:'🛏️',full:false,held:true,promos:['student','pwd']},
   {id:2,name:'Studio 4',prop:'Bayside Residences, Pasig',gender:'girls',type:'Private Room',beds:1,avail:0,bedtype:'Double Bed',price:6500,dep:'1 month',amen:['📶','❄️','🚿','🍳','🔒','🛁'],emoji:'🏠',full:true,held:false,promos:['senior']},

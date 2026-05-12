@@ -1,24 +1,18 @@
-/* ============================================================
-   tenant-overview.js — HomeSync Tenant Overview
-   ============================================================ */
-
-function showToast(msg, type = '') {
-  const wrap = document.getElementById('toast-wrap');
-  if (!wrap) return;
-  const toast = document.createElement('div');
-  toast.className = 'toast ' + type;
-  toast.textContent = msg;
-  wrap.appendChild(toast);
-  setTimeout(() => toast.remove(), 3500);
+function showToast(msg, type) {
+  var wrap = document.getElementById('toast-wrap');
+  var t = document.createElement('div');
+  t.className = 'toast ' + (type || '');
+  t.textContent = msg;
+  wrap.appendChild(t);
+  setTimeout(function() { if(t.parentNode) t.parentNode.removeChild(t); }, 3000);
 }
-
-// Greet with current time
-(function setGreeting() {
-  const greetEl = document.querySelector('.topbar p');
-  if (!greetEl) return;
-  const hour = new Date().getHours();
-  let greeting = 'Good morning';
-  if (hour >= 12 && hour < 18) greeting = 'Good afternoon';
-  else if (hour >= 18) greeting = 'Good evening';
-  greetEl.textContent = greeting + ', Marco 👋';
-})();
+// Clickable table rows
+document.querySelectorAll('table tr').forEach(function(row) {
+  row.style.cursor = 'pointer';
+  row.addEventListener('mouseenter', function() {
+    row.querySelectorAll('td').forEach(function(td){ td.style.background='#3d4a56'; });
+  });
+  row.addEventListener('mouseleave', function() {
+    row.querySelectorAll('td').forEach(function(td){ td.style.background=''; });
+  });
+});

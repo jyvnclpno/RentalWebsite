@@ -1,31 +1,44 @@
-/* ============================================================
-   tenant-notifications.js — HomeSync Tenant Notifications
-   ============================================================ */
+var unreadCount = 3;
 
-(function initNotifications() {
-  // Mark unread as read on click
-  document.querySelectorAll('.notif.unread').forEach(function(notif) {
-    notif.addEventListener('click', function() {
-      this.classList.remove('unread');
-      const badge = this.querySelector('.badge.b-blue');
-      if (badge) badge.style.display = 'none';
-      // Update sidebar badge count
-      const sbBadge = document.querySelector('.sb-item.active .sb-badge');
-      if (sbBadge) {
-        let count = parseInt(sbBadge.textContent) - 1;
-        sbBadge.textContent = count;
-        if (count <= 0) sbBadge.style.display = 'none';
-      }
-    });
+function showToast(msg, type) {
+  var wrap = document.getElementById('toast-wrap');
+  var t = document.createElement('div');
+  t.className = 'toast ' + (type || '');
+  t.textContent = msg;
+  wrap.appendChild(t);
+  setTimeout(function() { if(t.parentNode) t.parentNode.removeChild(t); }, 3000);
+}
+
+function updateBadge() {
+  var badge = document.getElementById('unread-badge');
+  if (unreadCount <= 0) {
+    badge.textContent = 'All read';
+    badge.className = 'badge b-gray';
+  } else {
+    badge.textContent = unreadCount + ' unread';
+    badge.className = 'badge b-blue';
+  }
+}
+
+function markRead(el) {
+  if (el.classList.contains('unread')) {
+    el.classList.remove('unread');
+    el.style.borderLeft = 'none';
+    var newBadge = el.querySelector('.badge.b-blue');
+    if (newBadge) newBadge.remove();
+    unreadCount = Math.max(0, unreadCount - 1);
+    updateBadge();
+  }
+}
+
+function markAllRead() {
+  document.querySelectorAll('.notif.unread').forEach(function(n) {
+    n.classList.remove('unread');
+    n.style.borderLeft = 'none';
+    var nb = n.querySelector('.badge.b-blue');
+    if (nb) nb.remove();
   });
-})();
-
-function showToast(msg, type = '') {
-  const wrap = document.getElementById('toast-wrap');
-  if (!wrap) return;
-  const toast = document.createElement('div');
-  toast.className = 'toast ' + type;
-  toast.textContent = msg;
-  wrap.appendChild(toast);
-  setTimeout(() => toast.remove(), 3500);
+  unreadCount = 0;
+  updateBadge();
+  showToast('All notifications marked as read.', 'success');
 }

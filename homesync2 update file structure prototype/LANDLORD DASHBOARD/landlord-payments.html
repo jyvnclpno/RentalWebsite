@@ -1,59 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payments — HomeSync</title>
-  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
-  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <title>Payments — HomeSync Landlord</title>
   <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
   <link rel="stylesheet" href="../ASSETS/css/forms.css">
   <link rel="stylesheet" href="../ASSETS/css/buttons.css">
 </head>
 <body>
 <div class="dashboard">
   <div class="sidebar">
-    <a class="sb-logo" href="index.html">Home<span>Sync</span></a>
-    <div class="sb-section">Main</div>
+    <a class="sb-logo" href="#">Home<span>Sync</span></a>
+    <div class="sb-section">Properties</div>
     <a class="sb-item" href="landlord-overview.html">📊 Overview</a>
-    <a class="sb-item" href="landlord-properties.html">🏠 Properties</a>
+    <a class="sb-item" href="landlord-properties.html">🏢 My Properties</a>
     <a class="sb-item" href="landlord-tenants.html">👥 Tenants</a>
-    <a class="sb-item" href="landlord-tickets.html">🔧 Tickets <span class="sb-badge red">3</span></a>
-    <div class="sb-section">Finance</div>
-    <a class="sb-item active" href="landlord-payments.html">💳 Rent &amp; Payments</a>
-    <a class="sb-item" href="landlord-reports.html">📈 Reports</a>
-    <div class="sb-section">Manage</div>
-    <a class="sb-item" href="landlord-documents.html">📁 Documents</a>
-    <a class="sb-item" href="landlord-messages.html">💬 Messages <span class="sb-badge">4</span></a>
-    <a class="sb-item" href="landlord-notifications.html">🔔 Notifications <span class="sb-badge">5</span></a>
-    <a class="sb-item" href="landlord-support.html">❓ Support</a>
+    <a class="sb-item active" href="landlord-payments.html">💰 Payments <span class="sb-badge red">2</span></a>
+    <div class="sb-section">Management</div>
+    <a class="sb-item" href="landlord-tickets.html">🔧 Support Tickets</a>
+    <a class="sb-item" href="landlord-leases.html">📋 Leases</a>
+    <a class="sb-item" href="landlord-messages.html">💬 Messages <span class="sb-badge">3</span></a>
+    <a class="sb-item" href="landlord-announcements.html">📢 Announcements</a>
+    <div class="sb-section">Account</div>
     <a class="sb-item" href="landlord-settings.html">⚙️ Settings</a>
-    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color:#f87171">🚪 Logout</a>
-    <a class="sb-foot" href="landlord-settings.html"><div class="avatar">JD</div><div><div class="av-name">Juan dela Cruz</div><div class="av-role">Landlord · Pro</div></div></a>
+    <a class="sb-item" href="../index.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="landlord-settings.html">
+      <div class="avatar">JD</div>
+      <div><div class="av-name">Juan dela Cruz</div><div class="av-role">Landlord · 3 Properties</div></div>
+    </a>
   </div>
+
   <div class="main-content">
-    <div class="topbar"><div><h1>Rent &amp; Payments</h1><p>Track rent and payments</p></div><div class="topbar-r"><a href="landlord-notifications.html" class="icon-btn">🔔</a><a href="landlord-settings.html"><div class="avatar">JD</div></a></div></div>
-    <div class="db">
-      <div class="stat-row">
-        <div class="sc"><div class="sl">Collected This Month</div><div class="sv">₱124,500</div><div class="ss">+8% vs last month</div></div>
-        <div class="sc"><div class="sl">Overdue</div><div class="sv">₱15,000</div><div class="ss red">2 tenants</div></div>
-        <div class="sc"><div class="sl">Pending</div><div class="sv">5</div><div class="ss warn">payments</div></div>
-        <div class="sc"><div class="sl">Total This Year</div><div class="sv">₱1.42M</div></div>
+    <div class="topbar">
+      <div><h1>Payments</h1><p>Track rental income & collections</p></div>
+      <div class="topbar-r">
+        <a href="landlord-messages.html" class="icon-btn">💬</a>
+        <a href="landlord-settings.html"><div class="avatar">JD</div></a>
       </div>
+    </div>
+
+    <div class="db">
+      <!-- Revenue Stats -->
+      <div class="stat-row">
+        <div class="sc">
+          <div class="sl">Total Monthly Revenue</div>
+          <div class="sv">₱120,500</div>
+          <div class="ss">From 18 tenants</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Received This Month</div>
+          <div class="sv">₱100,000</div>
+          <div class="ss">83% collected</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Outstanding</div>
+          <div class="sv">₱20,500</div>
+          <div class="ss red">2 overdue</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Collection Rate</div>
+          <div class="sv">94%</div>
+          <div class="ss">YTD average</div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="cc" style="margin-bottom:16px">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <select style="padding:10px 16px;background-color:#3d4a56;border:1px solid #4a5568;border-radius:30px;font-size:13px;color:#94a3b8;outline:none">
+            <option>All Properties</option>
+            <option>Sunset Apartments</option>
+            <option>Downtown Condo</option>
+            <option>Beachside Resort</option>
+          </select>
+          <select style="padding:10px 16px;background-color:#3d4a56;border:1px solid #4a5568;border-radius:30px;font-size:13px;color:#94a3b8;outline:none">
+            <option>May 2026</option>
+            <option>April 2026</option>
+            <option>March 2026</option>
+            <option>February 2026</option>
+          </select>
+          <select style="padding:10px 16px;background-color:#3d4a56;border:1px solid #4a5568;border-radius:30px;font-size:13px;color:#94a3b8;outline:none">
+            <option>All Status</option>
+            <option>Paid</option>
+            <option>Pending</option>
+            <option>Overdue</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Overdue Alert -->
+      <div class="alert alert-red">
+        ⚠️ 2 payments are overdue. Send reminders to tenants in Unit 2F and Unit 5C.
+      </div>
+
+      <!-- Payments Table -->
       <div class="cc">
         <h3>Payment Records</h3>
         <table>
-          <thead><tr><th>Tenant</th><th>Unit</th><th>Amount</th><th>Due</th><th>Paid On</th><th>Method</th><th>Status</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Tenant Name</th>
+              <th>Unit</th>
+              <th>Amount</th>
+              <th>Due Date</th>
+              <th>Paid Date</th>
+              <th>Method</th>
+              <th>Status</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td>Marco Reyes</td><td>Unit 3A</td><td>₱8,500</td><td>Mar 5</td><td>Mar 3</td><td>GCash</td><td><span class="badge b-green">Paid</span></td></tr>
-            <tr><td>Ana Torres</td><td>Unit 2B</td><td>₱9,200</td><td>Mar 5</td><td>Mar 5</td><td>Bank transfer</td><td><span class="badge b-green">Paid</span></td></tr>
-            <tr><td>Lito Cruz</td><td>Unit 7A</td><td>₱9,000</td><td>Mar 5</td><td>—</td><td>—</td><td><span class="badge b-yellow">Pending</span></td></tr>
-            <tr><td>Rosa Santos</td><td>Unit 6B</td><td>₱7,500</td><td>Mar 5</td><td>—</td><td>—</td><td><span class="badge b-red">Overdue</span></td></tr>
-            <tr><td>Jose Mendoza</td><td>Unit 4A</td><td>₱8,800</td><td>Mar 5</td><td>Mar 4</td><td>Maya</td><td><span class="badge b-green">Paid</span></td></tr>
+            <tr>
+              <td><strong style="color:white">Marco Reyes</strong></td>
+              <td>3A</td>
+              <td>₱8,500</td>
+              <td>May 5</td>
+              <td>May 5</td>
+              <td>GCash</td>
+              <td><span class="badge b-green">Paid</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Sarah Johnson</strong></td>
+              <td>4B</td>
+              <td>₱9,000</td>
+              <td>May 5</td>
+              <td>May 4</td>
+              <td>Bank Transfer</td>
+              <td><span class="badge b-green">Paid</span></td>
+            </tr>
+            <tr style="background-color:rgba(239,68,68,0.05)">
+              <td><strong style="color:#f87171">Alex Park</strong></td>
+              <td>2F</td>
+              <td>₱7,500</td>
+              <td>May 5</td>
+              <td>—</td>
+              <td>—</td>
+              <td><span class="badge b-red">Overdue</span></td>
+            </tr>
+            <tr style="background-color:rgba(245,158,11,0.05)">
+              <td><strong style="color:#fbbf24">Maria Santos</strong></td>
+              <td>5C</td>
+              <td>₱3,500</td>
+              <td>May 5</td>
+              <td>—</td>
+              <td>—</td>
+              <td><span class="badge b-yellow">Pending</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Robert Phillips</strong></td>
+              <td>1A</td>
+              <td>₱6,500</td>
+              <td>May 5</td>
+              <td>May 5</td>
+              <td>Maya</td>
+              <td><span class="badge b-green">Paid</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Anna Chen</strong></td>
+              <td>3C</td>
+              <td>₱5,800</td>
+              <td>May 5</td>
+              <td>May 5</td>
+              <td>GCash</td>
+              <td><span class="badge b-green">Paid</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">David Kim</strong></td>
+              <td>6B</td>
+              <td>₱6,200</td>
+              <td>May 5</td>
+              <td>May 4</td>
+              <td>Bank Transfer</td>
+              <td><span class="badge b-green">Paid</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Payment Methods Summary -->
+      <div class="grid2">
+        <div class="cc">
+          <h3>Payment Methods Used</h3>
+          <div style="padding:10px 0">
+            <div class="drow"><span class="dl">GCash</span><span class="dv">8 payments</span></div>
+            <div class="drow"><span class="dl">Bank Transfer</span><span class="dv">6 payments</span></div>
+            <div class="drow"><span class="dl">Maya</span><span class="dv">3 payments</span></div>
+            <div class="drow"><span class="dl">Cash</span><span class="dv">1 payment</span></div>
+          </div>
+        </div>
+
+        <div class="cc">
+          <h3>Monthly Collection Trend</h3>
+          <div style="padding:10px 0">
+            <div class="drow"><span class="dl">January 2026</span><span class="dv" style="color:#22c55e">95%</span></div>
+            <div class="drow"><span class="dl">February 2026</span><span class="dv" style="color:#22c55e">98%</span></div>
+            <div class="drow"><span class="dl">March 2026</span><span class="dv" style="color:#22c55e">92%</span></div>
+            <div class="drow"><span class="dl">April 2026</span><span class="dv" style="color:#22c55e">94%</span></div>
+            <div class="drow"><span class="dl">May 2026</span><span class="dv" style="color:#fbbf24">83%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collection Actions -->
+      <div class="cc">
+        <h3>Send Payment Reminders</h3>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:250px">
+            <p style="font-size:12px;color:#64748b;margin-bottom:10px">Select tenants to send payment reminders</p>
+            <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+              <input type="checkbox" style="width:16px;height:16px">
+              <span style="font-size:13px;color:#94a3b8">Alex Park - Unit 2F (₱7,500 overdue)</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:8px">
+              <input type="checkbox" style="width:16px;height:16px">
+              <span style="font-size:13px;color:#94a3b8">Maria Santos - Unit 5C (₱3,500 pending)</span>
+            </label>
+          </div>
+          <div style="display:flex;gap:8px;flex-direction:column;justify-content:flex-end">
+            <button class="btn-green" style="border-radius:8px;padding:10px 20px;font-size:13px" onclick="sendReminders()">📧 Send reminders</button>
+            <button class="btn-outline-green" style="border-radius:8px;padding:10px 20px;font-size:13px">📱 Send SMS</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Property Income Breakdown -->
+      <div class="cc">
+        <h3>Income by Property</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Expected</th>
+              <th>Received</th>
+              <th>Outstanding</th>
+              <th>Collection %</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:white">Sunset Apartments</strong></td>
+              <td>₱28,500</td>
+              <td style="color:#22c55e">₱25,000</td>
+              <td style="color:#f87171">₱3,500</td>
+              <td>88%</td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Downtown Condo</strong></td>
+              <td>₱42,000</td>
+              <td style="color:#22c55e">₱42,000</td>
+              <td style="color:#22c55e">₱0</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Beachside Resort</strong></td>
+              <td>₱50,000</td>
+              <td style="color:#22c55e">₱42,000</td>
+              <td style="color:#f87171">₱8,000</td>
+              <td>84%</td>
+            </tr>
+            <tr style="border-top:2px solid #4a5568">
+              <td><strong style="color:white">TOTAL</strong></td>
+              <td style="font-weight:bold;color:white">₱120,500</td>
+              <td style="font-weight:bold;color:#22c55e">₱109,000</td>
+              <td style="font-weight:bold;color:#f87171">₱11,500</td>
+              <td style="font-weight:bold">91%</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 </div>
+
+<div id="toast-wrap"></div>
+<script src="../ASSETS/js/landlord-core.js"></script>
 </body>
 </html>

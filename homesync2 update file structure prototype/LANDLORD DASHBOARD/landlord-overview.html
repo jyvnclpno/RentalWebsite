@@ -3,99 +3,202 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Overview — HomeSync</title>
-  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <title>Overview — HomeSync Landlord</title>
+   <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
   <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
-  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
   <link rel="stylesheet" href="../ASSETS/css/forms.css">
   <link rel="stylesheet" href="../ASSETS/css/buttons.css">
 </head>
 <body>
 <div class="dashboard">
-
   <div class="sidebar">
-    <a class="sb-logo" href="index.html">Home<span>Sync</span></a>
-    <div class="sb-section">Main</div>
+    <a class="sb-logo" href="#">Home<span>Sync</span></a>
+    <div class="sb-section">Properties</div>
     <a class="sb-item active" href="landlord-overview.html">📊 Overview</a>
-    <a class="sb-item" href="landlord-properties.html">🏠 Properties</a>
+    <a class="sb-item" href="landlord-properties.html">🏢 My Properties</a>
     <a class="sb-item" href="landlord-tenants.html">👥 Tenants</a>
-    <a class="sb-item" href="landlord-tickets.html">🔧 Tickets <span class="sb-badge red">3</span></a>
-    <div class="sb-section">Finance</div>
-    <a class="sb-item" href="landlord-payments.html">💳 Rent &amp; Payments</a>
-    <a class="sb-item" href="landlord-reports.html">📈 Reports</a>
-    <div class="sb-section">Manage</div>
-    <a class="sb-item" href="landlord-documents.html">📁 Documents</a>
-    <a class="sb-item" href="landlord-messages.html">💬 Messages <span class="sb-badge">4</span></a>
-    <a class="sb-item" href="landlord-notifications.html">🔔 Notifications <span class="sb-badge">5</span></a>
-    <a class="sb-item" href="landlord-support.html">❓ Support</a>
+    <a class="sb-item" href="landlord-payments.html">💰 Payments <span class="sb-badge red">2</span></a>
+    <div class="sb-section">Management</div>
+    <a class="sb-item" href="landlord-tickets.html">🔧 Support Tickets</a>
+    <a class="sb-item" href="landlord-leases.html">📋 Leases</a>
+    <a class="sb-item" href="landlord-messages.html">💬 Messages <span class="sb-badge">3</span></a>
+    <a class="sb-item" href="landlord-announcements.html">📢 Announcements</a>
+    <div class="sb-section">Account</div>
     <a class="sb-item" href="landlord-settings.html">⚙️ Settings</a>
-    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color: #f87171;">🚪 Logout</a>
+    <a class="sb-item" href="../index.html" style="color:#f87171">🚪 Logout</a>
     <a class="sb-foot" href="landlord-settings.html">
       <div class="avatar">JD</div>
-      <div><div class="av-name">Juan dela Cruz</div><div class="av-role">Landlord · Pro</div></div>
+      <div><div class="av-name">Juan dela Cruz</div><div class="av-role">Landlord · 3 Properties</div></div>
     </a>
   </div>
 
   <div class="main-content">
     <div class="topbar">
-      <div>
-        <h1>Overview</h1>
-        <p>Good morning, Juan 👋</p>
-      </div>
+      <div><h1>Overview</h1><p>Dashboard & property summary</p></div>
       <div class="topbar-r">
-        <a href="landlord-notifications.html" class="icon-btn">🔔</a>
+        <a href="landlord-messages.html" class="icon-btn">💬</a>
         <a href="landlord-settings.html"><div class="avatar">JD</div></a>
       </div>
     </div>
 
     <div class="db">
+      <!-- Key Metrics Banner -->
+      <div class="lease-banner" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);">
+        <div>
+          <div class="lbl">Total Monthly Revenue</div>
+          <div class="amount">₱28,500</div>
+          <div class="status">From 4 active tenants</div>
+        </div>
+        <a href="landlord-payments.html"><button class="btn-outline-white">View payments</button></a>
+      </div>
 
+      <!-- Quick Stats -->
       <div class="stat-row">
-        <div class="sc"><div class="sl">Total Properties</div><div class="sv">12</div><div class="ss">+2 this month</div></div>
-        <div class="sc"><div class="sl">Rent Collected</div><div class="sv">₱124,500</div><div class="ss">96% collected</div></div>
-        <div class="sc"><div class="sl">Open Tickets</div><div class="sv">3</div><div class="ss warn">Needs attention</div></div>
-        <div class="sc"><div class="sl">Active Tenants</div><div class="sv">38</div><div class="ss">96% occupancy</div></div>
+        <div class="sc">
+          <div class="sl">Active Tenants</div>
+          <div class="sv">4</div>
+          <div class="ss">Out of 5 units</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Pending Payments</div>
+          <div class="sv">2</div>
+          <div class="ss red">Overdue by 5 days</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Open Tickets</div>
+          <div class="sv">3</div>
+          <div class="ss warn">Needs attention</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Occupancy Rate</div>
+          <div class="sv">80%</div>
+          <div class="ss">1 unit vacant</div>
+        </div>
       </div>
 
+      <!-- Quick Actions -->
       <div class="qa">
-        <a href="landlord-properties.html" class="qa-btn">➕ Add property</a>
-        <a href="landlord-messages.html" class="qa-btn">💬 Message tenant</a>
-        <a href="landlord-payments.html" class="qa-btn">💳 Record payment</a>
-        <a href="landlord-documents.html" class="qa-btn">📎 Upload document</a>
-        <a href="landlord-tickets.html" class="qa-btn">🔧 New ticket</a>
+        <a href="landlord-properties.html" class="qa-btn">🏢 Add property</a>
+        <a href="landlord-announcements.html" class="qa-btn">📢 Broadcast message</a>
+        <a href="landlord-payments.html" class="qa-btn">💰 Collect payments</a>
+        <a href="landlord-tickets.html" class="qa-btn">🔧 View issues</a>
+        <a href="landlord-tenants.html" class="qa-btn">👥 Manage tenants</a>
       </div>
 
+      <!-- Two Column Layout -->
       <div class="grid2">
+        <!-- Recent Payments -->
         <div class="cc">
-          <h3>Recent Tickets <a href="landlord-tickets.html">View all</a></h3>
+          <h3>Recent Payments <a href="landlord-payments.html">View all</a></h3>
           <table>
-            <tr><td>Unit 4B — Leaking faucet</td><td><span class="badge b-yellow">Open</span></td></tr>
-            <tr><td>Unit 2A — AC not cooling</td><td><span class="badge b-blue">In review</span></td></tr>
-            <tr><td>Unit 7C — Lock fix</td><td><span class="badge b-green">Done</span></td></tr>
+            <tr>
+              <td><strong style="color:white">Unit 3A - Marco Reyes</strong></td>
+              <td style="text-align:right">₱8,500</td>
+              <td style="text-align:right"><span class="badge b-green">Paid</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Unit 4B - Sarah Johnson</strong></td>
+              <td style="text-align:right">₱9,000</td>
+              <td style="text-align:right"><span class="badge b-green">Paid</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Unit 2F - Alex Park</strong></td>
+              <td style="text-align:right">₱7,500</td>
+              <td style="text-align:right"><span class="badge b-red">Overdue</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Unit 5C - Maria Santos</strong></td>
+              <td style="text-align:right">₱3,500</td>
+              <td style="text-align:right"><span class="badge b-yellow">Partial</span></td>
+            </tr>
           </table>
         </div>
+
+        <!-- Open Support Tickets -->
         <div class="cc">
-          <h3>My Properties <a href="landlord-properties.html">View all</a></h3>
+          <h3>Open Support Tickets <a href="landlord-tickets.html">View all</a></h3>
           <table>
-            <tr><td>Sunset Apartments</td><td style="color:#22c55e;font-weight:bold">100%</td></tr>
-            <tr><td>Bayside Residences</td><td style="color:#f59e0b;font-weight:bold">92%</td></tr>
-            <tr><td>Villa Hermosa</td><td style="color:#f59e0b;font-weight:bold">83%</td></tr>
+            <tr>
+              <td><strong style="color:white">#1042 - Leaking faucet</strong><br><small style="color:#64748b">Unit 3A · Marco Reyes</small></td>
+              <td style="text-align:right"><span class="badge b-orange">Medium</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">#1043 - AC not working</strong><br><small style="color:#64748b">Unit 4B · Sarah Johnson</small></td>
+              <td style="text-align:right"><span class="badge b-red">High</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">#1044 - Broken window</strong><br><small style="color:#64748b">Unit 2F · Alex Park</small></td>
+              <td style="text-align:right"><span class="badge b-orange">Medium</span></td>
+            </tr>
           </table>
+          <br>
+          <a href="landlord-tickets.html"><button class="btn-green" style="width:100%;border-radius:8px;padding:9px;font-size:12px">➕ Assign contractor</button></a>
         </div>
       </div>
 
+      <!-- Properties Summary -->
       <div class="cc">
-        <h3>Recent Activity</h3>
+        <h3>Properties Summary</h3>
         <table>
-          <tr><td>✅ Rent paid — Marco R. (Unit 3A)</td><td style="color:#64748b;font-size:11px">₱8,500 · 1h ago</td></tr>
-          <tr><td>👤 New tenant added — Ana Torres (Unit 2B)</td><td style="color:#64748b;font-size:11px">Today</td></tr>
-          <tr><td>⚠️ Lease expiring — Unit 5C</td><td style="color:#64748b;font-size:11px">14 days left</td></tr>
-          <tr><td>❌ Overdue — Unit 6B</td><td style="color:#f87171;font-size:11px">₱7,500 · 3 days late</td></tr>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Location</th>
+              <th>Tenants</th>
+              <th>Occupancy</th>
+              <th>Monthly Income</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="clickable-row">
+              <td><strong style="color:white">Sunset Apartments</strong></td>
+              <td>Quezon City</td>
+              <td>4/5 units</td>
+              <td>80%</td>
+              <td style="font-weight:bold;color:#22c55e">₱28,500</td>
+              <td><span class="badge b-green">Active</span></td>
+            </tr>
+            <tr class="clickable-row">
+              <td><strong style="color:white">Downtown Condo</strong></td>
+              <td>Manila</td>
+              <td>6/8 units</td>
+              <td>75%</td>
+              <td style="font-weight:bold;color:#22c55e">₱42,000</td>
+              <td><span class="badge b-green">Active</span></td>
+            </tr>
+            <tr class="clickable-row">
+              <td><strong style="color:white">Beachside Resort</strong></td>
+              <td>Boracay</td>
+              <td>8/10 units</td>
+              <td>80%</td>
+              <td style="font-weight:bold;color:#22c55e">₱50,000</td>
+              <td><span class="badge b-green">Active</span></td>
+            </tr>
+          </tbody>
         </table>
       </div>
 
+      <!-- Announcements -->
+      <div class="cc">
+        <h3>📢 Your Recent Announcements</h3>
+        <div class="ann">
+          <div class="ann-title">💧 Water interruption notice</div>
+          <div class="ann-text">Scheduled water interruption on March 22, 8 AM – 5 PM. Please inform all tenants.</div>
+          <div class="ann-date">Sent to 4 tenants · March 20, 2026</div>
+        </div>
+        <div class="ann" style="background:rgba(100,116,139,0.1);border-color:#4a5568">
+          <div class="ann-title" style="color:#94a3b8">📅 Reminder: Rent due April 5</div>
+          <div class="ann-text">Friendly reminder that rent for April is due on April 5. Please pay through the app.</div>
+          <div class="ann-date">Sent to 3 tenants · March 28, 2026</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<div id="toast-wrap"></div>
+<script src="../ASSETS/js/landlord-core.js"></script>
 </body>
 </html>

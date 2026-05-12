@@ -1,59 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tickets — HomeSync</title>
-<link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <title>Support Tickets — HomeSync Landlord</title>
+   <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
   <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
-  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
   <link rel="stylesheet" href="../ASSETS/css/forms.css">
   <link rel="stylesheet" href="../ASSETS/css/buttons.css">
 </head>
 <body>
 <div class="dashboard">
   <div class="sidebar">
-    <a class="sb-logo" href="index.html">Home<span>Sync</span></a>
-    <div class="sb-section">Main</div>
+    <a class="sb-logo" href="#">Home<span>Sync</span></a>
+    <div class="sb-section">Properties</div>
     <a class="sb-item" href="landlord-overview.html">📊 Overview</a>
-    <a class="sb-item" href="landlord-properties.html">🏠 Properties</a>
+    <a class="sb-item" href="landlord-properties.html">🏢 My Properties</a>
     <a class="sb-item" href="landlord-tenants.html">👥 Tenants</a>
-    <a class="sb-item active" href="landlord-tickets.html">🔧 Tickets <span class="sb-badge red">3</span></a>
-    <div class="sb-section">Finance</div>
-    <a class="sb-item" href="landlord-payments.html">💳 Rent &amp; Payments</a>
-    <a class="sb-item" href="landlord-reports.html">📈 Reports</a>
-    <div class="sb-section">Manage</div>
-    <a class="sb-item" href="landlord-documents.html">📁 Documents</a>
-    <a class="sb-item" href="landlord-messages.html">💬 Messages <span class="sb-badge">4</span></a>
-    <a class="sb-item" href="landlord-notifications.html">🔔 Notifications <span class="sb-badge">5</span></a>
-    <a class="sb-item" href="landlord-support.html">❓ Support</a>
+    <a class="sb-item" href="landlord-payments.html">💰 Payments <span class="sb-badge red">2</span></a>
+    <div class="sb-section">Management</div>
+    <a class="sb-item active" href="landlord-tickets.html">🔧 Support Tickets</a>
+    <a class="sb-item" href="landlord-leases.html">📋 Leases</a>
+    <a class="sb-item" href="landlord-messages.html">💬 Messages <span class="sb-badge">3</span></a>
+    <a class="sb-item" href="landlord-announcements.html">📢 Announcements</a>
+    <div class="sb-section">Account</div>
     <a class="sb-item" href="landlord-settings.html">⚙️ Settings</a>
-    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color:#f87171">🚪 Logout</a>
-    <a class="sb-foot" href="landlord-settings.html"><div class="avatar">JD</div><div><div class="av-name">Juan dela Cruz</div><div class="av-role">Landlord · Pro</div></div></a>
+    <a class="sb-item" href="../index.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="landlord-settings.html">
+      <div class="avatar">JD</div>
+      <div><div class="av-name">Juan dela Cruz</div><div class="av-role">Landlord · 3 Properties</div></div>
+    </a>
   </div>
+
   <div class="main-content">
-    <div class="topbar"><div><h1>Tickets</h1><p>Track maintenance requests</p></div><div class="topbar-r"><a href="landlord-notifications.html" class="icon-btn">🔔</a><a href="landlord-settings.html"><div class="avatar">JD</div></a></div></div>
-    <div class="db">
-      <div class="stat-row">
-        <div class="sc"><div class="sl">Open</div><div class="sv">3</div><div class="ss red">Urgent</div></div>
-        <div class="sc"><div class="sl">In Review</div><div class="sv">2</div></div>
-        <div class="sc"><div class="sl">Resolved (Month)</div><div class="sv">24</div></div>
-        <div class="sc"><div class="sl">Avg. Resolution</div><div class="sv">1.4 days</div></div>
+    <div class="topbar">
+      <div><h1>Support Tickets</h1><p>Manage maintenance requests</p></div>
+      <div class="topbar-r">
+        <a href="landlord-messages.html" class="icon-btn">💬</a>
+        <a href="landlord-settings.html"><div class="avatar">JD</div></a>
       </div>
+    </div>
+
+    <div class="db">
+      <!-- Quick Stats -->
+      <div class="stat-row">
+        <div class="sc">
+          <div class="sl">Open Tickets</div>
+          <div class="sv">3</div>
+          <div class="ss red">Needs attention</div>
+        </div>
+        <div class="sc">
+          <div class="sl">In Progress</div>
+          <div class="sv">2</div>
+          <div class="ss warn">Contractor assigned</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Resolved This Month</div>
+          <div class="sv">8</div>
+          <div class="ss">Avg 3.2 days</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Avg Resolution Time</div>
+          <div class="sv">3.5 days</div>
+          <div class="ss">Good performance</div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="cc" style="margin-bottom:16px">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <input type="text" placeholder="Search ticket #..." style="flex:1;min-width:200px;padding:10px 16px;background-color:#3d4a56;border:1px solid #4a5568;border-radius:30px;font-size:13px;color:white;outline:none">
+          <select style="padding:10px 16px;background-color:#3d4a56;border:1px solid #4a5568;border-radius:30px;font-size:13px;color:#94a3b8;outline:none">
+            <option>All Status</option>
+            <option>Open</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+          </select>
+          <select style="padding:10px 16px;background-color:#3d4a56;border:1px solid #4a5568;border-radius:30px;font-size:13px;color:#94a3b8;outline:none">
+            <option>All Priority</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Open Tickets -->
       <div class="cc">
-        <h3>Maintenance Tickets <a href="landlord-overview.html" class="btn-outline-green" style="text-decoration:none">➕ New Ticket</a></h3>
+        <h3>Open Tickets</h3>
         <table>
-          <thead><tr><th>#</th><th>Issue</th><th>Tenant</th><th>Unit</th><th>Priority</th><th>Status</th><th>Date</th></tr></thead>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Issue</th>
+              <th>Tenant</th>
+              <th>Unit</th>
+              <th>Category</th>
+              <th>Priority</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td style="color:#64748b">#1042</td><td><strong style="color:white">Leaking faucet</strong><br><small style="color:#64748b">Kitchen sink</small></td><td>Marco R.</td><td>Unit 4B</td><td><span class="badge b-red">High</span></td><td><span class="badge b-yellow">Open</span></td><td>Mar 19</td></tr>
-            <tr><td style="color:#64748b">#1041</td><td><strong style="color:white">AC not cooling</strong></td><td>Ana T.</td><td>Unit 2A</td><td><span class="badge b-orange">Medium</span></td><td><span class="badge b-blue">In review</span></td><td>Mar 18</td></tr>
-            <tr><td style="color:#64748b">#1040</td><td><strong style="color:white">Broken door lock</strong></td><td>Lito C.</td><td>Unit 1C</td><td><span class="badge b-red">High</span></td><td><span class="badge b-yellow">Open</span></td><td>Mar 17</td></tr>
-            <tr><td style="color:#64748b">#1039</td><td><strong style="color:white">No hot water</strong></td><td>Rosa S.</td><td>Unit 6B</td><td><span class="badge b-orange">Medium</span></td><td><span class="badge b-blue">In review</span></td><td>Mar 16</td></tr>
-            <tr><td style="color:#64748b">#1038</td><td><strong style="color:white">Lock replacement</strong></td><td>Jose M.</td><td>Unit 7C</td><td><span class="badge b-gray">Low</span></td><td><span class="badge b-green">Done</span></td><td>Mar 15</td></tr>
+            <tr style="background-color:rgba(239,68,68,0.05)">
+              <td style="color:#f87171;font-weight:bold">#1042</td>
+              <td><strong style="color:white">Leaking faucet</strong><br><small style="color:#64748b">Kitchen sink</small></td>
+              <td>Marco Reyes</td>
+              <td>3A</td>
+              <td>Plumbing</td>
+              <td><span class="badge b-orange">Medium</span></td>
+              <td>Mar 19</td>
+              <td><button class="btn-outline-green" style="padding:6px 12px;font-size:11px" onclick="viewTicketDetails(1042)">View</button></td>
+            </tr>
+            <tr style="background-color:rgba(239,68,68,0.05)">
+              <td style="color:#f87171;font-weight:bold">#1043</td>
+              <td><strong style="color:white">AC not working</strong><br><small style="color:#64748b">Living room unit</small></td>
+              <td>Sarah Johnson</td>
+              <td>4B</td>
+              <td>HVAC</td>
+              <td><span class="badge b-red">High</span></td>
+              <td>Mar 20</td>
+              <td><button class="btn-outline-green" style="padding:6px 12px;font-size:11px" onclick="viewTicketDetails(1043)">View</button></td>
+            </tr>
+            <tr style="background-color:rgba(245,158,11,0.05)">
+              <td style="color:#fbbf24;font-weight:bold">#1044</td>
+              <td><strong style="color:white">Broken window</strong><br><small style="color:#64748b">Bedroom window</small></td>
+              <td>Alex Park</td>
+              <td>2F</td>
+              <td>Structural</td>
+              <td><span class="badge b-orange">Medium</span></td>
+              <td>Mar 21</td>
+              <td><button class="btn-outline-green" style="padding:6px 12px;font-size:11px" onclick="viewTicketDetails(1044)">View</button></td>
+            </tr>
           </tbody>
         </table>
+      </div>
+
+      <!-- In Progress Tickets -->
+      <div class="cc">
+        <h3>In Progress</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Issue</th>
+              <th>Contractor</th>
+              <th>Status</th>
+              <th>Assigned Date</th>
+              <th>Est. Completion</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:white">#1040</strong></td>
+              <td>Electrical circuit breaker<br><small style="color:#64748b">Unit 1A</small></td>
+              <td>ElectroFix Services</td>
+              <td><span class="badge b-blue">In Progress</span></td>
+              <td>Mar 18</td>
+              <td>Mar 24</td>
+              <td><button class="btn-outline-green" style="padding:6px 12px;font-size:11px" onclick="updateTicketProgress(1040)">Update</button></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">#1041</strong></td>
+              <td>Water leak in ceiling<br><small style="color:#64748b">Unit 3C</small></td>
+              <td>PlumbPro Solutions</td>
+              <td><span class="badge b-blue">In Progress</span></td>
+              <td>Mar 19</td>
+              <td>Mar 25</td>
+              <td><button class="btn-outline-green" style="padding:6px 12px;font-size:11px" onclick="updateTicketProgress(1041)">Update</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Recent Completed -->
+      <div class="cc">
+        <h3>Recently Completed</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Issue</th>
+              <th>Tenant</th>
+              <th>Contractor</th>
+              <th>Completed Date</th>
+              <th>Cost</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:white">#1031</strong></td>
+              <td>Broken window latch</td>
+              <td>Alex Park</td>
+              <td>FixAll Services</td>
+              <td>Feb 10</td>
+              <td>₱2,500</td>
+              <td><span class="badge b-green">Completed</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">#1030</strong></td>
+              <td>No hot water</td>
+              <td>Marco Reyes</td>
+              <td>PlumbPro Solutions</td>
+              <td>Feb 8</td>
+              <td>₱5,800</td>
+              <td><span class="badge b-green">Completed</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">#1029</strong></td>
+              <td>Flickering lights</td>
+              <td>Sarah Johnson</td>
+              <td>ElectroFix Services</td>
+              <td>Feb 5</td>
+              <td>₱3,200</td>
+              <td><span class="badge b-green">Completed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Assign Contractor Section -->
+      <div class="cc">
+        <h3>Assign Contractor</h3>
+        <div class="form-group">
+          <label>Select ticket to assign</label>
+          <select style="padding:10px 16px;background-color:#3d4a56;border:1px solid #4a5568;border-radius:30px;font-size:13px;color:#94a3b8;outline:none;width:100%">
+            <option>Choose a ticket...</option>
+            <option>#1042 - Leaking faucet (Marco Reyes)</option>
+            <option>#1043 - AC not working (Sarah Johnson)</option>
+            <option>#1044 - Broken window (Alex Park)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Select contractor</label>
+          <select style="padding:10px 16px;background-color:#3d4a56;border:1px solid #4a5568;border-radius:30px;font-size:13px;color:#94a3b8;outline:none;width:100%">
+            <option>Choose a contractor...</option>
+            <option>PlumbPro Solutions - Plumbing</option>
+            <option>ElectroFix Services - Electrical</option>
+            <option>FixAll Services - General</option>
+            <option>HVAC Masters - Air Conditioning</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Estimated completion date</label>
+          <input type="date" style="padding:10px 16px;background-color:#3d4a56;border:1px solid #4a5568;border-radius:30px;font-size:13px;color:white;outline:none;width:100%">
+        </div>
+        <button class="btn-green" style="border-radius:8px;padding:10px 20px;font-size:13px" onclick="assignContractor()">✓ Assign</button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Ticket Details Modal -->
+<div class="modal-overlay" id="ticketModal">
+  <div class="modal-box">
+    <div class="modal-hd">
+      <h3 id="modal-ticket-number">#1042</h3>
+      <button class="modal-close" onclick="closeTicketModal()">✕</button>
+    </div>
+    <div style="padding:20px">
+      <div class="drow"><span class="dl">Title</span><span class="dv" id="modal-ticket-title">Leaking faucet</span></div>
+      <div class="drow"><span class="dl">Tenant</span><span class="dv">Marco Reyes</span></div>
+      <div class="drow"><span class="dl">Unit</span><span class="dv">3A</span></div>
+      <div class="drow"><span class="dl">Category</span><span class="dv">Plumbing</span></div>
+      <div class="drow"><span class="dl">Priority</span><span class="dv"><span class="badge b-orange">Medium</span></span></div>
+      <div class="drow"><span class="dl">Status</span><span class="dv"><span class="badge b-yellow">Open</span></span></div>
+      <div class="drow"><span class="dl">Created</span><span class="dv">Mar 19, 2026</span></div>
+      <div class="drow"><span class="dl">Description</span><span class="dv">Kitchen sink faucet is continuously leaking water</span></div>
+      <div class="modal-footer">
+        <button class="btn-outline-green" onclick="closeTicketModal()">Close</button>
+        <button class="btn-green" onclick="assignToContractor()">Assign Contractor</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast-wrap"></div>
+<script src="../ASSETS/js/landlord-core.js"></script>
 </body>
 </html>

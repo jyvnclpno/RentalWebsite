@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Announcements — HomeSync Landlord</title>
+  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <link rel="stylesheet" href="../ASSETS/css/forms.css">
+  <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+</head>
+<body>
+<div class="dashboard">
+  <div class="sidebar">
+    <a class="sb-logo" href="#">Home<span>Sync</span></a>
+    <div class="sb-section">Properties</div>
+    <a class="sb-item" href="landlord-overview.html">📊 Overview</a>
+    <a class="sb-item" href="landlord-properties.html">🏢 My Properties</a>
+    <a class="sb-item" href="landlord-tenants.html">👥 Tenants</a>
+    <a class="sb-item" href="landlord-payments.html">💰 Payments <span class="sb-badge red">2</span></a>
+    <div class="sb-section">Management</div>
+    <a class="sb-item" href="landlord-tickets.html">🔧 Support Tickets</a>
+    <a class="sb-item" href="landlord-leases.html">📋 Leases</a>
+    <a class="sb-item" href="landlord-messages.html">💬 Messages <span class="sb-badge">3</span></a>
+    <a class="sb-item active" href="landlord-announcements.html">📢 Announcements</a>
+    <div class="sb-section">Account</div>
+    <a class="sb-item" href="landlord-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="../index.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="landlord-settings.html">
+      <div class="avatar">JD</div>
+      <div><div class="av-name">Juan dela Cruz</div><div class="av-role">Landlord · 3 Properties</div></div>
+    </a>
+  </div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div><h1>Announcements</h1><p>Broadcast messages to your tenants</p></div>
+      <div class="topbar-r">
+        <a href="landlord-messages.html" class="icon-btn">💬</a>
+        <a href="landlord-settings.html"><div class="avatar">JD</div></a>
+      </div>
+    </div>
+
+    <div class="db">
+      <!-- Create New Announcement -->
+      <div class="cc" style="margin-bottom:20px">
+        <h3>Create New Announcement</h3>
+        <div class="form-group">
+          <label>Title *</label>
+          <input type="text" placeholder="e.g. Water interruption notice">
+        </div>
+        <div class="form-group">
+          <label>Message *</label>
+          <textarea placeholder="Write your announcement here..." style="height:120px"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Send to *</label>
+            <select>
+              <option>Select recipients...</option>
+              <option>All properties & tenants</option>
+              <option>Sunset Apartments (4 tenants)</option>
+              <option>Downtown Condo (6 tenants)</option>
+              <option>Beachside Resort (8 tenants)</option>
+              <option>Custom selection</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Priority</label>
+            <select>
+              <option>Normal</option>
+              <option>High</option>
+              <option>Urgent</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn-outline-green" style="border-radius:8px;padding:10px 20px;font-size:13px" onclick="saveDraft()">Save as Draft</button>
+          <button class="btn-green" style="border-radius:8px;padding:10px 20px;font-size:13px" onclick="sendAnnouncement()">📢 Send Now</button>
+        </div>
+      </div>
+
+      <!-- Recent Announcements -->
+      <div class="cc">
+        <h3>Sent Announcements</h3>
+        <div class="ann">
+          <div style="display:flex;justify-content:space-between;align-items:start">
+            <div style="flex:1">
+              <div class="ann-title">💧 Water interruption notice</div>
+              <div class="ann-text">Scheduled water interruption on March 22, 8 AM – 5 PM for water line maintenance. Please store water in advance.</div>
+              <div class="ann-date">Sent to 18 tenants · March 20, 2026</div>
+            </div>
+            <span class="badge b-green" style="white-space:nowrap">Delivered</span>
+          </div>
+        </div>
+        <div class="ann" style="background:rgba(100,116,139,0.1);border-color:#4a5568">
+          <div style="display:flex;justify-content:space-between;align-items:start">
+            <div style="flex:1">
+              <div class="ann-title" style="color:#94a3b8">📅 Reminder: Rent due April 5</div>
+              <div class="ann-text">Friendly reminder that rent for April is due on April 5. Please pay through the HomeSync app or bank transfer.</div>
+              <div class="ann-date">Sent to 16 tenants · March 28, 2026</div>
+            </div>
+            <span class="badge b-green" style="white-space:nowrap">Delivered</span>
+          </div>
+        </div>
+        <div class="ann">
+          <div style="display:flex;justify-content:space-between;align-items:start">
+            <div style="flex:1">
+              <div class="ann-title">🔧 Emergency contact numbers</div>
+              <div class="ann-text">Important: In case of emergency, please call Juan dela Cruz at +63 917 123 4567. For after-hours emergencies, contact emergency services at 911.</div>
+              <div class="ann-date">Sent to 18 tenants · April 1, 2026</div>
+            </div>
+            <span class="badge b-green" style="white-space:nowrap">Delivered</span>
+          </div>
+        </div>
+        <div class="ann" style="background:rgba(100,116,139,0.1);border-color:#4a5568">
+          <div style="display:flex;justify-content:space-between;align-items:start">
+            <div style="flex:1">
+              <div class="ann-title" style="color:#94a3b8">⚡ Electricity rate increase notice</div>
+              <div class="ann-text">Please note that electricity rates have increased to ₱11.50/kWh (from ₱11.00/kWh) effective April 2026.</div>
+              <div class="ann-date">Sent to 18 tenants · April 5, 2026</div>
+            </div>
+            <span class="badge b-green" style="white-space:nowrap">Delivered</span>
+          </div>
+        </div>
+        <div class="ann">
+          <div style="display:flex;justify-content:space-between;align-items:start">
+            <div style="flex:1">
+              <div class="ann-title">🌳 Building maintenance schedule</div>
+              <div class="ann-text">Common area maintenance will be conducted on weekends, May 12-13. There may be temporary disruptions to service.</div>
+              <div class="ann-date">Sent to 18 tenants · May 1, 2026</div>
+            </div>
+            <span class="badge b-green" style="white-space:nowrap">Delivered</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Draft Announcements -->
+      <div class="cc">
+        <h3>Drafts</h3>
+        <div class="ann" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.3)">
+          <div style="display:flex;justify-content:space-between;align-items:start">
+            <div style="flex:1">
+              <div class="ann-title" style="color:#fbbf24">📦 Package delivery policy</div>
+              <div class="ann-text">All packages must be collected within 48 hours. Unclaimed packages will be disposed of after 1 week.</div>
+              <div class="ann-date">Last edited: May 10, 2026</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn-outline-green" style="padding:6px 12px;font-size:11px" onclick="editDraft()">Edit</button>
+              <button class="btn-red" style="padding:6px 12px;font-size:11px" onclick="deleteDraft()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Announcement Statistics -->
+      <div class="grid2">
+        <div class="cc">
+          <h3>Announcement Stats</h3>
+          <div style="padding:10px 0">
+            <div class="drow"><span class="dl">Total sent</span><span class="dv">5</span></div>
+            <div class="drow"><span class="dl">Total recipients</span><span class="dv">90 (5×18)</span></div>
+            <div class="drow"><span class="dl">Average views</span><span class="dv">87%</span></div>
+            <div class="drow"><span class="dl">Most viewed</span><span class="dv">Water interruption</span></div>
+          </div>
+        </div>
+
+        <div class="cc">
+          <h3>Quick Templates</h3>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <button class="btn-outline-green" style="padding:10px;border-radius:8px;font-size:12px;text-align:left" onclick="loadTemplate('rent')">💳 Rent Payment Reminder</button>
+            <button class="btn-outline-green" style="padding:10px;border-radius:8px;font-size:12px;text-align:left" onclick="loadTemplate('maintenance')">🔧 Maintenance Notice</button>
+            <button class="btn-outline-green" style="padding:10px;border-radius:8px;font-size:12px;text-align:left" onclick="loadTemplate('emergency')">⚠️ Emergency Contact Info</button>
+            <button class="btn-outline-green" style="padding:10px;border-radius:8px;font-size:12px;text-align:left" onclick="loadTemplate('rules')">📋 House Rules Reminder</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast-wrap"></div>
+<script src="../ASSETS/js/landlord-core.js"></script>
+</body>
+</html>

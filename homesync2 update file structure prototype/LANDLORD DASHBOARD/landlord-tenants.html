@@ -3,61 +3,271 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tenants — HomeSync</title>
- <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+  <title>Tenants — HomeSync Landlord</title>
+   <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
   <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
-  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
   <link rel="stylesheet" href="../ASSETS/css/forms.css">
   <link rel="stylesheet" href="../ASSETS/css/buttons.css">
 </head>
 <body>
 <div class="dashboard">
   <div class="sidebar">
-    <a class="sb-logo" href="index.html">Home<span>Sync</span></a>
-    <div class="sb-section">Main</div>
+    <a class="sb-logo" href="#">Home<span>Sync</span></a>
+    <div class="sb-section">Properties</div>
     <a class="sb-item" href="landlord-overview.html">📊 Overview</a>
-    <a class="sb-item" href="landlord-properties.html">🏠 Properties</a>
+    <a class="sb-item" href="landlord-properties.html">🏢 My Properties</a>
     <a class="sb-item active" href="landlord-tenants.html">👥 Tenants</a>
-    <a class="sb-item" href="landlord-tickets.html">🔧 Tickets <span class="sb-badge red">3</span></a>
-    <div class="sb-section">Finance</div>
-    <a class="sb-item" href="landlord-payments.html">💳 Rent &amp; Payments</a>
-    <a class="sb-item" href="landlord-reports.html">📈 Reports</a>
-    <div class="sb-section">Manage</div>
-    <a class="sb-item" href="landlord-documents.html">📁 Documents</a>
-    <a class="sb-item" href="landlord-messages.html">💬 Messages <span class="sb-badge">4</span></a>
-    <a class="sb-item" href="landlord-notifications.html">🔔 Notifications <span class="sb-badge">5</span></a>
-    <a class="sb-item" href="landlord-support.html">❓ Support</a>
+    <a class="sb-item" href="landlord-payments.html">💰 Payments <span class="sb-badge red">2</span></a>
+    <div class="sb-section">Management</div>
+    <a class="sb-item" href="landlord-tickets.html">🔧 Support Tickets</a>
+    <a class="sb-item" href="landlord-leases.html">📋 Leases</a>
+    <a class="sb-item" href="landlord-messages.html">💬 Messages <span class="sb-badge">3</span></a>
+    <a class="sb-item" href="landlord-announcements.html">📢 Announcements</a>
+    <div class="sb-section">Account</div>
     <a class="sb-item" href="landlord-settings.html">⚙️ Settings</a>
-    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color:#f87171">🚪 Logout</a>
-    <a class="sb-foot" href="landlord-settings.html"><div class="avatar">JD</div><div><div class="av-name">Juan dela Cruz</div><div class="av-role">Landlord · Pro</div></div></a>
+    <a class="sb-item" href="../index.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="landlord-settings.html">
+      <div class="avatar">JD</div>
+      <div><div class="av-name">Juan dela Cruz</div><div class="av-role">Landlord · 3 Properties</div></div>
+    </a>
   </div>
+
   <div class="main-content">
     <div class="topbar">
-      <div><h1>Tenants</h1><p>View and manage all tenants</p></div>
-      <div class="topbar-r"><a href="landlord-notifications.html" class="icon-btn">🔔</a><a href="landlord-settings.html"><div class="avatar">JD</div></a></div>
-    </div>
-    <div class="db">
-      <div class="stat-row">
-        <div class="sc"><div class="sl">Total Tenants</div><div class="sv">38</div><div class="ss">+3 this month</div></div>
-        <div class="sc"><div class="sl">Active</div><div class="sv">35</div></div>
-        <div class="sc"><div class="sl">Lease Expiring (30d)</div><div class="sv">4</div><div class="ss warn">Needs renewal</div></div>
-        <div class="sc"><div class="sl">Overdue Payments</div><div class="sv">2</div><div class="ss red">Action needed</div></div>
+      <div><h1>Tenants</h1><p>Manage your tenants & leases</p></div>
+      <div class="topbar-r">
+        <a href="landlord-messages.html" class="icon-btn">💬</a>
+        <a href="landlord-settings.html"><div class="avatar">JD</div></a>
       </div>
+    </div>
+
+    <div class="db">
+      <!-- Quick Stats -->
+      <div class="stat-row">
+        <div class="sc">
+          <div class="sl">Total Tenants</div>
+          <div class="sv">18</div>
+          <div class="ss">Across 3 properties</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Active Leases</div>
+          <div class="sv">16</div>
+          <div class="ss">All valid</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Expiring Soon</div>
+          <div class="sv">3</div>
+          <div class="ss warn">Within 3 months</div>
+        </div>
+        <div class="sc">
+          <div class="sl">Payment Status</div>
+          <div class="sv">94%</div>
+          <div class="ss">On-time rate</div>
+        </div>
+      </div>
+
+      <!-- Filter & Search -->
       <div class="cc">
-        <h3>All Tenants <a href="landlord-overview.html" class="btn-outline-green" style="text-decoration:none">➕ Add Tenant</a></h3>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <input type="text" placeholder="Search tenant name or unit..." style="flex:1;min-width:200px;padding:10px 16px;background-color:#3d4a56;border:1px solid #4a5568;border-radius:30px;font-size:13px;color:white;outline:none">
+          <select style="padding:10px 16px;background-color:#3d4a56;border:1px solid #4a5568;border-radius:30px;font-size:13px;color:#94a3b8;outline:none">
+            <option>All Properties</option>
+            <option>Sunset Apartments</option>
+            <option>Downtown Condo</option>
+            <option>Beachside Resort</option>
+          </select>
+          <select style="padding:10px 16px;background-color:#3d4a56;border:1px solid #4a5568;border-radius:30px;font-size:13px;color:#94a3b8;outline:none">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Expiring Soon</option>
+            <option>Pending</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Tenants Table -->
+      <div class="cc">
+        <h3>Active Tenants</h3>
         <table>
-          <thead><tr><th>Tenant</th><th>Unit</th><th>Property</th><th>Rent</th><th>Lease Ends</th><th>Status</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Tenant Name</th>
+              <th>Unit</th>
+              <th>Property</th>
+              <th>Lease Period</th>
+              <th>Monthly Rent</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td><strong style="color:white">Marco Reyes</strong><br><small style="color:#64748b">marco@email.com</small></td><td>Unit 3A</td><td>Sunset Apts</td><td>₱8,500</td><td>Dec 2026</td><td><span class="badge b-green">Active</span></td></tr>
-            <tr><td><strong style="color:white">Ana Torres</strong><br><small style="color:#64748b">ana@email.com</small></td><td>Unit 2B</td><td>Bayside Res.</td><td>₱9,200</td><td>Mar 2027</td><td><span class="badge b-green">Active</span></td></tr>
-            <tr><td><strong style="color:white">Lito Cruz</strong><br><small style="color:#64748b">lito@email.com</small></td><td>Unit 7A</td><td>Sunset Apts</td><td>₱9,000</td><td>Jun 2026</td><td><span class="badge b-yellow">Expiring</span></td></tr>
-            <tr><td><strong style="color:white">Rosa Santos</strong><br><small style="color:#64748b">rosa@email.com</small></td><td>Unit 6B</td><td>Villa Hermosa</td><td>₱7,500</td><td>Aug 2026</td><td><span class="badge b-red">Overdue</span></td></tr>
-            <tr><td><strong style="color:white">Jose Mendoza</strong><br><small style="color:#64748b">jose@email.com</small></td><td>Unit 4A</td><td>Bayside Res.</td><td>₱8,800</td><td>Sep 2026</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr class="clickable-row">
+              <td>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <div class="avatar" style="width:32px;height:32px;font-size:11px">MR</div>
+                  <div>
+                    <strong style="color:white">Marco Reyes</strong>
+                    <br><small style="color:#64748b">marco@email.com</small>
+                  </div>
+                </div>
+              </td>
+              <td>3A</td>
+              <td>Sunset Apartments</td>
+              <td>Jan 1 - Dec 31, 2026</td>
+              <td style="font-weight:bold;color:#22c55e">₱8,500</td>
+              <td><span class="badge b-green">Active</span></td>
+              <td><button class="btn-outline-green" style="padding:6px 12px;font-size:11px" onclick="viewTenantDetails(1)">Details</button></td>
+            </tr>
+            <tr class="clickable-row">
+              <td>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <div class="avatar" style="width:32px;height:32px;font-size:11px">SJ</div>
+                  <div>
+                    <strong style="color:white">Sarah Johnson</strong>
+                    <br><small style="color:#64748b">sarah.j@email.com</small>
+                  </div>
+                </div>
+              </td>
+              <td>4B</td>
+              <td>Sunset Apartments</td>
+              <td>Feb 1 - Jan 31, 2027</td>
+              <td style="font-weight:bold;color:#22c55e">₱9,000</td>
+              <td><span class="badge b-green">Active</span></td>
+              <td><button class="btn-outline-green" style="padding:6px 12px;font-size:11px" onclick="viewTenantDetails(2)">Details</button></td>
+            </tr>
+            <tr class="clickable-row">
+              <td>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <div class="avatar" style="width:32px;height:32px;font-size:11px">AP</div>
+                  <div>
+                    <strong style="color:white">Alex Park</strong>
+                    <br><small style="color:#64748b">alex.park@email.com</small>
+                  </div>
+                </div>
+              </td>
+              <td>2F</td>
+              <td>Downtown Condo</td>
+              <td>Mar 1 - Feb 28, 2027</td>
+              <td style="font-weight:bold;color:#22c55e">₱7,500</td>
+              <td><span class="badge b-yellow">Expiring Soon</span></td>
+              <td><button class="btn-outline-green" style="padding:6px 12px;font-size:11px" onclick="viewTenantDetails(3)">Details</button></td>
+            </tr>
+            <tr class="clickable-row">
+              <td>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <div class="avatar" style="width:32px;height:32px;font-size:11px">MS</div>
+                  <div>
+                    <strong style="color:white">Maria Santos</strong>
+                    <br><small style="color:#64748b">maria.s@email.com</small>
+                  </div>
+                </div>
+              </td>
+              <td>5C</td>
+              <td>Beachside Resort</td>
+              <td>Apr 1 - Mar 31, 2027</td>
+              <td style="font-weight:bold;color:#22c55e">₱3,500</td>
+              <td><span class="badge b-green">Active</span></td>
+              <td><button class="btn-outline-green" style="padding:6px 12px;font-size:11px" onclick="viewTenantDetails(4)">Details</button></td>
+            </tr>
+            <tr class="clickable-row">
+              <td>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <div class="avatar" style="width:32px;height:32px;font-size:11px">RP</div>
+                  <div>
+                    <strong style="color:white">Robert Phillips</strong>
+                    <br><small style="color:#64748b">robert.p@email.com</small>
+                  </div>
+                </div>
+              </td>
+              <td>1A</td>
+              <td>Downtown Condo</td>
+              <td>May 1 - Apr 30, 2027</td>
+              <td style="font-weight:bold;color:#22c55e">₱6,500</td>
+              <td><span class="badge b-green">Active</span></td>
+              <td><button class="btn-outline-green" style="padding:6px 12px;font-size:11px" onclick="viewTenantDetails(5)">Details</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Lease Expiring Soon -->
+      <div class="cc">
+        <h3>⚠️ Leases Expiring Soon</h3>
+        <div class="alert alert-yellow">
+          3 leases will expire within the next 3 months. Consider reaching out to tenants about renewal.
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Tenant</th>
+              <th>Unit</th>
+              <th>Expiry Date</th>
+              <th>Days Left</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:white">Alex Park</strong></td>
+              <td>2F</td>
+              <td>Feb 28, 2027</td>
+              <td style="color:#fbbf24;font-weight:bold">292 days</td>
+              <td><button class="btn-green" style="padding:6px 14px;border-radius:8px;font-size:11px" onclick="renewLease(3)">Renew lease</button></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">Anna Chen</strong></td>
+              <td>3C</td>
+              <td>Mar 15, 2027</td>
+              <td style="color:#fbbf24;font-weight:bold">307 days</td>
+              <td><button class="btn-green" style="padding:6px 14px;border-radius:8px;font-size:11px" onclick="renewLease(6)">Renew lease</button></td>
+            </tr>
+            <tr>
+              <td><strong style="color:white">David Kim</strong></td>
+              <td>6B</td>
+              <td>Apr 30, 2027</td>
+              <td style="color:#fbbf24;font-weight:bold">354 days</td>
+              <td><button class="btn-green" style="padding:6px 14px;border-radius:8px;font-size:11px" onclick="renewLease(7)">Renew lease</button></td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Tenant Details Modal -->
+<div class="modal-overlay" id="tenantModal">
+  <div class="modal-box">
+    <div class="modal-hd">
+      <h3>Tenant Details</h3>
+      <button class="modal-close" onclick="closeTenantModal()">✕</button>
+    </div>
+    <div style="padding:20px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+        <div class="big-av">MR</div>
+        <div>
+          <h3 id="modal-tenant-name" style="margin:0;font-size:16px">Marco Reyes</h3>
+          <p style="font-size:12px;color:#64748b;margin:5px 0 0 0">Unit 3A · Sunset Apartments</p>
+        </div>
+      </div>
+      <div style="border-top:1px solid #4a5568;padding-top:16px">
+        <div class="drow"><span class="dl">Email</span><span class="dv">marco@email.com</span></div>
+        <div class="drow"><span class="dl">Phone</span><span class="dv">+63 917 000 0001</span></div>
+        <div class="drow"><span class="dl">Lease Start</span><span class="dv">January 1, 2026</span></div>
+        <div class="drow"><span class="dl">Lease End</span><span class="dv">December 31, 2026</span></div>
+        <div class="drow"><span class="dl">Monthly Rent</span><span class="dv" style="color:#22c55e">₱8,500</span></div>
+        <div class="drow"><span class="dl">Payment Status</span><span class="dv"><span class="badge b-green">On-time</span></span></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline-green" onclick="closeTenantModal()">Close</button>
+        <button class="btn-green" onclick="sendMessageToTenant()">💬 Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast-wrap"></div>
+<script src="../ASSETS/js/landlord-core.js"></script>
 </body>
 </html>

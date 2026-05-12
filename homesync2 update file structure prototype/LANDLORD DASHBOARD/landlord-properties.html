@@ -4,72 +4,482 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Properties — HomeSync</title>
- <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
+
+
+   <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
   <link rel="stylesheet" href="../ASSETS/css/dashboards.css">
-  <link rel="stylesheet" href="../ASSETS/css/navigation and footer.css">
+  <link rel="stylesheet" href="../ASSETS/css/dashboard features.css">
   <link rel="stylesheet" href="../ASSETS/css/forms.css">
   <link rel="stylesheet" href="../ASSETS/css/buttons.css">
+  <link rel="stylesheet" href="../ASSETS/css/landlord-lobby.css">
+  
+  
+
 </head>
 <body>
+ 
 <div class="dashboard">
-
+ 
+  <!-- SIDEBAR -->
   <div class="sidebar">
-    <a class="sb-logo" href="index.html">Home<span>Sync</span></a>
+    <a class="sb-logo" href="#">Home<span>Sync</span></a>
     <div class="sb-section">Main</div>
-    <a class="sb-item" href="landlord-overview.html">📊 Overview</a>
-    <a class="sb-item active" href="landlord-properties.html">🏠 Properties</a>
+   <a class="sb-item" href="landlord-overview.html">📊 Overview</a>
+    <a class="sb-item active" href="landlord-properties.html">🏢 My Properties</a>
     <a class="sb-item" href="landlord-tenants.html">👥 Tenants</a>
-    <a class="sb-item" href="landlord-tickets.html">🔧 Tickets <span class="sb-badge red">3</span></a>
-    <div class="sb-section">Finance</div>
-    <a class="sb-item" href="landlord-payments.html">💳 Rent &amp; Payments</a>
-    <a class="sb-item" href="landlord-reports.html">📈 Reports</a>
-    <div class="sb-section">Manage</div>
-    <a class="sb-item" href="landlord-documents.html">📁 Documents</a>
-    <a class="sb-item" href="landlord-messages.html">💬 Messages <span class="sb-badge">4</span></a>
-    <a class="sb-item" href="landlord-notifications.html">🔔 Notifications <span class="sb-badge">5</span></a>
-    <a class="sb-item" href="landlord-support.html">❓ Support</a>
+    <a class="sb-item" href="landlord-payments.html">💰 Payments <span class="sb-badge red">2</span></a>
+    <div class="sb-section">Management</div>
+    <a class="sb-item" href="landlord-tickets.html">🔧 Support Tickets</a>
+    <a class="sb-item" href="landlord-leases.html">📋 Leases</a>
+    <a class="sb-item " href="landlord-messages.html">💬 Messages <span class="sb-badge">3</span></a>
+    <a class="sb-item" href="landlord-announcements.html">📢 Announcements</a>
+    <div class="sb-section">Account</div>
     <a class="sb-item" href="landlord-settings.html">⚙️ Settings</a>
-    <a class="sb-item" href="../LOGIN AND SIGN IN PAGE/login.html" style="color: #f87171;">🚪 Logout</a>
-    <a class="sb-foot" href="landlord-settings.html">
+    <a class="sb-item" href="../index.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="#">
       <div class="avatar">JD</div>
       <div><div class="av-name">Juan dela Cruz</div><div class="av-role">Landlord · Pro</div></div>
     </a>
   </div>
-
+ 
+  <!-- MAIN CONTENT -->
   <div class="main-content">
     <div class="topbar">
-      <div><h1>Properties</h1><p>Manage your property portfolio</p></div>
+      <div><h1>Properties</h1><p>Manage your listings and room availability</p></div>
       <div class="topbar-r">
-        <a href="landlord-notifications.html" class="icon-btn">🔔</a>
-        <a href="landlord-settings.html"><div class="avatar">JD</div></a>
+        <a href="#" class="icon-btn">🔔</a>
+        <div class="avatar">JD</div>
       </div>
     </div>
+ 
     <div class="db">
-
+ 
+      <!-- STAT CARDS -->
       <div class="stat-row">
-        <div class="sc"><div class="sl">Total Properties</div><div class="sv">12</div></div>
-        <div class="sc"><div class="sl">Units Occupied</div><div class="sv">26/28</div></div>
-        <div class="sc"><div class="sl">Vacancies</div><div class="sv">2</div><div class="ss warn">Available</div></div>
-        <div class="sc"><div class="sl">Avg. Occupancy</div><div class="sv">93%</div></div>
+        <div class="sc"><div class="sl">Total Listings</div><div class="sv">6</div></div>
+        <div class="sc"><div class="sl">Available Now</div><div class="sv">4</div><div class="ss">Accepting tenants</div></div>
+        <div class="sc"><div class="sl">Fully Booked</div><div class="sv">2</div><div class="ss warn">0 vacancies</div></div>
+        <div class="sc"><div class="sl">Pending Approval</div><div class="sv">3</div><div class="ss warn">Booking requests</div></div>
       </div>
-
+ 
+      <div class="alert alert-yellow">⚠️ You have <strong>3 pending booking requests</strong> awaiting your approval.</div>
+ 
+      <!-- ROOM LISTINGS -->
       <div class="cc">
-        <h3>All Properties
-          <a href="landlord-overview.html" class="btn-outline-green" style="text-decoration:none">➕ Add Property</a>
+        <h3>
+          Room Listings
+          <button class="btn-outline-green" onclick="openModal()" style="font-size:12px;padding:7px 14px">➕ Add New Listing</button>
         </h3>
+ 
+        <div class="room-grid">
+ 
+          <div class="room-card">
+            <span class="gbadge gb-boys">Boys Only</span>
+            <div style="height:18px"></div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+              <div><div class="rc-name">Room 2B</div><div class="rc-loc">Sunset Apartments, QC</div></div>
+              <div style="text-align:right"><div class="rc-price">₱2,800</div><div class="rc-unit">/bed·mo</div></div>
+            </div>
+            <div class="rc-tags">
+              <span class="rc-tag">Single &amp; Bunk</span>
+              <span class="rc-tag">Shared Room</span>
+              <span class="rc-tag">Dep: 2 months</span>
+            </div>
+            <div class="rc-tags">
+              <span class="rc-tag" style="color:#a78bfa;border-color:#8b5cf6">👨‍🎓 Student 10%</span>
+              <span class="rc-tag" style="color:#60a5fa;border-color:#3b82f6">♿ PWD 20%</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin:6px 0;font-size:11px">
+              <span style="color:#22c55e;font-weight:bold">● 3 beds available</span>
+              <span style="color:#f59e0b">1 Hold pending</span>
+            </div>
+            <div class="btn-row" style="margin-top:8px">
+              <button class="btn-outline-green" style="font-size:11px;padding:5px 11px" onclick="openModal('edit')">✏️ Edit</button>
+              <button class="qa-btn" style="padding:5px 11px">👁 Preview</button>
+              <button class="qa-btn" style="padding:5px 11px;margin-left:auto">📋 Requests (2)</button>
+            </div>
+          </div>
+ 
+          <div class="room-card">
+            <span class="gbadge gb-girls">Girls Only</span>
+            <div style="height:18px"></div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+              <div><div class="rc-name">Studio 4</div><div class="rc-loc">Bayside Residences, Pasig</div></div>
+              <div style="text-align:right"><div class="rc-price">₱6,500</div><div class="rc-unit">/bed·mo</div></div>
+            </div>
+            <div class="rc-tags">
+              <span class="rc-tag">Double Bed</span>
+              <span class="rc-tag">Private Room</span>
+              <span class="rc-tag">Dep: 1 month</span>
+            </div>
+            <div class="rc-tags">
+              <span class="rc-tag" style="color:#fbbf24;border-color:#f59e0b">👴 Senior 20%</span>
+            </div>
+            <div style="font-size:11px;font-weight:bold;color:#f87171;margin:6px 0">● Full</div>
+            <div class="btn-row" style="margin-top:8px">
+              <button class="btn-outline-green" style="font-size:11px;padding:5px 11px" onclick="openModal('edit')">✏️ Edit</button>
+              <button class="qa-btn" style="padding:5px 11px">👁 Preview</button>
+              <button class="qa-btn" style="padding:5px 11px;margin-left:auto">📋 Waitlist (1)</button>
+            </div>
+          </div>
+ 
+          <div class="room-card">
+            <span class="gbadge gb-mixed">Mixed</span>
+            <div style="height:18px"></div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+              <div><div class="rc-name">Dorm A</div><div class="rc-loc">Villa Hermosa, Taguig</div></div>
+              <div style="text-align:right"><div class="rc-price">₱1,800</div><div class="rc-unit">/bed·mo</div></div>
+            </div>
+            <div class="rc-tags">
+              <span class="rc-tag">Bunk Beds</span>
+              <span class="rc-tag">Dormitory</span>
+              <span class="rc-tag">Dep: 1 month</span>
+            </div>
+            <div class="rc-tags">
+              <span class="rc-tag" style="color:#a78bfa;border-color:#8b5cf6">👨‍🎓 Student 10%</span>
+            </div>
+            <div style="font-size:11px;font-weight:bold;color:#f87171;margin:6px 0">● Full</div>
+            <div class="btn-row" style="margin-top:8px">
+              <button class="btn-outline-green" style="font-size:11px;padding:5px 11px" onclick="openModal('edit')">✏️ Edit</button>
+              <button class="qa-btn" style="padding:5px 11px">👁 Preview</button>
+            </div>
+          </div>
+ 
+          <div class="room-card">
+            <span class="gbadge gb-girls">Girls Only</span>
+            <div style="height:18px"></div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+              <div><div class="rc-name">Room 1C</div><div class="rc-loc">Green Park, Mandaluyong</div></div>
+              <div style="text-align:right"><div class="rc-price">₱3,200</div><div class="rc-unit">/bed·mo</div></div>
+            </div>
+            <div class="rc-tags">
+              <span class="rc-tag">Single Beds</span>
+              <span class="rc-tag">Shared Room</span>
+              <span class="rc-tag">Dep: 2 months</span>
+            </div>
+            <div class="rc-tags">
+              <span class="rc-tag" style="color:#a78bfa;border-color:#8b5cf6">👨‍🎓 Student 10%</span>
+              <span class="rc-tag" style="color:#fbbf24;border-color:#f59e0b">👴 Senior 20%</span>
+            </div>
+            <div style="font-size:11px;font-weight:bold;color:#22c55e;margin:6px 0">● 2 beds available</div>
+            <div class="btn-row" style="margin-top:8px">
+              <button class="btn-outline-green" style="font-size:11px;padding:5px 11px" onclick="openModal('edit')">✏️ Edit</button>
+              <button class="qa-btn" style="padding:5px 11px">👁 Preview</button>
+            </div>
+          </div>
+ 
+          <div class="add-card" onclick="openModal()">
+            <div class="ac-icon">➕</div>
+            <div class="ac-lbl">Add New Room Listing</div>
+          </div>
+ 
+        </div>
+      </div>
+ 
+      <!-- BOOKING REQUESTS TABLE -->
+      <div class="cc">
+        <h3>Pending Booking Requests <span style="font-size:12px;color:#f59e0b;font-weight:normal">3 awaiting review</span></h3>
         <table>
-          <thead><tr><th>Property</th><th>Location</th><th>Units</th><th>Occupied</th><th>Monthly Rent</th><th>Status</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Applicant</th>
+              <th>Room</th>
+              <th>Lease</th>
+              <th>Discount</th>
+              <th>Monthly Rate</th>
+              <th>Move-in</th>
+              <th>Action</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td><strong style="color:white">Sunset Apartments</strong><br><small style="color:#64748b">Apartment</small></td><td>Quezon City</td><td>8</td><td style="color:#22c55e;font-weight:bold">8/8</td><td>₱68,000</td><td><span class="badge b-green">Active</span></td></tr>
-            <tr><td><strong style="color:white">Bayside Residences</strong><br><small style="color:#64748b">Apartment</small></td><td>Pasig</td><td>12</td><td style="color:#f59e0b;font-weight:bold">11/12</td><td>₱96,800</td><td><span class="badge b-green">Active</span></td></tr>
-            <tr><td><strong style="color:white">Villa Hermosa</strong><br><small style="color:#64748b">Townhouse</small></td><td>Taguig</td><td>6</td><td style="color:#f59e0b;font-weight:bold">5/6</td><td>₱54,000</td><td><span class="badge b-green">Active</span></td></tr>
-            <tr><td><strong style="color:white">Green Park Studios</strong><br><small style="color:#64748b">Single house</small></td><td>Mandaluyong</td><td>2</td><td style="color:#22c55e;font-weight:bold">2/2</td><td>₱22,000</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr class="clickable-row">
+              <td><strong style="color:white">Maria Santos</strong><br><small>For herself</small></td>
+              <td>Room 2B — Bed 2</td>
+              <td>12 months</td>
+              <td><span class="badge b-green">Student 10%</span></td>
+              <td style="color:#22c55e;font-weight:bold">₱2,100</td>
+              <td>Jun 1, 2026</td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="padding:5px 10px;font-size:11px" onclick="event.stopPropagation();showToast('Booking approved!','success')">Approve</button>
+                  <button class="btn-red" style="padding:5px 10px;font-size:11px" onclick="event.stopPropagation()">Decline</button>
+                </div>
+              </td>
+            </tr>
+            <tr class="clickable-row">
+              <td><strong style="color:white">Jose Reyes</strong><br><small>For son (occupant)</small></td>
+              <td>Room 2B — Bed 3</td>
+              <td>6 months</td>
+              <td><span class="badge b-gray">No promo</span></td>
+              <td style="color:#22c55e;font-weight:bold">₱2,604</td>
+              <td>Jun 15, 2026</td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="padding:5px 10px;font-size:11px" onclick="event.stopPropagation();showToast('Booking approved!','success')">Approve</button>
+                  <button class="btn-red" style="padding:5px 10px;font-size:11px" onclick="event.stopPropagation()">Decline</button>
+                </div>
+              </td>
+            </tr>
+            <tr class="clickable-row">
+              <td><strong style="color:white">Ana Cruz</strong><br><small>For herself</small></td>
+              <td>Room 1C — Bed 1</td>
+              <td>3 months</td>
+              <td><span class="badge b-yellow">Senior 20%</span></td>
+              <td style="color:#22c55e;font-weight:bold">₱2,560</td>
+              <td>May 25, 2026</td>
+              <td>
+                <div class="btn-row">
+                  <button class="btn-outline-green" style="padding:5px 10px;font-size:11px" onclick="event.stopPropagation();showToast('Booking approved!','success')">Approve</button>
+                  <button class="btn-red" style="padding:5px 10px;font-size:11px" onclick="event.stopPropagation()">Decline</button>
+                </div>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
-
+ 
     </div>
   </div>
 </div>
+ 
+<!-- ═══════════════ ADD / EDIT LISTING MODAL ═══════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal-box" id="modalBox">
+ 
+    <div class="modal-hd">
+      <h3 id="modalTitle">Add Room Listing</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+ 
+    <div class="step-dots" id="stepDots"></div>
+ 
+    <!-- STEP 1 -->
+    <div class="step-panel active" id="step1">
+      <div class="step-lbl">Step 1 — Room Details</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Room / Unit Name</label>
+          <input type="text" placeholder="e.g. Room 2B, Studio 4">
+        </div>
+        <div class="form-group">
+          <label>Property</label>
+          <select>
+            <option>Sunset Apartments, QC</option>
+            <option>Bayside Residences, Pasig</option>
+            <option>Villa Hermosa, Taguig</option>
+            <option>Green Park Studios, Mandaluyong</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Room Type</label>
+        <div class="opt-grid opt-grid-2">
+          <div class="opt-card selected" onclick="selectOpt(this)"><div class="oc-icon">🛏️</div><div class="oc-lbl">Shared Room</div><div class="oc-sub">Multiple tenants</div></div>
+          <div class="opt-card" onclick="selectOpt(this)"><div class="oc-icon">🏠</div><div class="oc-lbl">Private Room</div><div class="oc-sub">Single tenant</div></div>
+          <div class="opt-card" onclick="selectOpt(this)"><div class="oc-icon">🏢</div><div class="oc-lbl">Dormitory</div><div class="oc-sub">Large multi-bed</div></div>
+          <div class="opt-card" onclick="selectOpt(this)"><div class="oc-icon">🏡</div><div class="oc-lbl">Studio Unit</div><div class="oc-sub">Self-contained</div></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Gender Policy</label>
+        <div class="opt-grid opt-grid-3">
+          <div class="opt-card selected" onclick="selectOpt(this)"><div class="oc-icon">👦</div><div class="oc-lbl">Boys Only</div></div>
+          <div class="opt-card" onclick="selectOpt(this)"><div class="oc-icon">👧</div><div class="oc-lbl">Girls Only</div></div>
+          <div class="opt-card" onclick="selectOpt(this)"><div class="oc-icon">👫</div><div class="oc-lbl">Mixed</div></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description (optional)</label>
+        <textarea placeholder="Describe the room, features, nearby landmarks…"></textarea>
+      </div>
+    </div>
+ 
+    <!-- STEP 2 -->
+    <div class="step-panel" id="step2">
+      <div class="step-lbl">Step 2 — Beds &amp; Pricing</div>
+      <div class="form-group">
+        <label>Beds in this Room</label>
+        <div class="bed-list" id="bedList">
+          <div class="bed-row">
+            <span class="bed-num">1</span>
+            <select><option>Single</option><option>Single Bunk (Bottom)</option><option>Single Bunk (Top)</option><option>Double</option><option>Queen</option><option>Foam / Floor</option></select>
+            <select class="status-sel"><option>Available</option><option>Taken</option></select>
+            <button class="del-bed-btn" onclick="removeBed(this)">🗑</button>
+          </div>
+          <div class="bed-row">
+            <span class="bed-num">2</span>
+            <select><option>Single</option><option selected>Single Bunk (Bottom)</option><option>Single Bunk (Top)</option><option>Double</option><option>Queen</option><option>Foam / Floor</option></select>
+            <select class="status-sel"><option>Available</option><option>Taken</option></select>
+            <button class="del-bed-btn" onclick="removeBed(this)">🗑</button>
+          </div>
+        </div>
+        <button class="add-bed-btn" onclick="addBed()">+ Add Bed</button>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Base Price (per bed / mo)</label>
+          <input type="number" value="2800" placeholder="e.g. 2800">
+        </div>
+        <div class="form-group">
+          <label>Security Deposit</label>
+          <select><option>1 month</option><option selected>2 months</option><option>3 months</option></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Lease Discounts to Offer</label>
+        <div class="opt-grid opt-grid-4">
+          <div class="opt-card" onclick="selectOpt(this)"><div class="oc-icon">📅</div><div class="oc-lbl">Monthly</div><div class="oc-sub">No disc.</div></div>
+          <div class="opt-card selected" onclick="selectOpt(this)"><div class="oc-icon">📆</div><div class="oc-lbl">3 Months</div><div class="oc-sub" style="color:#22c55e">3% off</div></div>
+          <div class="opt-card selected" onclick="selectOpt(this)"><div class="oc-icon">📋</div><div class="oc-lbl">6 Months</div><div class="oc-sub" style="color:#22c55e">7% off</div></div>
+          <div class="opt-card selected" onclick="selectOpt(this)"><div class="oc-icon">🏆</div><div class="oc-lbl">1 Year</div><div class="oc-sub" style="color:#22c55e">15% off</div></div>
+        </div>
+      </div>
+      <div class="price-preview">
+        <div class="pp-lbl">Listing price preview</div>
+        <div class="pp-main">₱2,800<span style="font-size:13px;color:#64748b;font-weight:normal">/bed·mo</span></div>
+        <div class="pp-sub">Up to ₱2,380/mo with 1-year lease · promo discounts applied on top</div>
+      </div>
+    </div>
+ 
+    <!-- STEP 3 -->
+    <div class="step-panel" id="step3">
+      <div class="step-lbl">Step 3 — Amenities &amp; Add-ons</div>
+      <div class="form-group">
+        <label>Included Amenities</label>
+        <div class="amenity-grid">
+          <div class="am-item on" onclick="this.classList.toggle('on')">📶 WiFi</div>
+          <div class="am-item on" onclick="this.classList.toggle('on')">❄️ Aircon</div>
+          <div class="am-item" onclick="this.classList.toggle('on')">🚿 Private Bath</div>
+          <div class="am-item on" onclick="this.classList.toggle('on')">🔒 Security</div>
+          <div class="am-item" onclick="this.classList.toggle('on')">🅿️ Parking</div>
+          <div class="am-item on" onclick="this.classList.toggle('on')">📊 Utilities incl.</div>
+          <div class="am-item" onclick="this.classList.toggle('on')">🎮 Common Area</div>
+          <div class="am-item" onclick="this.classList.toggle('on')">🧺 Laundry</div>
+          <div class="am-item" onclick="this.classList.toggle('on')">🏋️ Gym Access</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Optional Add-ons (tenant selects at booking)</label>
+        <div class="addon-list">
+          <div class="addon-row on" onclick="this.classList.toggle('on')">🅿️ <span style="flex:1">Parking Slot</span><span class="addon-price">+₱500/mo</span></div>
+          <div class="addon-row on" onclick="this.classList.toggle('on')">📺 <span style="flex:1">Cable TV</span><span class="addon-price">+₱200/mo</span></div>
+          <div class="addon-row on" onclick="this.classList.toggle('on')">🧹 <span style="flex:1">Weekly Cleaning</span><span class="addon-price">+₱150/mo</span></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>House Rules</label>
+        <textarea>No pets · No smoking · Quiet hours 10PM–6AM · Cooking in common area only</textarea>
+      </div>
+    </div>
+ 
+    <!-- STEP 4 -->
+    <div class="step-panel" id="step4">
+      <div class="step-lbl">Step 4 — Special ID Discounts</div>
+      <div class="alert alert-green">Enable government-mandated or voluntary ID discounts. Tenants present valid IDs on move-in day for verification.</div>
+      <div class="disc-list">
+        <div class="disc-row">
+          <span class="disc-icon">👨‍🎓</span>
+          <div class="disc-info"><div class="disc-name">Student Discount</div><div class="disc-req">Requires: Valid school ID + Certificate of Enrollment</div></div>
+          <span class="disc-pct">10%</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"><div class="t-knob"></div></div>
+        </div>
+        <div class="disc-row">
+          <span class="disc-icon">👴</span>
+          <div class="disc-info"><div class="disc-name">Senior Citizen Discount</div><div class="disc-req">Requires: OSCA Senior Citizen ID</div></div>
+          <span class="disc-pct">20%</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"><div class="t-knob"></div></div>
+        </div>
+        <div class="disc-row">
+          <span class="disc-icon">♿</span>
+          <div class="disc-info"><div class="disc-name">PWD Discount</div><div class="disc-req">Requires: PDAO PWD ID</div></div>
+          <span class="disc-pct">20%</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"><div class="t-knob"></div></div>
+        </div>
+        <div class="disc-row">
+          <span class="disc-icon">👩‍👧</span>
+          <div class="disc-info"><div class="disc-name">Solo Parent Discount</div><div class="disc-req">Requires: DSWD Solo Parent ID</div></div>
+          <span class="disc-pct">10%</span>
+          <div class="toggle" onclick="this.classList.toggle('on')"><div class="t-knob"></div></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Custom Discount Name (optional)</label>
+          <input type="text" placeholder="e.g. Frontliner Discount">
+        </div>
+        <div class="form-group">
+          <label>Discount %</label>
+          <input type="number" placeholder="e.g. 15" min="1" max="50">
+        </div>
+      </div>
+    </div>
+ 
+    <!-- STEP 5 -->
+    <div class="step-panel" id="step5">
+      <div class="step-lbl">Step 5 — Review &amp; Publish</div>
+      <div class="summary-hd">
+        <strong>Room 2B</strong>
+        <span class="summary-dot">·</span>
+        Sunset Apartments, QC
+        <span class="summary-dot">·</span>
+        Boys Only
+        <span class="summary-dot">·</span>
+        <span style="color:#22c55e">Shared Room</span>
+      </div>
+      <div class="policy-box">
+        <div class="pb-title">⚠️ Deposit &amp; Penalty Policy — Room 2B</div>
+        <ul>
+          <li>Security deposit of <strong style="color:white">₱5,600</strong> (2 months) — refundable subject to move-out inspection</li>
+          <li>Property damage deducted from deposit</li>
+          <li>Early termination without 30-day notice: forfeit 1 month deposit</li>
+          <li>Lost key/card: ₱500 replacement fee</li>
+          <li>Move-out cleaning fee ₱500 if unit left unsanitary</li>
+        </ul>
+      </div>
+      <div style="background-color:#3d4a56;border:1px solid #4a5568;border-radius:8px;padding:10px 14px;font-size:12px;color:#94a3b8;margin-bottom:14px;line-height:1.6">
+        <strong style="color:white">House Rules:</strong> No pets · No smoking · Quiet hours 10PM–6AM · Cooking in common area only
+      </div>
+      <div style="background-color:#3d4a56;border-radius:8px;padding:4px 14px;margin-bottom:14px">
+        <div class="drow"><span class="dl">Base rate</span><span class="dv">₱2,800/bed·mo</span></div>
+        <div class="drow"><span class="dl">Beds listed</span><span class="dv">4 beds</span></div>
+        <div class="drow"><span class="dl">Discounts enabled</span><span class="dv" style="color:#22c55e">Student, Senior, PWD</span></div>
+        <div class="drow"><span class="dl">Amenities</span><span class="dv">WiFi, Aircon, Security, Utilities</span></div>
+        <div class="drow"><span class="dl">Listing visibility</span><span class="dv" style="color:#22c55e">Public — visible to tenants</span></div>
+      </div>
+      <div class="confirm-row" id="confirmRow" onclick="toggleConfirm()">
+        <input type="checkbox" id="confirmCheck">
+        <span>I confirm that all listing details are accurate. Tenants will be able to book this room. Approved bookings are binding agreements subject to the stated policies.</span>
+      </div>
+    </div>
+ 
+    <!-- STEP 6 -->
+    <div class="step-panel" id="step6">
+      <div class="success-screen">
+        <div class="success-ico">✓</div>
+        <h3>Listing Published!</h3>
+        <p>Room 2B is now live on HomeSync. Tenants can browse, hold, and book this room. You'll be notified of every booking request.</p>
+        <div style="background-color:#3d4a56;border-radius:8px;padding:4px 14px;width:100%">
+          <div class="drow"><span class="dl">Room</span><span class="dv">Room 2B — Sunset Apartments, QC</span></div>
+          <div class="drow"><span class="dl">Type</span><span class="dv">Shared Room · Boys Only</span></div>
+          <div class="drow"><span class="dl">Beds</span><span class="dv">4 beds listed</span></div>
+          <div class="drow"><span class="dl">Price</span><span class="dv" style="color:#22c55e">₱2,800/bed·mo</span></div>
+          <div class="drow"><span class="dl">Status</span><span class="dv" style="color:#22c55e">● Live &amp; Accepting Bookings</span></div>
+        </div>
+        <button class="btn-green" onclick="closeModal()">Done</button>
+      </div>
+    </div>
+ 
+    <!-- Modal footer -->
+    <div class="modal-footer" id="modalFooter">
+      <button id="btnBack" onclick="prevStep()" style="display:none;background:transparent;color:#94a3b8;border:1px solid #4a5568;padding:8px 18px;border-radius:8px;font-size:13px;cursor:pointer;font-family:Arial,sans-serif">← Back</button>
+      <button id="btnNext" onclick="nextStep()" class="btn-outline-green" style="font-size:13px;padding:8px 20px">Next →</button>
+    </div>
+ 
+  </div>
+</div>
+ 
+<div id="toast-wrap"></div>
+ 
+<script src="../ASSETS/js/landlord-core.js"></script>
 </body>
 </html>

@@ -1,75 +1,52 @@
-/* ============================================================
-   tenant-tickets.js — HomeSync Tenant Tickets
-   ============================================================ */
+var ticketCounter = 1043;
+var openTickets = 1;
 
-function showToast(msg, type = '') {
-  const wrap = document.getElementById('toast-wrap');
-  if (!wrap) return;
-  const toast = document.createElement('div');
-  toast.className = 'toast ' + type;
-  toast.textContent = msg;
-  wrap.appendChild(toast);
-  setTimeout(() => toast.remove(), 3500);
+function showToast(msg, type) {
+  var wrap = document.getElementById('toast-wrap');
+  var t = document.createElement('div');
+  t.className = 'toast ' + (type || '');
+  t.textContent = msg;
+  wrap.appendChild(t);
+  setTimeout(function() { if(t.parentNode) t.parentNode.removeChild(t); }, 3500);
 }
 
-// Submit new ticket
-(function initTicketForm() {
-  const btn = document.querySelector('.btn-green[style*="Submit"]') || 
-    Array.from(document.querySelectorAll('.btn-green')).find(b => b.textContent.includes('Submit'));
-  if (!btn) return;
+function photoSelected(input) {
+  if (input.files && input.files[0]) {
+    document.getElementById('photo-preview').style.display = 'block';
+    document.getElementById('photo-preview').textContent = '📷 ' + input.files[0].name + ' attached';
+  }
+}
 
-  btn.addEventListener('click', function () {
-    const titleInput = document.querySelector('.form-group input[type="text"]');
-    const descInput = document.querySelector('textarea');
-    const categorySelect = document.querySelectorAll('select')[0];
-    const prioritySelect = document.querySelectorAll('select')[1];
-    const fileInput = document.getElementById('ticket-photo');
-    const tableBody = document.querySelector('tbody');
+function submitTicket() {
+  var title = document.getElementById('ticket-title').value.trim();
+  var desc = document.getElementById('ticket-desc').value.trim();
+  if (!title) { showToast('Please enter an issue title.', 'error'); return; }
+  if (!desc) { showToast('Please describe the problem.', 'error'); return; }
+  var cat = document.getElementById('ticket-category').value;
+  var pri = document.getElementById('ticket-priority').value;
+  var priColors = { Low: 'b-gray', Medium: 'b-orange', High: 'b-red', Urgent: 'b-red' };
+  var now = new Date();
+  var dateStr = now.toLocaleDateString('en-PH',{month:'short',day:'numeric'});
+  var tbody = document.getElementById('tickets-body');
+  var row = document.createElement('tr');
+  row.innerHTML = '<td style="color:#64748b">#' + ticketCounter + '</td>' +
+    '<td><strong style="color:white">' + escHtml(title) + '</strong></td>' +
+    '<td>' + cat + '</td>' +
+    '<td><span class="badge ' + (priColors[pri]||'b-gray') + '">' + pri + '</span></td>' +
+    '<td>' + dateStr + '</td>' +
+    '<td><span class="badge b-blue">New</span></td>';
+  tbody.insertBefore(row, tbody.firstChild);
+  ticketCounter++;
+  openTickets++;
+  document.getElementById('open-count').textContent = openTickets;
+  // Clear form
+  document.getElementById('ticket-title').value = '';
+  document.getElementById('ticket-desc').value = '';
+  document.getElementById('ticket-photo').value = '';
+  document.getElementById('photo-preview').style.display = 'none';
+  showToast('Ticket #' + (ticketCounter-1) + ' submitted successfully!', 'success');
+}
 
-    if (!titleInput || !titleInput.value.trim()) {
-      showToast('⚠️ Please enter an issue title.', 'error');
-      return;
-    }
-    if (!descInput || !descInput.value.trim()) {
-      showToast('⚠️ Please describe the issue.', 'error');
-      return;
-    }
-
-    // Logic to handle image preview
-    let imgHtml = '';
-    if (fileInput && fileInput.files && fileInput.files[0]) {
-      const imgUrl = URL.createObjectURL(fileInput.files[0]);
-      imgHtml = `<img src="${imgUrl}" style="width:30px; height:30px; border-radius:4px; object-fit:cover; margin-right:8px; vertical-align:middle;">`;
-    }
-
-    // Create unique ID and current date
-    const newId = Math.floor(1000 + Math.random() * 9000);
-    const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    
-    // Create new row
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-      <td style="color:#64748b">#${newId}</td>
-      <td>
-        ${imgHtml}
-        <strong style="color:white">${titleInput.value}</strong>
-      </td>
-      <td>${categorySelect.value}</td>
-      <td><span class="badge b-gray">${prioritySelect.value}</span></td>
-      <td>${date}</td>
-      <td><span class="badge b-yellow">Pending</span></td>
-    `;
-
-    // Add to top of table
-    if (tableBody) {
-      tableBody.insertBefore(newRow, tableBody.firstChild);
-    }
-
-    showToast('🔧 Ticket submitted! We\'ll review it shortly.', 'success');
-    
-    // Reset fields
-    titleInput.value = '';
-    descInput.value = '';
-    if(fileInput) fileInput.value = '';
-  });
-})();
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}

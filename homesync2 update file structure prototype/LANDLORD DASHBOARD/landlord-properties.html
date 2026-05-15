@@ -20,7 +20,6 @@
  
 <div class="dashboard">
  
-  <!-- SIDEBAR -->
   <div class="sidebar">
     <a class="sb-logo" href="#">Home<span>Sync</span></a>
     <div class="sb-section">Main</div>
@@ -42,7 +41,6 @@
     </a>
   </div>
  
-  <!-- MAIN CONTENT -->
   <div class="main-content">
     <div class="topbar">
       <div><h1>Properties</h1><p>Manage your listings and room availability</p></div>
@@ -54,7 +52,6 @@
  
     <div class="db">
  
-      <!-- STAT CARDS -->
       <div class="stat-row">
         <div class="sc"><div class="sl">Total Listings</div><div class="sv">6</div></div>
         <div class="sc"><div class="sl">Available Now</div><div class="sv">4</div><div class="ss">Accepting tenants</div></div>
@@ -64,7 +61,6 @@
  
       <div class="alert alert-yellow">⚠️ You have <strong>3 pending booking requests</strong> awaiting your approval.</div>
  
-      <!-- ROOM LISTINGS -->
       <div class="cc">
         <h3>
           Room Listings
@@ -176,7 +172,6 @@
         </div>
       </div>
  
-      <!-- BOOKING REQUESTS TABLE -->
       <div class="cc">
         <h3>Pending Booking Requests <span style="font-size:12px;color:#f59e0b;font-weight:normal">3 awaiting review</span></h3>
         <table>
@@ -242,7 +237,6 @@
   </div>
 </div>
  
-<!-- ═══════════════ ADD / EDIT LISTING MODAL ═══════════════ -->
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
   <div class="modal-box" id="modalBox">
  
@@ -253,7 +247,6 @@
  
     <div class="step-dots" id="stepDots"></div>
  
-    <!-- STEP 1 -->
     <div class="step-panel active" id="step1">
       <div class="step-lbl">Step 1 — Room Details</div>
       <div class="form-row">
@@ -294,7 +287,6 @@
       </div>
     </div>
  
-    <!-- STEP 2 -->
     <div class="step-panel" id="step2">
       <div class="step-lbl">Step 2 — Beds &amp; Pricing</div>
       <div class="form-group">
@@ -341,7 +333,6 @@
       </div>
     </div>
  
-    <!-- STEP 3 -->
     <div class="step-panel" id="step3">
       <div class="step-lbl">Step 3 — Amenities &amp; Add-ons</div>
       <div class="form-group">
@@ -372,7 +363,6 @@
       </div>
     </div>
  
-    <!-- STEP 4 -->
     <div class="step-panel" id="step4">
       <div class="step-lbl">Step 4 — Special ID Discounts</div>
       <div class="alert alert-green">Enable government-mandated or voluntary ID discounts. Tenants present valid IDs on move-in day for verification.</div>
@@ -414,7 +404,6 @@
       </div>
     </div>
  
-    <!-- STEP 5 -->
     <div class="step-panel" id="step5">
       <div class="step-lbl">Step 5 — Review &amp; Publish</div>
       <div class="summary-hd">
@@ -446,13 +435,12 @@
         <div class="drow"><span class="dl">Amenities</span><span class="dv">WiFi, Aircon, Security, Utilities</span></div>
         <div class="drow"><span class="dl">Listing visibility</span><span class="dv" style="color:#22c55e">Public — visible to tenants</span></div>
       </div>
-      <div class="confirm-row" id="confirmRow" onclick="toggleConfirm()">
-        <input type="checkbox" id="confirmCheck">
+      <div class="confirm-row" id="confirmRow" onclick="toggleConfirm()" style="cursor:pointer">
+        <input type="checkbox" id="confirmCheck" style="pointer-events: none;">
         <span>I confirm that all listing details are accurate. Tenants will be able to book this room. Approved bookings are binding agreements subject to the stated policies.</span>
       </div>
     </div>
  
-    <!-- STEP 6 -->
     <div class="step-panel" id="step6">
       <div class="success-screen">
         <div class="success-ico">✓</div>
@@ -469,7 +457,6 @@
       </div>
     </div>
  
-    <!-- Modal footer -->
     <div class="modal-footer" id="modalFooter">
       <button id="btnBack" onclick="prevStep()" style="display:none;background:transparent;color:#94a3b8;border:1px solid #4a5568;padding:8px 18px;border-radius:8px;font-size:13px;cursor:pointer;font-family:Arial,sans-serif">← Back</button>
       <button id="btnNext" onclick="nextStep()" class="btn-outline-green" style="font-size:13px;padding:8px 20px">Next →</button>
